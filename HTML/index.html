@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javier Portfolio</title>
+    <style>
+        /* General Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Home Icon */
+        .top-right-home {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: black;
+            font-weight: bold;
+            font-size: 3.5em;
+        }
+        .home-icon {
+            width: 60px;
+            height: 60px;
+            display: inline-block;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: absolute;
+            top: 28px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(74, 60, 114, 0.5);
+            padding: 10px;
+            border: 2px solid rgba(74, 60, 114, 1);
+            border-radius: 8px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            padding: 0 10px;
+            border-right: 2px solid black;
+        }
+
+        nav ul li:last-child {
+            border-right: none;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Landing Page */
+        #landing-page {
+            height: 100vh;
+            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #landing-page h1 {
+            font-size: 4em;
+            margin: 0;
+            color: #615555;
+            font-style: italic;
+            text-shadow: 
+                2px 2px 0px #6A5D8C,
+                4px 4px 0px #8A7BA5;
+        }
+
+        #landing-page p {
+            font-size: 1.5em;
+            margin: 10px 0 0;
+            color: black;
+            font-style: italic;
+        }
+
+         /* Return to Top Button */
+         #return-to-top {
+            position: fixed;
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 50px;
+            height: 50px;
+            background-color: #4a3c72; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px; /* Centers the arrow vertically */
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s; /* Smooth appearance */
+        }
+
+        #return-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #return-to-top:hover {
+            background-color: #6b589b; /* Hover color */
+        }
+
+        /* About Page */
+        .page {
+            background-color: #f3f2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #4a3c72;
+            padding: 40px 20px;
+        }
+
+        .page h2 {
+            font-size: 3em;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Alternating Layout */
+        .about-section:nth-child(odd) {
+            flex-direction: row-reverse; /* Reverse layout for even sections */
+        }
+
+        /* Image Styling */
+        .about-image {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Text Styling */
+        .about-text {
+            flex: 2;
+            text-align: left;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #333;
+            margin: 0 20px;
+        }
+
+        .about-text h3 {
+            color: #4a3c72;
+            font-size: 1.8em;
+            margin: 0 0 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-text {
+                text-align: center;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <section id="landing-page">
+        <h1>My Portfolio</h1>
+        <p>Big Data & Analytics</p>
+        <div class="top-right-home">
+            <img src="../images/Main-Page/home-icon.png" alt="Home Icon" class="home-icon">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="portfolio.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page">
+        <h2>About Me</h2>
+
+        <!-- First About Section -->
+        <div class="about-section">
+            <div class="about-image">
+                <img width=180px height=280px src="../images/Main-Page/CCA_bda.jpg" alt="My Picture">
+            </div>
+            <div class="about-text">
+                <h3>Introduction</h3>
+                <p>
+                    Hello! My name is Javier. I am pursuing a Diploma in Big Data & Analytics at Temasek Polytechnic, with a passion for harnessing data to drive impactful insights and solutions. 
+                    Expected to graduate in April 2026, I have honed my skills across various technical and analytical domains, excelling in academics and practical applications.
+                </p>
+            </div>
+        </div>
+
+        <!-- Second About Section -->
+        <div class="about-section">
+            <div class="about-image">
+                <img width=160px height=280px src="../images/Main-Page/dashboard.jpeg" alt="Dashboard Image">
+                <img width=160px height=280px src="../images/Main-Page/adobe.jpeg" alt="Adobe Image">
+            </div>
+            <div class="about-text">
+                <h3>Projects & Expertise</h3>
+                <p>
+                    With a strong foundation in data science, visualization, and programming, I have developed projects that showcase my expertise in languages such as Python, JavaScript, HTML, CSS, SQL, and tools like Tableau, Power BI, and Alteryx. From building full-stack websites to designing interactive dashboards and predictive models, I thrive on solving real-world problems with innovative solutions. I am also proficient in AWS services, having built cloud-based data pipelines, and Adobe XD, where I’ve developed user-centric app prototypes.
+                </p>
+            </div>
+        </div>
+
+        <!-- Third About Section -->
+        <div class="about-section">
+            <div class="about-image">
+                <img width=160px height=300px src="../images/Main-Page/bartending.jpeg" alt="Bartending Image">
+                <img width=160px height=300px src="../images/Main-Page/hongkong.jpeg" alt="Hongkong Image">
+            </div>
+            <div class="about-text">
+                <h3>Work Experiences</h3>
+                <p>
+                    Beyond academics, I have extensive experience in team leadership, customer engagement, and multitasking through my work as a Bartender at The Elephant Room and a Service Crew member at Ce La Vi. These roles allowed me to refine my interpersonal skills, manage fast-paced environments, and deliver exceptional customer service. I was honored to represent The Elephant Room during a guest shift in Hong Kong, where I showcased signature cocktails and built valuable connections, boosting brand visibility.
+                </p>
+            </div>
+        </div>
+
+        <!-- Fourth About Section -->
+        <div class="about-section">
+            <div class="about-image">
+                <img width=200px height=270px src="../images/Main-Page/tkd1.jpeg" alt="TKD Image">
+                <img width=200px height=270px src="../images/Main-Page/experiments.jpeg" alt="Experiment Image">
+            </div>
+            <div class="about-text">
+                <h3>Goals & Co-Curricular Activities</h3>
+                <p>
+                    Outside of work and studies, I am a dedicated black belt in Taekwondo, together with Muay Thai and Boxing, actively competing and training to maintain discipline, resilience, and excellence. During my free time, I’m always doing mini projects of my own such as mixology, business-related stuff, and even this fully HTML/CSS coded website! I'm always doing anything that spikes up my interest which expands my knowledge. I am committed to lifelong learning, staying ahead in the evolving world of technology, and bringing a creative, problem-solving mindset to every project I undertake. I always aim to create meaningful, measurable impacts in everything I do.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Return to Top Button -->
+    <button id="return-to-top">&uarr;</button>
+    <script>
+        const returnToTopButton = document.getElementById("return-to-top");
+    
+        // Show the button when the user scrolls down
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) { // Show after scrolling 200px
+                returnToTopButton.classList.add("show");
+            } else {
+                returnToTopButton.classList.remove("show");
+            }
+        });
+    
+        // Scroll back to the top when the button is clicked
+        returnToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+    </script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
+    </footer>
+
+</body>
+</html>

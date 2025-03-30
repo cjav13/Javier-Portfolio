@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        /* Project Icon */
+        .top-left-project {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: black;
+        }
+        /* Return to Top Button */
+        #return-to-top {
+            position: fixed;
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 50px;
+            height: 50px;
+            background-color: #4a3c72; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px; /* Centers the arrow vertically */
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s; /* Smooth appearance */
+        }
+
+        #return-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #return-to-top:hover {
+            background-color: #6b589b; /* Hover color */
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: absolute;
+            top: 28px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background-color: rgba(74, 60, 114, 0.5);
+            padding: 10px;
+            border: 2px solid rgba(74, 60, 114, 1);
+            border-radius: 8px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+            padding: 0 10px;
+            border-right: 2px solid black;
+        }
+
+        nav ul li:last-child {
+            border-right: none;
+        }
+
+        nav ul li a {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            position: relative;
+            width: 100%;
+            height: 110px;
+            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            z-index: 1000; /* Ensures it stays on top of other elements */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 30px;
+            font-size: 3em;
+            text-align: center;
+            color: #6b589b;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color:  #8a7ba5;
+        }
+
+        .filters {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .filters button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 1em;
+            border: none;
+            background-color:  #8a7ba5;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filters button:hover {
+            background-color:  #8a7ba5;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Visited link style for card titles */
+        .card a:visited h3 {
+            color: #6b589b; /* Keeps the color same as default or set another color */
+            text-decoration: none; /* Ensures no underline for visited links */
+        }
+
+        /* Footer */
+        footer {
+            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-left-project">
+            <img width=75px height=75px src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="portfolio.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="projects">
+        <h1   >Projects</h1>
+        <div class="filters">
+            <button onclick="filterProjects('All')">All</button>
+            <button onclick="filterProjects('Most Recent')">Most Recent</button>
+            <button onclick="filterProjects('Most Relevant')">Most Relevant</button>
+            <button onclick="filterProjects('Mini Projects')">Mini Projects</button>
+        </div>
+        <div class="gallery">
+            <a href="dses.html" class="card" data-category="Most Recent">
+                <img src="../images/Project-Cards/DSES.png" alt="Data Science Essentials">
+                <h3>Data Science Essentials</h3>
+                <p>Built a predictive analytics pipeline with Python libraries for profiling, cleaning, visualization, modeling, clustering, and recommendations.</p>
+            </a>
+            <a href="full-stack-web-development.html" class="card" data-category="All">
+                <img width="220px" height="220px" src="../images/Project-Cards/web.jpeg" alt="Full-stacked web development Project">
+                <h3>Full-Stacked Web Development</h3>
+                <p>Designed and developed a full-stack website using HTML for front-end design, JavaScript for functionality, and MySQL for back-end integration.</p>
+            </a>
+            <a href="quantitative-analysis.html" class="card" data-category="Most Recent">
+                <img width="220px" height="220px" src="../images/Project-Cards/QUAS.png" alt="Quantitative analysis">
+                <h3>Quantitative Analysis</h3>
+                <p>Utilized statistical tests (chi-square, correlation) to validate hypotheses and assess data relationships, and applied linear regression for dataset splitting and model accuracy.</p>
+            </a>
+            <a href="data-visualization-analytics.html" class="card" data-category="Most Recent">
+                <img width="220px" height="220px" src="../images/Project-Cards/data-driven.jpeg" alt="Data-driven insights">
+                <h3>Data-driven insights</h3>
+                <p>Created interactive dashboards using Alteryx and Tableau for price prediction, consumer insights, and process improvement to drive profit maximization.</p>
+            </a>
+            <a href="data-engineering-cloud.html" class="card" data-category="All">
+                <img width="220px" height="220px" src="../images/Project-Cards/data-engineering.jpeg" alt="Data engineering in the cloud">
+                <h3>Data Engineering in the Cloud</h3>
+                <p>Built a data pipeline for cloud-based analytics solutions.</p>
+            </a>
+            <a href="ux-prototyping.html" class="card" data-category="All">
+                <img width="220px" height="220px" src="../images/Project-Cards/adobe.jpeg" alt="UX Design and Application Prototyping">
+                <h3>UX Design and Application Prototyping</h3>
+                <p>Designed and developed app prototypes, including rewards and music apps, with a focus on user experience and intuitive interfaces.</p>
+            </a>
+            <a href="personal-finance-tracker.html" class="card" data-category="Mini Projects">
+                <img width="220px" height="220px" src="../images/Project-Cards/accounting.jpeg" alt="Personal finance tracker">
+                <h3>Personal Finance Tracker</h3>
+                <p>Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.</p>
+            </a>
+            <a href="data-storytelling-hackathon-school.html" class="card">
+                <img width="220px" height="220px" src="../images/Project-Cards/storytelling-hackathon-school.jpeg" alt="Data Storytelling (OCBC Hackathon Ignite 2025/School Project)">
+                <h3>Data Storytelling (OCBC Hackathon Ignite 2025/School Project)</h3>
+                <p>Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.</p>
+            </a>
+            <a href="data-storytelling-idl.html" class="card">
+                <img width="220px" height="220px" src="../images/Project-Cards/storytelling-idl.jpeg" alt="Interdisciplinary Learning, Data Storytelling">
+                <h3>Data-Storytelling (Interdisciplinary Learning)</h3>
+                <p>Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.</p>
+            </a>
+            <a href="machine-learning.html" class="card">
+                <img width="220px" height="220px" src="../images/Project-Cards/machine_learning.jpeg" alt="Machine Learning & Decision Making">
+                <h3>Machine Learning & Decision making</h3>
+                <p>Predictive modeling using Python was used to uncover key drivers, make accurate predictions, and generate actionable recommendations for improved decision-making.</p>
+            </a>
+            <a href="text-analytics.html" class="card">
+                <img width="220px" height="220px" src="../images/Project-Cards/text_analytics.jpeg" alt="Text Social Media Analytics">
+                <h3>Text Social Media Analytics</h3>
+                <p>Used text analytic techniques to gather and analyze data, uncover insights, and generate actionable recommendations.</p>
+            </a>
+            <a href="data-mining-analytics.html" class="card">
+                <img width="220px" height="220px" src="../images/Project-Cards/data_mining.jpeg" alt="Data-Mining & Business Analytics">
+                <h3>Data Mining & Analytics</h3>
+                <p>A combination of Python and SAS was used for prediction, identifying key factors, and deliver insights to stakeholders.</p>
+            </a>
+        </div>
+        
+    </section>
+    <!-- Return to Top Button -->
+    <button id="return-to-top">&uarr;</button>
+    <footer>
+        <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
+    </footer>
+
+    <script>
+        // Filter Projects by Category
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.card');
+            const excludedRecent = [
+                'UX Design and Application Prototyping',
+                'Full-Stacked Web Development',
+                'Personal Finance Tracker'
+            ];
+
+            const excludedRelevant = [
+                'UX Design and Application Prototyping',
+                'Full-Stacked Web Development',
+                'Personal Finance Tracker'
+            ];
+
+            cards.forEach(card => {
+                card.style.display = 'none'; // Hide all by default
+    
+                if (
+                    category === 'All' || // Show all projects
+                    (category === 'Most Recent' && !excludedRecent.includes(card.querySelector('h3')?.innerText || '')) || 
+                    (category === 'Most Relevant' && !excludedRelevant.includes(card.querySelector('h3')?.innerText || '')) ||
+                    (category === 'Mini Projects' && card.dataset.category === 'Mini Projects')
+                ) {
+                    card.style.display = 'block';
+                }
+            });
+        }
+    
+        const returnToTopButton = document.getElementById("return-to-top");
+    
+        // Show the button when the user scrolls down
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) { // Show after scrolling 200px
+                returnToTopButton.classList.add("show");
+            } else {
+                returnToTopButton.classList.remove("show");
+            }
+        });
+    
+        // Scroll back to the top when the button is clicked
+        returnToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+    </script>
+    
+</body>
+</html>

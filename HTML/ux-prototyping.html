@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio Slides</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      position: absolute;
+      top: 28px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(74, 60, 114, 0.5);
+      padding: 10px;
+      border: 2px solid rgba(74, 60, 114, 1);
+      border-radius: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      padding: 0 10px;
+      border-right: 2px solid black;
+    }
+
+    nav ul li:last-child {
+      border-right: none;
+    }
+
+    nav ul li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .outer-container {
+      width: 90%;
+      max-width: 1300px;
+      margin: 40px auto;
+    }
+
+    .slider-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slide.centered {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .text-description {
+      width: 65%;
+    }
+
+    .text {
+      width: 35%;
+    }
+
+    .image {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* SIDE BY SIDE */
+    /* IMAGE SIDE-BY-SIDE */
+    .image-side {
+        display: flex;
+        justify-content: flex-start; /* shift to the left */
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+        width: auto; /* remove the 50% constraint */
+        max-width: 100%;
+        overflow: hidden;
+        margin-left: 50px; /* optional: fine-tune how far left */
+    }
+
+    .image-side img {
+        width: auto;
+        height: auto;
+        border-radius: 10px;
+        object-fit: contain;
+    }
+
+
+    /* STACKED */
+    .image-stack {
+      flex-direction: column;
+      align-items: center;
+      width: 50%; /* keep image container reasonable */
+    }
+
+    .image-stack img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .image-side {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .image-side img {
+        width: 100%;
+      }
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #4a3c72;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .dots {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .dot {
+      height: 14px;
+      width: 14px;
+      margin: 0 6px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #4a3c72;
+    }
+
+    footer {
+      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+    }
+
+    .top-bar {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-left-project {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="top-bar">
+    <div class="top-left-project">
+      <img width=75px height=75px src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</div>
+
+  <main>
+    <div class="outer-container">
+      <div class="slider-container">
+
+        <div class="slide active centered">
+          <div class="text-description">
+            <h1>UX Design & Prototyping</h1>
+            <p>This UX design and prototyping project focused on developing an app tailored to a pre-defined user persona. The process included identifying the persona, product storyboarding, and creating low/high fidelity prototypes using Adobe XD. Usability testing was conducted with planned tasks and objectives to gather user feedback, and the System Usability Scale (SUS) was used to evaluate the app’s overall user experience. These insights guide and lead to the final improved design of the app. Click below to view/access the prototype!</p>
+            <a href="https://xd.adobe.com/view/bd51efd2-6d2e-42ff-9d64-b8ac1286360b-e802/ ">View Prototype!</a>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="text">
+            <h1>Persona, Storyboard, Low-Fidelity Prototype</h1>
+            <p>First, a user persona was defined to represent the target audience’s needs, goals, and pain points, helping guide design decisions from the user’s perspective. This was followed by a simple product storyboard to visualise the user journey and app flow. A low-fidelity prototype was then developed, using Adobe XD, to quickly test layout ideas and overall structure before refining the design further.</p>
+          </div>
+          <div class="image image-side">
+            <img src="../images/UXID/uxid-lowfi.jpeg" alt="Low-Fidelity Prototype" style="width: 350px; height: 250px;">
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="text">
+            <h1>High-Fidelity Prototype</h1>
+            <p>Using Adobe XD, a high-fidelity prototype was developed, which closley resembles how the final product would work in both visuals & interactivity. This version would also be used for usability testing from test users to gatheer feedback and improve overall user experience.</p>
+          </div>
+          <div class="image image-side">
+              <img src="../images/UXID/uxid-highfi.jpeg" alt="High-Fidelity Prototype" style="width: 350px; height: 250px;">
+          </div>
+        </div>
+
+        <div class="slide">
+            <div class="text">
+              <h1>Usability Testing</h1>
+              <p>Moving on to product testing, detailed planning was carried out, which included defining test objectives, creating user tasks, and preparing survey questionnaires. User interactions were observed and recorded, while feedback was collected through surveys and interviews. The System Usability Scale (SUS) was also used to measure overall user satisfaction. These insights helped identify usability issues, design flaws, and guided improvements for the final prototype, giving a clearer understanding of where the product stands in terms of user experience.</p>
+            </div>
+            <div class="image image-side">
+                <img src="../images/UXID/uxid-user-interaction.jpg" alt="User Testing" style="width: 350px; height: 250px;">
+                <img src="../images/UXID/uxid-sus-score.jpeg" alt="User SUS Score" style="width: 350px; height: 250px;">
+            </div>
+          </div>
+
+          <div class="slide">
+            <div class="text">
+              <h1>Improved & Finalized High-Fidelity Prototype</h1>
+              <p>Finally, the high-fidelity prototype was refined based on user comments and usability testing insights, including SUS scores and observed interactions. These improvements led to the development of the finalized high-fidelity prototype, ready for handoff or further development before launching the app.</p>
+            </div>
+            <div class="image image-side">
+                <img src="../images/UXID/uxid-improved.jpeg" alt="Improvised Version" style="width: 350px; height: 250px;">
+            </div>
+          </div>
+
+      </div>
+
+      <div class="nav-buttons">
+        <button id="prevBtn">❮ Prev</button>
+        <button id="nextBtn">Next ❯</button>
+      </div>
+
+      <div class="dots" id="dots"></div>
+    </div>
+    
+    <div style="text-align: center; margin: 60px 0 40px 0;">
+        <a href="projects.html">
+          <button style="padding: 12px 24px; background-color: #4a3c72; color: white; border: none; border-radius: 8px; font-size: 16px;">
+            ← Back to Projects
+          </button>
+        </a>
+      </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dots');
+
+    let currentSlide = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlides() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentSlide);
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlides();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlides();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateSlides();
+      });
+    });
+
+    updateSlides();
+  </script>
+</body>
+</html>
