@@ -41,7 +41,7 @@
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 20px;
+      gap: 15px;
     }
 
     nav ul li {
@@ -57,11 +57,12 @@
       color: black;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
 
     .outer-container {
       width: 90%;
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 40px auto;
     }
 
@@ -105,7 +106,7 @@
     }
 
     .text {
-      width: 35%;
+      width: 50%;
     }
 
     .image {
@@ -132,7 +133,7 @@
     .image-side img {
         width: auto;
         height: auto;
-        border-radius: 10px;
+        border-radius: 0;
         object-fit: contain;
     }
 
@@ -147,7 +148,7 @@
     .image-stack img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 0;
     }
 
     @media (max-width: 768px) {
@@ -168,12 +169,12 @@
     }
 
     button {
-      padding: 12px 24px;
+      padding: 16px 28px;
       background-color: #4a3c72;
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
 
@@ -219,6 +220,32 @@
       left: 20px;
     }
 
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;        /* Adjust header size */
+      font-weight: bold;      /* Make it stand out */
+      margin-bottom: 10px;
+      color: #2c2c2c;          /* Dark gray for a soft tone */
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;        /* Adjust paragraph size */
+      line-height: 1.6;       /* Improve spacing between lines */
+      color: #444;            /* Slightly muted text */
+    }
+
+    .image-side.single-image {
+      justify-content: center;
+      width: 100%;         /* Take full width */
+    }
+
+    .slide .text.full-width {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -254,8 +281,8 @@
             <p>Using excel, I created a transaction table for finance tracking as well as formulas to check if my overall finance is missing or receiving any extra money.</p>
           </div>
           <div class="image image-side">
-            <img src="../images/Accounting/transaction-records.jpeg" alt="Transaction Records" style="width: 350px; height: 300px;">
-            <img src="../images/Accounting/finance.jpeg" alt="Finance Table Record" style="width: 350px; height: 250px;">
+            <img src="../images/Accounting/transaction-records.jpeg" alt="Transaction Records" data-width="600">
+            <img src="../images/Accounting/finance.jpeg" alt="Finance Table Record" data-width="600">
           </div>
         </div>
 
@@ -265,8 +292,8 @@
             <p>A formula is also used to keep track of the money that is owned to people & vice versa.</p>
           </div>
           <div class="image image-side">
-              <img src="../images/Accounting/debt-owed.jpeg" alt="Debt Owed" style="width: 350px; height: 250px;">
-              <img src="../images/Accounting/debt-receive.jpeg" alt="Debt Receivable" style="width: 600px; height: 250px;">
+              <img src="../images/Accounting/debt-owed.jpeg" alt="Debt Owed" data-width="600">
+              <img src="../images/Accounting/debt-receive.jpeg" alt="Debt Receivable" data-width="780">
           </div>
         </div>
 
@@ -276,7 +303,7 @@
               <p>Finally, the google excel sheet, acting as my database, is linked to tableau for data-loading automation. Dashboards & graphs are created based on personal finance tracking for eg. average spendings on food daily, transport monthly, etc.</p>
             </div>
             <div class="image">
-                <img src="../images/Accounting/accounting-dashboard.jpeg" alt="Accounting Dashboard" style="width: 350px; height: 250px;">
+                <img src="../images/Accounting/accounting-dashboard.jpeg" alt="Accounting Dashboard" data-width="600">
             </div>
           </div>
 
@@ -292,7 +319,7 @@
 
     <div style="text-align: center; margin: 60px 0 40px 0;">
       <a href="projects.html">
-        <button style="padding: 12px 24px; background-color: #4a3c72; color: white; border: none; border-radius: 8px; font-size: 16px;">
+        <button>
           ← Back to Projects
         </button>
       </a>
@@ -345,6 +372,11 @@
         currentSlide = index;
         updateSlides();
       });
+    });
+
+    document.querySelectorAll('.image img').forEach(img => {
+      const w = img.dataset.width;
+      if (w) img.style.width = w + 'px';
     });
 
     updateSlides();

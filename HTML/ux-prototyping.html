@@ -57,11 +57,12 @@
       color: black;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
 
     .outer-container {
       width: 90%;
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 40px auto;
     }
 
@@ -105,12 +106,12 @@
     }
 
     .text {
-      width: 35%;
+      width: 50%;
     }
 
     .image {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
@@ -131,7 +132,7 @@
     .image-side img {
         width: auto;
         height: auto;
-        border-radius: 10px;
+        border-radius: 0;
         object-fit: contain;
     }
 
@@ -146,7 +147,7 @@
     .image-stack img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 0;
     }
 
     @media (max-width: 768px) {
@@ -167,12 +168,12 @@
     }
 
     button {
-      padding: 12px 24px;
+      padding: 16px 28px;
       background-color: #4a3c72;
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
 
@@ -218,6 +219,37 @@
       left: 20px;
     }
 
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;        /* Adjust header size */
+      font-weight: bold;      /* Make it stand out */
+      margin-bottom: 10px;
+      color: #2c2c2c;          /* Dark gray for a soft tone */
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;        /* Adjust paragraph size */
+      line-height: 1.6;       /* Improve spacing between lines */
+      color: #444;            /* Slightly muted text */
+    }
+
+    .image-side.single-image {
+      justify-content: center;
+      width: 100%;         /* Take full width */
+    }
+
+    .slide .text.full-width {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    a {
+      font-size: 25px; /* or whatever size you want */
+    }
+
+
   </style>
 </head>
 <body>
@@ -253,8 +285,8 @@
             <h1>Persona, Storyboard, Low-Fidelity Prototype</h1>
             <p>First, a user persona was defined to represent the target audience’s needs, goals, and pain points, helping guide design decisions from the user’s perspective. This was followed by a simple product storyboard to visualise the user journey and app flow. A low-fidelity prototype was then developed, using Adobe XD, to quickly test layout ideas and overall structure before refining the design further.</p>
           </div>
-          <div class="image image-side">
-            <img src="../images/UXID/uxid-lowfi.jpeg" alt="Low-Fidelity Prototype" style="width: 350px; height: 250px;">
+          <div class="image image-side single-image">
+            <img src="../images/UXID/uxid-lowfi.jpeg" alt="Low-Fidelity Prototype" data-width="750">
           </div>
         </div>
 
@@ -263,19 +295,20 @@
             <h1>High-Fidelity Prototype</h1>
             <p>Using Adobe XD, a high-fidelity prototype was developed, which closley resembles how the final product would work in both visuals & interactivity. This version would also be used for usability testing from test users to gatheer feedback and improve overall user experience.</p>
           </div>
-          <div class="image image-side">
-              <img src="../images/UXID/uxid-highfi.jpeg" alt="High-Fidelity Prototype" style="width: 350px; height: 250px;">
+          <div class="image image-side single-image">
+              <img src="../images/UXID/uxid-highfi.jpeg" alt="High-Fidelity Prototype" data-width="800">
           </div>
         </div>
 
         <div class="slide">
             <div class="text">
               <h1>Usability Testing</h1>
-              <p>Moving on to product testing, detailed planning was carried out, which included defining test objectives, creating user tasks, and preparing survey questionnaires. User interactions were observed and recorded, while feedback was collected through surveys and interviews. The System Usability Scale (SUS) was also used to measure overall user satisfaction. These insights helped identify usability issues, design flaws, and guided improvements for the final prototype, giving a clearer understanding of where the product stands in terms of user experience.</p>
+              <p>Moving on to product testing, detailed planning was carried out, which included defining test objectives, creating user tasks, and preparing survey questionnaires. User interactions were observed and recorded, while feedback was collected through surveys and interviews.</p> 
+              <p> The System Usability Scale (SUS) was also used to measure overall user satisfaction. These insights helped identify usability issues, design flaws, and guided improvements for the final prototype, giving a clearer understanding of where the product stands in terms of user experience.</p>
             </div>
-            <div class="image image-side">
-                <img src="../images/UXID/uxid-user-interaction.jpg" alt="User Testing" style="width: 350px; height: 250px;">
-                <img src="../images/UXID/uxid-sus-score.jpeg" alt="User SUS Score" style="width: 350px; height: 250px;">
+            <div class="image image-stack">
+                <img src="../images/UXID/uxid-user-interaction.jpg" alt="User Testing" data-width="480">
+                <img src="../images/UXID/uxid-sus-score.jpeg" alt="User SUS Score" data-width="480">
             </div>
           </div>
 
@@ -285,7 +318,7 @@
               <p>Finally, the high-fidelity prototype was refined based on user comments and usability testing insights, including SUS scores and observed interactions. These improvements led to the development of the finalized high-fidelity prototype, ready for handoff or further development before launching the app.</p>
             </div>
             <div class="image image-side">
-                <img src="../images/UXID/uxid-improved.jpeg" alt="Improvised Version" style="width: 350px; height: 250px;">
+                <img src="../images/UXID/uxid-improved.jpeg" alt="Improvised Version" data-width="600">
             </div>
           </div>
 
@@ -301,7 +334,7 @@
     
     <div style="text-align: center; margin: 60px 0 40px 0;">
         <a href="projects.html">
-          <button style="padding: 12px 24px; background-color: #4a3c72; color: white; border: none; border-radius: 8px; font-size: 16px;">
+          <button>
             ← Back to Projects
           </button>
         </a>
@@ -354,6 +387,11 @@
         currentSlide = index;
         updateSlides();
       });
+    });
+
+    document.querySelectorAll('.image img').forEach(img => {
+      const w = img.dataset.width;
+      if (w) img.style.width = w + 'px';
     });
 
     updateSlides();

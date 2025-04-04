@@ -25,20 +25,23 @@
             position: fixed;
             bottom: 20px; /* Distance from the bottom */
             right: 20px; /* Distance from the right */
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             background-color: #4a3c72; /* Button color */
             color: white;
             border: none;
             border-radius: 50%; /* Makes it circular */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            font-size: 24px;
+            font-size: 38px;
             text-align: center;
             line-height: 50px; /* Centers the arrow vertically */
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s, visibility 0.3s; /* Smooth appearance */
+            display: flex;              /* NEW */
+            justify-content: center;    /* Center horizontally */
+            align-items: center;        /* Center vertically */
         }
 
         #return-to-top.show {
@@ -85,6 +88,7 @@
             color: black;
             text-decoration: none;
             font-weight: bold;
+            font-size: 18px;
         }
 
         nav ul li a:hover {
@@ -201,7 +205,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="portfolio.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -233,11 +237,19 @@
                 <h3>Quantitative Analysis</h3>
                 <p>Utilized statistical tests (chi-square, correlation) to validate hypotheses and assess data relationships, and applied linear regression for dataset splitting and model accuracy.</p>
             </a>
-            <a href="data-visualization-analytics.html" class="card" data-category="Most Recent">
-                <img width="220px" height="220px" src="../images/Project-Cards/data-driven.jpeg" alt="Data-driven insights">
-                <h3>Data-driven insights</h3>
-                <p>Created interactive dashboards using Alteryx and Tableau for price prediction, consumer insights, and process improvement to drive profit maximization.</p>
+
+            <a href="data-warehouse.html" class="card" data-category="Most Recent">
+                <img width="220px" height="220px" src="../images/Project-Cards/dwbi-starschema.jpeg" alt="Data Warehouse & Business Intelligence">
+                <h3>Data Warehouse & Business Intelligence</h3>
+                <p>Built a data warehouse using SQL and used Alteryx for ETL and to create visuals showing trends and insights for business improvement.</p>
             </a>
+
+            <a href="data-visualization-analytics.html" class="card" data-category="Most Recent">
+                <img width="220px" height="220px" src="../images/Project-Cards/dava-workflow.jpeg" alt="Data Warehouse & Business Intelligence">
+                <h3>Data Visualization & Analytics</h3>
+                <p>Performed cleaning, transformation, clustering, and regression analysis using KNIME, and built Power BI dashboards to uncover customer behavior and insights.</p>
+            </a>
+
             <a href="data-engineering-cloud.html" class="card" data-category="All">
                 <img width="220px" height="220px" src="../images/Project-Cards/data-engineering.jpeg" alt="Data engineering in the cloud">
                 <h3>Data Engineering in the Cloud</h3>

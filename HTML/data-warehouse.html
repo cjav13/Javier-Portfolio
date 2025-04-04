@@ -71,7 +71,6 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       padding: 40px;
-      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -139,14 +138,18 @@
       width: auto;
       max-width: 100%;
       overflow: hidden;
-      margin-left: 0px;
+    }
+
+    .image-side.single-image {
+      justify-content: center;
+      width: 100%;
     }
 
     .image-side img {
       width: auto;
       height: auto;
-      border-radius: 0;
       object-fit: contain;
+      border-radius: 0;
     }
 
     .image-stack {
@@ -154,15 +157,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 100%;             /* Make sure it spans full width */
+      width: 100%;
     }
 
     .image-stack img {
-      width: auto;             /* Don't stretch to 100% unless needed */
-      max-width: 100%;         /* Responsive */
+      width: auto;
+      max-width: 100%;
       height: auto;
+      border-radius: 0;
     }
-
 
     @media (max-width: 768px) {
       .image-side {
@@ -223,25 +226,12 @@
       top: 15px;
       left: 20px;
     }
-
-    .image-side.single-image {
-      justify-content: center;
-      width: 100%;         /* Take full width */
-    }
-
-    .slide .text.full-width {
-      width: 100%;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-
   </style>
 </head>
 <body>
   <div class="top-bar">
     <div class="top-left-project">
-      <img width="75px" height="75px" src="../images/Icons/project-icon.png" alt="Home Icon">
+      <img width="75px" height="75px" src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
     </div>
     <nav>
       <ul>
@@ -255,62 +245,45 @@
 
   <main>
     <div class="outer-container">
-      <div class="slider-container">
 
-        <!-- Slide 1 -->
+      <div class="slider-container">
         <div class="slide active centered">
           <div class="text-description">
-            <h1>Full-Stacked Web Development</h1>
-            <p>The objective of this project is to create a full-stack e-commerce web application that lets users manage product and category data through a connected frontend and backend. It involves setting up a database, building a server to handle data, and designing a user interface that updates in real time.</p>
+            <h1>Data Warehouse & Business Intelligence</h1>
+            <p>In this project, we need to build a data warehouse for a hotel group using MySQL and perform ETL using Alteryx to clean, transform, and blend booking data. Visual dashboards were created to show trends like occupancy rates, booking channels, and cancellations, followed by recommendations given to stakeholders to improve business performance.</p>
           </div>
         </div>
 
-        <!-- Slide 2 -->
         <div class="slide">
           <div class="text">
-            <h1>Relational Database Design</h1>
-            <p>Designed a relational database for an e-commerce website and created an ER diagram, defined entities and relationships, set primary and foreign keys, and applied normalization to avoid data anomalies like insertion, update, and deletion issues.</p>
+            <h1>Data Warehouse - Star Schema Design</h1>
+            <p>I created a star schema in SQL to organize hotel booking data for analysis. It includes a central fact table of bookings linked to dimensions like guests, agents, dates, and hotels. This structure simplifies queries and supports insights into occupancy trends and booking behavior.</p>
           </div>
-          <div class="image image-side single-image">
-            <img src="../images/ADEV/adev-relational-database-design.jpeg" alt="SQL Relational Database Design" data-width="700">
+          <div class="image image-side">
+            <img src="../images/DWBI/dwbi-starschema.jpeg" alt="Star Schema Design" data-width="550">
           </div>
         </div>
 
-        <!-- Slide 3 -->
         <div class="slide">
           <div class="text">
-            <h1>SQL Schema & Table creation</h1>
-            <p>Created a schema in SQL named e-commerce, which organizes and stores data for the back end of this website. Contains a product table to store key product information such as name, description, price, category ID, and image path.</p>
+            <h1>Data Preparation</h1>
+            <p>In this step, I loaded the data into Alteryx and performed data profiling and cleaning to ensure consistency. This included formatting, handling missing values, and standardizing fields so the data aligns with the star schema structure for smooth integration and analysis.</p>
           </div>
-          <div class="image image-side single-image">
-            <img src="../images/ADEV/adev-sqlschema.jpeg" alt="SQL Schema & Database" data-width="700">
+          <div class="image image-side">
+              <img src="../images/DWBI/dwbi-cleaning.jpeg" alt="Alteryx Cleaning Workflow" data-width="650">
           </div>
         </div>
 
-        <!-- Slide 4 -->
         <div class="slide">
-          <div class="text">
-            <h1>Connecting to SQL database & Building API Layer</h1>
-            <p>In this step, I set up the backend server using Node.js and Express, and connected it to the MySQL e-commerce database through a separate db-connections.js file. The server handles API routes for retrieving, adding, updating, and deleting product and category data using SQL queries.</p>
+            <div class="text">
+              <h1>Transformations & Visualizations - Recommendations To Stakeholders</h1>
+              <p>Lastly, transformations were applied to improve the dataset, and visuals were created to highlight key trends. Recommendations were then provided to stakeholders based on the insights uncovered.</p>
+            </div>
+            <div class="image image-stack">
+                <img src="../images/DWBI/dwbi-transformation-visual.JPG" alt="Data Visuals" data-width="500">
+                <img src="../images/DWBI/dwbi-visual.jpeg" alt="Data Transformation" data-width="600">
+            </div>
           </div>
-          <div class="image image-stack">
-            <img src="../images/ADEV/adev-sql-connection.jpeg" alt="SQL Connection" data-width="800">
-            <img src="../images/ADEV/adev-server.jpeg" alt="Building API Layer" data-width="800">
-          </div>
-        </div>
-
-        <!-- Slide 5 -->
-        <div class="slide">
-          <div class="text">
-            <h1>Front-End Development</h1>
-            <p>Finally, the front end is developed using HTML and JavaScript to interact with the back-end API. JavaScript functions were created to perform key actions like GET (display products and categories), POST (add new products or categories), PUT (update existing product details), and DELETE (remove products).</p>
-            <p>These actions are done using XMLHttpRequest to send and receive data from the server. Input validation and user-friendly feedback (like alerts and error messages) are included to enhance usability dynamically. This setup allows real-time updates between the user interface and the database.</p>
-          </div>
-          <div class="image image-stack">
-            <img src="../images/ADEV/adev-frontend.jpeg" alt="Frontend Design 1" data-width="650">
-            <img src="../images/ADEV/adev-update-product.jpeg" alt="Frontend Design 2" data-width="650">
-          </div>
-        </div>
 
       </div>
 
@@ -324,7 +297,9 @@
 
     <div style="text-align: center; margin: 60px 0 40px 0;">
       <a href="projects.html">
-        <button>← Back to Projects</button>
+        <button>
+          ← Back to Projects
+        </button>
       </a>
     </div>
   </main>
@@ -376,10 +351,18 @@
       });
     });
 
-    // Set default image widths from data-width
-    document.querySelectorAll('.image img').forEach(img => {
+    // Dynamically assign single-image class and set widths
+    document.querySelectorAll('.image-side').forEach(container => {
+      const imgs = container.querySelectorAll('img');
+      if (imgs.length === 1) {
+        container.classList.add('single-image');
+      }
+    });
+
+    document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
       const w = img.dataset.width || '300';
       img.style.width = w + 'px';
+      img.style.borderRadius = '0';
     });
 
     updateSlides();

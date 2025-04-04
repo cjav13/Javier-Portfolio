@@ -57,11 +57,12 @@
       color: black;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
 
     .outer-container {
       width: 90%;
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 40px auto;
     }
 
@@ -105,12 +106,12 @@
     }
 
     .text {
-      width: 35%;
+      width: 50%;
     }
 
     .image {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
@@ -131,7 +132,7 @@
     .image-side img {
         width: auto;
         height: auto;
-        border-radius: 10px;
+        border-radius: 0;
         object-fit: contain;
     }
 
@@ -146,7 +147,7 @@
     .image-stack img {
       width: 100%;
       height: auto;
-      border-radius: 10px;
+      border-radius: 0;
     }
 
     @media (max-width: 768px) {
@@ -167,12 +168,12 @@
     }
 
     button {
-      padding: 12px 24px;
+      padding: 16px 28px;
       background-color: #4a3c72;
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
 
@@ -218,6 +219,32 @@
       left: 20px;
     }
 
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;        /* Adjust header size */
+      font-weight: bold;      /* Make it stand out */
+      margin-bottom: 10px;
+      color: #2c2c2c;          /* Dark gray for a soft tone */
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;        /* Adjust paragraph size */
+      line-height: 1.6;       /* Improve spacing between lines */
+      color: #444;            /* Slightly muted text */
+    }
+
+    .image-side.single-image {
+      justify-content: center;
+      width: 100%;         /* Take full width */
+    }
+
+    .slide .text.full-width {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -254,21 +281,24 @@
               
               <p>Separately, in the OCBC Ignite Hackathon 2024 competition, we worked in teams with similar objectives to the school assignment, using the same dataset to uncover key insights and present them through storytelling, along with recommendations that were then presented to OCBC.</p>
             </div>
-            <div class="image image-side">
-              <img src="../images/DAST/dast-hackathon-distinction.jpeg" alt="Hackathon Team Picture" style="width: 350px; height: 250px;">
-              <img src="../images/DAST/dast-hackathon-grouppic.jpeg" alt="Hackathon Group Picture" style="width: 350px; height: 250px;">
+            <div class="image image-side single-image">
+              <img src="../images/DAST/dast-hackathon-distinction.jpeg" alt="Hackathon Team Picture" data-width="500">
             </div>
           </div>
 
         <div class="slide">
           <div class="text">
             <h1>Data Management</h1>
-            <p>Firstly, we check for data issues such as missing values and inconsistencies, and perform cleaning where necessary. This is followed by domain-informed transformations, along with other useful transformations to support analysis. The branch and call dataset is then integrated into a central source through a common key for analysis.</p>
+            <p>Firstly, we check for data issues such as missing values and inconsistencies, and perform cleaning where necessary. </p>
+            <p>This is followed by domain-informed transformations, along with other useful transformations to support analysis.</p>
+            <p>The branch and call dataset is then integrated into a central source through a common key for analysis.</p>
           </div>
-          <div class="image image-side">
-            <img src="../images/DAST/dast-cleaning.jpeg" alt="Profiling 1" style="width: 350px; height: 250px;">
-            <img src="../images/DAST/dast-transformation.jpeg" alt="Profiling 1" style="width: 350px; height: 250px;">
-            <img src="../images/DAST/dast-integration.jpeg" alt="Profiling 1" style="width: 350px; height: 250px;">
+          <div class="image image-side single-image">
+            <img src="../images/DAST/dast-cleaning.jpeg" alt="Profiling 1" data-width="500">
+          </div>
+          <div class="image image-stack">
+            <img src="../images/DAST/dast-transformation.jpeg" alt="Profiling 1" data-width="450">
+            <img src="../images/DAST/dast-integration.jpeg" alt="Profiling 1" data-width="450">
           </div>
         </div>
 
@@ -277,9 +307,9 @@
             <h1>Data Visualizations & Analytical Insights</h1>
             <p>Visualizations and models like clustering/predictive models are used to uncover trends, patterns, correlations, and potential service issues in OCBC. These visuals help support or rule out hypotheses, guide further investigation, and communicate findings clearly. Dashboards are also developed to present key metrics and insights in an interactive and accessible format for stakeholders.</p>
           </div>
-          <div class="image image-side">
-              <img src="../images/DAST/dast-clusterchart1.jpeg" alt="Missingno" style="width: 350px; height: 250px;">
-              <img src="../images/DAST/dast-clusterchart2.jpeg" alt="Handling data issues" style="width: 600px; height: 250px;">
+          <div class="image image-stack">
+              <img src="../images/DAST/dast-clusterchart1.jpeg" alt="Missingno" data-width="600">
+              <img src="../images/DAST/dast-clusterchart2.jpeg" alt="Handling data issues" data-width="600">
           </div>
         </div>
 
@@ -289,7 +319,7 @@
               <p>Lastly, all charts and dashboards are brought together to form a data story/presentation that highlights key findings. Based on these insights, actionable recommendations are provided to OCBC to support decision-making and improve customer satisfaction/service.</p>
             </div>
             <div class="image image-side">
-                <img src="../images/DAST/dast-storytelling.jpeg" alt="Data Visuals" style="width: 350px; height: 250px;">   
+                <img src="../images/DAST/dast-storytelling.jpeg" alt="Data Visuals" data-width="750">   
             </div>
           </div>
 
@@ -305,7 +335,7 @@
 
     <div style="text-align: center; margin: 60px 0 40px 0;">
       <a href="projects.html">
-        <button style="padding: 12px 24px; background-color: #4a3c72; color: white; border: none; border-radius: 8px; font-size: 16px;">
+        <button>
           ← Back to Projects
         </button>
       </a>
@@ -358,6 +388,11 @@
         currentSlide = index;
         updateSlides();
       });
+    });
+
+    document.querySelectorAll('.image img').forEach(img => {
+      const w = img.dataset.width;
+      if (w) img.style.width = w + 'px';
     });
 
     updateSlides();

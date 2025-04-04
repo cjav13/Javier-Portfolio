@@ -106,22 +106,7 @@
     }
 
     .text {
-      width: 60%;
-    }
-
-    .text h1,
-    .text-description h1 {
-      font-size: 35px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #2c2c2c;
-    }
-
-    .text p,
-    .text-description p {
-      font-size: 20px;
-      line-height: 1.6;
-      color: #444;
+      width: 40%;
     }
 
     .image {
@@ -130,39 +115,40 @@
       flex-wrap: wrap;
     }
 
+    /* SIDE BY SIDE */
+    /* IMAGE SIDE-BY-SIDE */
     .image-side {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap;
-      width: auto;
-      max-width: 100%;
-      overflow: hidden;
-      margin-left: 0px;
+        display: flex;
+        justify-content: flex-start; /* shift to the left */
+        align-items: center;
+        gap: 20px;
+        flex-wrap: nowrap;
+        width: auto; /* remove the 50% constraint */
+        max-width: 100%;
+        overflow: hidden;
+        margin-left: 50px; /* optional: fine-tune how far left */
     }
 
     .image-side img {
-      width: auto;
-      height: auto;
-      border-radius: 0;
-      object-fit: contain;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        object-fit: contain;
     }
 
+
+    /* STACKED */
     .image-stack {
-      display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      width: 100%;             /* Make sure it spans full width */
+      width: 50%; /* keep image container reasonable */
     }
 
     .image-stack img {
-      width: auto;             /* Don't stretch to 100% unless needed */
-      max-width: 100%;         /* Responsive */
+      width: 100%;
       height: auto;
+      border-radius: 0;
     }
-
 
     @media (max-width: 768px) {
       .image-side {
@@ -218,10 +204,34 @@
       width: 100%;
     }
 
+    .top-bar {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     .top-left-project {
       position: absolute;
       top: 15px;
       left: 20px;
+    }
+
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;        /* Adjust header size */
+      font-weight: bold;      /* Make it stand out */
+      margin-bottom: 10px;
+      color: #2c2c2c;          /* Dark gray for a soft tone */
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;        /* Adjust paragraph size */
+      line-height: 1.6;       /* Improve spacing between lines */
+      color: #444;            /* Slightly muted text */
     }
 
     .image-side.single-image {
@@ -235,13 +245,13 @@
       margin-bottom: 20px;
     }
 
-
   </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="top-left-project">
-      <img width="75px" height="75px" src="../images/Icons/project-icon.png" alt="Home Icon">
+  <!-- Header -->
+    <div class="top-bar">
+      <div class="top-left-project">
+        <img width=75px height=75px src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
     </div>
     <nav>
       <ul>
@@ -257,59 +267,50 @@
     <div class="outer-container">
       <div class="slider-container">
 
-        <!-- Slide 1 -->
         <div class="slide active centered">
           <div class="text-description">
-            <h1>Full-Stacked Web Development</h1>
-            <p>The objective of this project is to create a full-stack e-commerce web application that lets users manage product and category data through a connected frontend and backend. It involves setting up a database, building a server to handle data, and designing a user interface that updates in real time.</p>
+            <h1>Data Visualization & Analytics</h1>
+            <p>This project focuses on analyzing food delivery data to uncover customer behavior, restaurant demand patterns, and rating predictions. It involves data cleaning, transforming, clustering, and regression modeling using KNIME and Power BI to support insights and decision-making for food delivery platforms.</p>
           </div>
         </div>
 
-        <!-- Slide 2 -->
         <div class="slide">
           <div class="text">
-            <h1>Relational Database Design</h1>
-            <p>Designed a relational database for an e-commerce website and created an ER diagram, defined entities and relationships, set primary and foreign keys, and applied normalization to avoid data anomalies like insertion, update, and deletion issues.</p>
+            <h1>Cleaning & Transformation</h1>
+            <p>Using KNIME, I began by profiling the dataset to identify data issues such as inconsistencies, duplicates, missing values, incorrect data types, etc. Cleaning and transformation is done, and new columns are created to improve the dataset for modelling/analysis later. This step ensured a thorough understanding of the dataset and also ensures the dataset is accurate for analysis.</p>
           </div>
-          <div class="image image-side single-image">
-            <img src="../images/ADEV/adev-relational-database-design.jpeg" alt="SQL Relational Database Design" data-width="700">
+          <div class="image image-side">
+            <img src="../images/DAVA/dava-cleaning.jpeg" alt="Profiling 1" data-width="750">
           </div>
         </div>
 
-        <!-- Slide 3 -->
         <div class="slide">
           <div class="text">
-            <h1>SQL Schema & Table creation</h1>
-            <p>Created a schema in SQL named e-commerce, which organizes and stores data for the back end of this website. Contains a product table to store key product information such as name, description, price, category ID, and image path.</p>
-          </div>
-          <div class="image image-side single-image">
-            <img src="../images/ADEV/adev-sqlschema.jpeg" alt="SQL Schema & Database" data-width="700">
-          </div>
-        </div>
-
-        <!-- Slide 4 -->
-        <div class="slide">
-          <div class="text">
-            <h1>Connecting to SQL database & Building API Layer</h1>
-            <p>In this step, I set up the backend server using Node.js and Express, and connected it to the MySQL e-commerce database through a separate db-connections.js file. The server handles API routes for retrieving, adding, updating, and deleting product and category data using SQL queries.</p>
+            <h1>K-Means Clustering</h1>
+            <p>The dataset was normalized and binned to optimize the K-Means clustering process, which performs better when data is on a similar scale. After forming four clusters, the data was denormalized for easier interpretation. The clustered output was then exported to CSV and visualized using dashboards to support a more targeted approach based on similar customer characteristics.</p>
           </div>
           <div class="image image-stack">
-            <img src="../images/ADEV/adev-sql-connection.jpeg" alt="SQL Connection" data-width="800">
-            <img src="../images/ADEV/adev-server.jpeg" alt="Building API Layer" data-width="800">
+              <img src="../images/DAVA/dava-cluster-workflow.jpeg" alt="Missingno" data-width="650">
+              <img src="../images/DAVA/dava-cluster-dashboard.jpeg" alt="Handling data issues" data-width="650">
           </div>
         </div>
 
-        <!-- Slide 5 -->
         <div class="slide">
-          <div class="text">
-            <h1>Front-End Development</h1>
-            <p>Finally, the front end is developed using HTML and JavaScript to interact with the back-end API. JavaScript functions were created to perform key actions like GET (display products and categories), POST (add new products or categories), PUT (update existing product details), and DELETE (remove products).</p>
-            <p>These actions are done using XMLHttpRequest to send and receive data from the server. Input validation and user-friendly feedback (like alerts and error messages) are included to enhance usability dynamically. This setup allows real-time updates between the user interface and the database.</p>
-          </div>
-          <div class="image image-stack">
-            <img src="../images/ADEV/adev-frontend.jpeg" alt="Frontend Design 1" data-width="650">
-            <img src="../images/ADEV/adev-update-product.jpeg" alt="Frontend Design 2" data-width="650">
-          </div>
+            <div class="text">
+              <h1>Linear Regression Model</h1>
+              <p>In the last step, a linear regression model was trained to predict customer ratings for restaurants. The data was split into training and test sets, and the model was evaluated using metrics like R² and mean squared error. Residuals were visualized in Power BI to assess model accuracy and fit.</p>
+            </div>
+            <div class="image image-side">
+              <!-- Left Side -->
+              <img src="../images/DAVA/dava-model-stat.jpeg" alt="Model Stats" data-width="500">
+            
+              <!-- Right Side: Stack -->
+              <div class="image image-stack">
+                <img src="../images/DAVA/dava-model-workflow.jpeg" alt="Workflow" data-width="400">
+                <img src="../images/DAVA/dava-residuals.jpeg" alt="Residuals" data-width="400">
+              </div>
+            </div>
+            
         </div>
 
       </div>
@@ -324,9 +325,12 @@
 
     <div style="text-align: center; margin: 60px 0 40px 0;">
       <a href="projects.html">
-        <button>← Back to Projects</button>
+        <button>
+          ← Back to Projects
+        </button>
       </a>
     </div>
+    
   </main>
 
   <footer>
@@ -376,11 +380,18 @@
       });
     });
 
-    // Set default image widths from data-width
     document.querySelectorAll('.image img').forEach(img => {
-      const w = img.dataset.width || '300';
-      img.style.width = w + 'px';
+      const w = img.dataset.width;
+      if (w) img.style.width = w + 'px';
     });
+
+    document.querySelectorAll('.image-side, .image-stack').forEach(container => {
+      const imgs = container.querySelectorAll('img');
+      if (imgs.length === 1 && container.classList.contains('image-side')) {
+        container.classList.add('single-image');
+      }
+    });
+
 
     updateSlides();
   </script>

@@ -57,11 +57,12 @@
       color: black;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
 
     .outer-container {
       width: 90%;
-      max-width: 1300px;
+      max-width: 1600px;
       margin: 40px auto;
     }
 
@@ -105,12 +106,12 @@
     }
 
     .text {
-      width: 35%;
+      width: 50%;
     }
 
     .image {
       display: flex;
-      gap: 20px;
+      gap: 15px;
       flex-wrap: wrap;
     }
 
@@ -131,23 +132,25 @@
     .image-side img {
         width: auto;
         height: auto;
-        border-radius: 10px;
+        border-radius: 0;
         object-fit: contain;
     }
 
 
     /* STACKED */
     .image-stack {
+      display: flex;
       flex-direction: column;
       align-items: center;
-      width: 50%; /* keep image container reasonable */
+      justify-content: center;
+      width: 100%;
+    }
+    .image-stack img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
     }
 
-    .image-stack img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-    }
 
     @media (max-width: 768px) {
       .image-side {
@@ -167,14 +170,15 @@
     }
 
     button {
-      padding: 12px 24px;
+      padding: 16px 28px;
       background-color: #4a3c72;
       color: white;
       border: none;
       border-radius: 8px;
-      font-size: 16px;
+      font-size: 18px;
       cursor: pointer;
     }
+
 
     .dots {
       text-align: center;
@@ -217,6 +221,28 @@
       top: 15px;
       left: 20px;
     }
+
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c2c2c;
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .image-side.single-image {
+      justify-content: center;
+      width: 100%;
+    }
+
+
   </style>
 </head>
 <body>
@@ -257,7 +283,7 @@
             <p>The cleaned data is saved to a transformed S3 folder, and a Glue Crawler updates the Glue Catalog. The process ends with an SNS notification confirming successful completion.</p>
           </div>
           <div class="image image-side">
-              <img src="../images/DAEC/daec-step-function.jpeg" alt="Step Function AWS" style="width: 350px; height: 250px;">
+              <img src="../images/DAEC/daec-step-function.jpeg" alt="Step Function AWS" data-width="650">
           </div>
         </div>
 
@@ -267,7 +293,7 @@
               <p>Next, a scheduled Lambda function uses AWS Cost Explorer to generate a monthly cost report. If charges exceed 80% of the $100 budget, an alert is sent via SNS.</p>
             </div>
             <div class="image image-side">
-                <img src="../images/DAEC/daec-cost-explorer.jpeg" alt="AWS Cost Explorer" style="width: 350px; height: 250px;">\
+                <img src="../images/DAEC/daec-cost-explorer.jpeg" alt="AWS Cost Explorer" data-width="300">
             </div>
           </div>
 
@@ -277,20 +303,22 @@
               <p>IAM roles were created to define access based on job roles. CloudTrail is used to log all user and service activity for auditing and compliance and KMS encrypts S3 data to ensure data confidentiality and security.</p>
             </div>
             <div class="image image-side">
-                <img src="../images/DAEC/daec-iam.jpeg" alt="AWS IAM" style="width: 350px; height: 250px;">
-                <img src="../images/DAEC/daec-kms.jpeg" alt="AWS KMS" style="width: 400px; height: 250px;">
-                <img src="../images/DAEC/daec-cloudtrail.jpeg" alt="AWS CloudTrail" style="width: 400px; height: 250px;">
+                <img src="../images/DAEC/daec-iam.jpeg" alt="AWS IAM" data-width="190">
+                <img src="../images/DAEC/daec-kms.jpeg" alt="AWS KMS" data-width="190">
+                <img src="../images/DAEC/daec-cloudtrail.jpeg" alt="AWS CloudTrail" data-width="190">
             </div>
           </div>
 
           <div class="slide">
             <div class="text">
               <h1>Automated Data Loading & Dashboard Creation</h1>
-              <p>Lastly, dashboards are created in Power BI and is connected to AWS via the Simba Athena ODBC driver. A local automation setup retrieves temporary AWS credentials (get_credentials.py),  which updates the ODBC DSN (update_odbc.ps1), and triggers dataset refresh via Power BI REST API (refresh_power_bi.py). These scripts are executed every 4 hours using a .bat file and Windows Task Scheduler, which automates data-loading to Power BI.</p>
+              <p>Lastly, dashboards are created in Power BI and is connected to AWS via the Simba Athena ODBC driver. </p>
+              <p>A local automation setup retrieves temporary AWS credentials (get_credentials.py),  which updates the ODBC DSN (update_odbc.ps1), and triggers dataset refresh via Power BI REST API (refresh_power_bi.py).</p>
+              <p>These scripts are executed every 4 hours using a .bat file and Windows Task Scheduler, which automates data-loading to Power BI.</p>
             </div>
-            <div class="image image-side">
-                <img src="../images/DAEC/daec-credentials.jpeg" alt="AWS credentials" style="width: 350px; height: 250px;">
-                <img src="../images/DAEC/daec-dashboard.jpeg" alt="Power BI Dashboard" style="width: 400px; height: 250px;">
+            <div class="image image-stack">
+                <img src="../images/DAEC/daec-credentials.jpeg" alt="AWS credentials" data-width="650">
+                <img src="../images/DAEC/daec-dashboard.jpeg" alt="Power BI Dashboard" data-width="650">
             </div>
           </div>
 
@@ -313,7 +341,7 @@
 
     <div style="text-align: center; margin: 60px 0 40px 0;">
         <a href="projects.html">
-          <button style="padding: 12px 24px; background-color: #4a3c72; color: white; border: none; border-radius: 8px; font-size: 16px;">
+          <button>
             ← Back to Projects
           </button>
         </a>
@@ -330,18 +358,18 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('dots');
-
+  
     let currentSlide = 0;
-
+  
     slides.forEach((_, i) => {
       const dot = document.createElement('span');
       dot.classList.add('dot');
       if (i === 0) dot.classList.add('active');
       dotsContainer.appendChild(dot);
     });
-
+  
     const dots = document.querySelectorAll('.dot');
-
+  
     function updateSlides() {
       slides.forEach((slide, i) => {
         slide.classList.toggle('active', i === currentSlide);
@@ -350,25 +378,40 @@
         dot.classList.toggle('active', i === currentSlide);
       });
     }
-
+  
     nextBtn.addEventListener('click', () => {
       currentSlide = (currentSlide + 1) % slides.length;
       updateSlides();
     });
-
+  
     prevBtn.addEventListener('click', () => {
       currentSlide = (currentSlide - 1 + slides.length) % slides.length;
       updateSlides();
     });
-
+  
     dots.forEach((dot, index) => {
       dot.addEventListener('click', () => {
         currentSlide = index;
         updateSlides();
       });
     });
-
+  
+    // Apply data-width manually
+    document.querySelectorAll('.image-side, .image-stack').forEach(container => {
+      const imgs = container.querySelectorAll('img');
+      if (imgs.length === 1 && container.classList.contains('image-side')) {
+        container.classList.add('single-image');
+      }
+      imgs.forEach(img => {
+        const width = img.dataset.width;
+        if (width) {
+          img.style.width = width + 'px';
+        }
+      });
+    });
+  
     updateSlides();
   </script>
+  
 </body>
 </html>
