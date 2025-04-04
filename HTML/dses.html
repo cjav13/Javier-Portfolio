@@ -363,6 +363,16 @@
 
     let currentSlide = 0;
 
+    window.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll('img').forEach(img => {
+        const width = img.dataset.width;
+        if (width) {
+          img.style.width = width + 'px';
+          img.style.height = 'auto';
+        }
+      });
+    });
+
     slides.forEach((_, i) => {
       const dot = document.createElement('span');
       dot.classList.add('dot');
