@@ -130,10 +130,10 @@
     }
 
     .image-side img {
-      width: auto; /* will be set by JS */
+      max-width: 100%;
       height: auto;
+      width: auto; /* prevent stretching */
       object-fit: contain;
-      border-radius: 10px;
     }
 
 
@@ -155,13 +155,16 @@
     @media (max-width: 768px) {
       .image-side {
         flex-direction: column;
-        width: 100%;
+        align-items: center;
       }
 
       .image-side img {
-        width: 100%;
+        width: 90% !important;
+        max-width: 90vw;
+        height: auto;
       }
     }
+
 
     .nav-buttons {
       display: flex;
