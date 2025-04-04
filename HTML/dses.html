@@ -130,9 +130,9 @@
     }
 
     .image-side img {
+      width: auto;
       max-width: 100%;
       height: auto;
-      width: auto; /* prevent stretching */
       object-fit: contain;
     }
 
@@ -367,14 +367,15 @@
     let currentSlide = 0;
 
     window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll('img').forEach(img => {
-        const width = img.dataset.width;
-        if (width) {
-          img.style.width = width + 'px';
+      document.querySelectorAll('.image img').forEach(img => {
+        const w = img.dataset.width;
+        if (w && window.innerWidth > 768) {
+          img.style.width = w + 'px';
           img.style.height = 'auto';
         }
       });
     });
+
 
     slides.forEach((_, i) => {
       const dot = document.createElement('span');
