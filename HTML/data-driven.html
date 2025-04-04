@@ -20,8 +20,8 @@
         main {
             flex: 1; /* Pushes the footer down */
         }
-        /* Home Icon */
-        .top-left-home {
+        /* Contact Icon */
+        .top-left-contact {
             position: absolute;
             top: 15px;
             left: 20px;
@@ -32,14 +32,14 @@
             position: relative;
             width: 100%;
             height: 110px;
-            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            background: url('../images/aesthetic-grey-marble.png') no-repeat center center/cover;
             color: white;
             text-align: center;
             z-index: 1000; /* Ensures it stays on top of other elements */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .resume-icon {
+        .contact-icon {
             width: 60px;
             height: 60px;
             display: inline-block;
@@ -79,60 +79,95 @@
             color: black;
             text-decoration: none;
             font-weight: bold;
-            font-size: 18px;
         }
 
         nav ul li a:hover {
             text-decoration: underline;
         }
-        /* Resume Section */
-        #resume-section {
+        
+        /* Page Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 40px 20px;
             text-align: center;
-            position: relative;
-            max-width: 900px;
-            margin: 40px auto; /* Adds spacing from top bar */
-            background-color: #fff;
-            border: 2px solid #4a3c72;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        #resume-section h2 {
-            margin: 0;
-            padding: 20px 0 10px;
+        h1 {
             font-size: 2.5em;
             color: #4a3c72;
-            border-bottom: 2px solid #ddd;
+            margin-bottom: 10px;
         }
 
-        #resume-section p {
-            margin: 20px 0 40px;
+        p {
             font-size: 1.2em;
-            line-height: 1.6;
-            color: #555;
+            margin-bottom: 30px;
         }
 
-        /* Download Button */
-        .download-btn {
-            display: inline-block;
-            padding: 12px 20px;
-            background-color: #4a3c72;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.2em;
+        /* Return to Top Button */
+        #return-to-top {
+            position: fixed;
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 50px;
+            height: 50px;
+            background-color: #4a3c72; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 50%; /* Makes it circular */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            font-size: 24px;
+            text-align: center;
+            line-height: 50px; /* Centers the arrow vertically */
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s; /* Smooth appearance */
+        }
+
+        #return-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #return-to-top:hover {
+            background-color: #6b589b; /* Hover color */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
             font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        button {
+            background-color: #4a3c72;
+            color: white;
+            border: none;
+            padding: 12px 20px;
             border-radius: 5px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
             transition: background-color 0.3s ease;
         }
 
-        .download-btn:hover {
+        button:hover {
             background-color: #6b589b;
         }
 
         /* Footer */
         footer {
-            background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+            background: url('../images/aesthetic-grey-marble.png') no-repeat center center/cover;
             color: black;
             text-align: center;
             padding: 10px 0;
@@ -143,31 +178,41 @@
 <body>
     <!-- Top Bar -->
     <div class="top-bar">
-        <div class="top-left-home">
-            <img width=75px height=75px src="../images/Icons/resume-icon.png" alt="Resume Icon" class="home-icon">
+        <div class="top-left-contact">
+            <img width=75px height=75px src="../images/project-icon.png" alt="Home Icon" class="home-icon">
         </div>
         <nav>
             <ul>
-                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="resume.html">Resume</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </div>
-
-    <!-- Main Content -->
-    <main>
-        <section id="resume-section">
-            <h2>My Resume</h2>
-            <p>
-                Explore my journey in data science, visualization, and programming! Download my resume to learn more about 
-                my skills, projects, and the tools I use to deliver impactful results.
-            </p>
-            <a href="../files/resume.pdf" download class="download-btn">Download Resume</a>
-        </section>
-    </main>
-
+    
+    <!-- Return to Top Button -->
+    <button id="return-to-top">&uarr;</button>
+    <script>
+        const returnToTopButton = document.getElementById("return-to-top");
+    
+        // Show the button when the user scrolls down
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 200) { // Show after scrolling 200px
+                returnToTopButton.classList.add("show");
+            } else {
+                returnToTopButton.classList.remove("show");
+            }
+        });
+    
+        // Scroll back to the top when the button is clicked
+        returnToTopButton.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        });
+    </script>
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
