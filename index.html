@@ -165,17 +165,18 @@
     }
 
     .about-section {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      max-width: 1200px;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-bottom: 1px solid #ddd;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease-out;
+        display: flex;
+        flex-direction: row; /* Default: image left, text right */
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 1200px;
+        padding: 20px;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.6s ease-out;
     }
 
     .about-section.in-view {
@@ -344,6 +345,12 @@
         height: auto;
       }
     }
+
+    /* Alternate layout for about sections */
+    .about-section:nth-of-type(odd) {
+        flex-direction: row-reverse;
+    }
+
   </style>
 </head>
 
@@ -367,9 +374,9 @@
           <div id="navMenu">
             <ul>
               <li><a href="../index.html">Home</a></li>
-              <li><a href="resume.html">Resume</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="HTML/resume.html">Resume</a></li>
+              <li><a href="HTML/projects.html">Projects</a></li>
+              <li><a href="HTML/contact.html">Contact</a></li>
             </ul>
           </div>
     
@@ -377,9 +384,9 @@
           <nav>
             <ul>
               <li><a href="../index.html">Home</a></li>
-              <li><a href="resume.html">Resume</a></li>
-              <li><a href="projects.html">Projects</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="HTML/resume.html">Resume</a></li>
+              <li><a href="HTML/projects.html">Projects</a></li>
+              <li><a href="HTML/contact.html">Contact</a></li>
             </ul>
           </nav>
         </section>
