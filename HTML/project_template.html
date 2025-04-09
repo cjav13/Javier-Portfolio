@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio Slides</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Portfolio Slides</title>
+<style>
     body, html {
       margin: 0;
       padding: 0;
@@ -203,102 +204,102 @@
       width: 100%;
     }
   </style>
+
+<style>
+  .image img, .image-side img, .image-stack img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .image img:hover, .image-side img:hover, .image-stack img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
+  }
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <div class="top-bar">
-    <nav>
-      <ul>
-        <li><a href="portfolio.html">Home</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <main>
-    <div class="outer-container">
-      <div class="slider-container">
-
-        <div class="slide active centered">
-          <div class="text-description">
-            <h1>Data Science Essentials</h1>
-            <p>In this project, I am required to perform data profiling to understand the dataset, identify and fix any issues, and clean the data using Python libraries like pandas, scikit-learn, and missingno. Visualizations are used to explore patterns and relationships in the data, applying transformations to improve the dataset, and determining feature importance. Afterwards, building various models to evaluate performance, using K-Means clustering to group data, and finally provide recommendations based on the models, clustering, and visual insights.</p>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Data Profiling</h1>
-            <p>Using Python, I began by analyzing the dataset to identify issues such as inconsistencies, duplicates, missing values, incorrect data types, and column statistics. This step ensured a thorough understanding of the dataset and laid the foundation for effective cleaning and further analysis.</p>
-          </div>
-          <div class="image image-side">
-            <img src="../images/dses-profiling.jpeg" alt="Profiling 1" style="width: 350px; height: 250px;">
-            <img src="../images/dses-profiling2.jpeg" alt="Profiling 2" style="width: 350px; height: 250px;">
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Handling Data Issues</h1>
-            <p>Using missingno, I analyzed missing data patterns (MCAR, MAR, MNAR) and determined handling strategies like listwise or pairwise deletion. I resolved inconsistencies, detected outliers, and determined the appropriate approach to handle missing values by imputing or dropping problematic columns to ensure the dataset's quality and integrity.</p>
-          </div>
-          <div class="image image-side">
-              <img src="../images/missingno.jpeg" alt="Missingno" style="width: 350px; height: 250px;">
-              <img src="../images/handling-data-issues.jpeg" alt="Handling data issues" style="width: 600px; height: 250px;">
-          </div>
-        </div>
-
-        <div class="slide">
-            <div class="text">
-              <h1>Transformations & Visualizations</h1>
-              <p>Next, I created visuals using pandas and seaborn to uncover patterns, relationships, and anomalies, aiding data understanding and insights. I also performed transformations like standardization, normalization, feature encoding, and created new columns to improve data consistency and prepare the dataset for accurate modeling and analysis.</p>
-            </div>
-            <div class="image image-side">
-                <img src="../images/visualizations.jpeg" alt="Missingno" style="width: 350px; height: 250px;">
-                <img src="../images/transformation.jpeg" alt="Handling data issues" style="width: 400px; height: 250px;">
-            </div>
-          </div>
-
-          <div class="slide">
-            <div class="text">
-              <h1>Feature Importance & Modelling</h1>
-              <p>To ensure the selection of the most relevant features for modeling, I used Variance Inflation Factor (VIF) to detect multicollinearity and a Pearson correlation matrix to identify strong relationships between variables. Feature selection methods and model evaluation techniques, such as cross-validation, were applied to determine the most effective features and models. Finally, I created a leaderboard to compare model performance metrics, such as accuracy, precision, and recall, and identify the best-performing model for the dataset.</p>
-            </div>
-            <div class="image image-side">
-                <img src="../images/optimal-features.jpeg" alt="Missingno" style="width: 350px; height: 250px;">
-                <img src="../images/model-leaderboard.jpeg" alt="Handling data issues" style="width: 400px; height: 250px;">
-            </div>
-          </div>
-
-          <div class="slide">
-            <div class="text">
-              <h1>Clustering & Conclusion</h1>
-              <p>Finally, the Elbow Method was applied to determine the optimal number of clusters. Feature importance techniques, such as Random Forest, and cross-validation were used to identify and select the top-performing features. Based on insights from feature selection, clustering, modeling, and all prior analyses, actionable recommendations were provided to address key objectives and enhance decision-making.</p>
-            </div>
-            <div class="image image-side">
-                <img src="../images/elbow-method.jpeg" alt="Missingno" style="width: 350px; height: 250px;">
-                <img src="../images/clustering.jpeg" alt="Handling data issues" style="width: 400px; height: 250px;">
-            </div>
-          </div>
-
-      </div>
-
-      <div class="nav-buttons">
-        <button id="prevBtn">❮ Prev</button>
-        <button id="nextBtn">Next ❯</button>
-      </div>
-
-      <div class="dots" id="dots"></div>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
-  </footer>
-
-  <script>
+<!-- Header -->
+<div class="top-bar">
+<nav>
+<ul>
+<li><a href="portfolio.html">Home</a></li>
+<li><a href="resume.html">Resume</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<main>
+<div class="outer-container">
+<div class="slider-container">
+<div class="slide active centered">
+<div class="text-description">
+<h1>Data Science Essentials</h1>
+<p>In this project, I am required to perform data profiling to understand the dataset, identify and fix any issues, and clean the data using Python libraries like pandas, scikit-learn, and missingno. Visualizations are used to explore patterns and relationships in the data, applying transformations to improve the dataset, and determining feature importance. Afterwards, building various models to evaluate performance, using K-Means clustering to group data, and finally provide recommendations based on the models, clustering, and visual insights.</p>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Data Profiling</h1>
+<p>Using Python, I began by analyzing the dataset to identify issues such as inconsistencies, duplicates, missing values, incorrect data types, and column statistics. This step ensured a thorough understanding of the dataset and laid the foundation for effective cleaning and further analysis.</p>
+</div>
+<div class="image image-side">
+<img alt="Profiling 1" src="../images/dses-profiling.jpeg" style="width: 350px; height: 250px;"/>
+<img alt="Profiling 2" src="../images/dses-profiling2.jpeg" style="width: 350px; height: 250px;"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Handling Data Issues</h1>
+<p>Using missingno, I analyzed missing data patterns (MCAR, MAR, MNAR) and determined handling strategies like listwise or pairwise deletion. I resolved inconsistencies, detected outliers, and determined the appropriate approach to handle missing values by imputing or dropping problematic columns to ensure the dataset's quality and integrity.</p>
+</div>
+<div class="image image-side">
+<img alt="Missingno" src="../images/missingno.jpeg" style="width: 350px; height: 250px;"/>
+<img alt="Handling data issues" src="../images/handling-data-issues.jpeg" style="width: 600px; height: 250px;"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Transformations &amp; Visualizations</h1>
+<p>Next, I created visuals using pandas and seaborn to uncover patterns, relationships, and anomalies, aiding data understanding and insights. I also performed transformations like standardization, normalization, feature encoding, and created new columns to improve data consistency and prepare the dataset for accurate modeling and analysis.</p>
+</div>
+<div class="image image-side">
+<img alt="Missingno" src="../images/visualizations.jpeg" style="width: 350px; height: 250px;"/>
+<img alt="Handling data issues" src="../images/transformation.jpeg" style="width: 400px; height: 250px;"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Feature Importance &amp; Modelling</h1>
+<p>To ensure the selection of the most relevant features for modeling, I used Variance Inflation Factor (VIF) to detect multicollinearity and a Pearson correlation matrix to identify strong relationships between variables. Feature selection methods and model evaluation techniques, such as cross-validation, were applied to determine the most effective features and models. Finally, I created a leaderboard to compare model performance metrics, such as accuracy, precision, and recall, and identify the best-performing model for the dataset.</p>
+</div>
+<div class="image image-side">
+<img alt="Missingno" src="../images/optimal-features.jpeg" style="width: 350px; height: 250px;"/>
+<img alt="Handling data issues" src="../images/model-leaderboard.jpeg" style="width: 400px; height: 250px;"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Clustering &amp; Conclusion</h1>
+<p>Finally, the Elbow Method was applied to determine the optimal number of clusters. Feature importance techniques, such as Random Forest, and cross-validation were used to identify and select the top-performing features. Based on insights from feature selection, clustering, modeling, and all prior analyses, actionable recommendations were provided to address key objectives and enhance decision-making.</p>
+</div>
+<div class="image image-side">
+<img alt="Missingno" src="../images/elbow-method.jpeg" style="width: 350px; height: 250px;"/>
+<img alt="Handling data issues" src="../images/clustering.jpeg" style="width: 400px; height: 250px;"/>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button id="prevBtn">❮ Prev</button>
+<button id="nextBtn">Next ❯</button>
+</div>
+<div class="dots" id="dots"></div>
+</div>
+</main>
+<footer>
+<p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+</footer>
+<script>
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -343,5 +344,56 @@
 
     updateSlides();
   </script>
+
+<div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
+<span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
+<img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
+<div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
+<div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.close-btn');
+  const prevArrow = document.querySelector('.arrow.prev');
+  const nextArrow = document.querySelector('.arrow.next');
+
+  let currentGroup = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
+    img.addEventListener('click', () => {
+      const container = img.closest('.image, .image-side, .image-stack');
+      if (!container) return;
+      currentGroup = Array.from(container.querySelectorAll('img'));
+      currentIndex = currentGroup.indexOf(img);
+      showLightbox(currentGroup[currentIndex].src);
+    });
+  });
+
+  function showLightbox(src) {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = src;
+  }
+
+  function showNext(step) {
+    currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+    lightboxImg.src = currentGroup[currentIndex].src;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  nextArrow.addEventListener('click', () => showNext(1));
+  prevArrow.addEventListener('click', () => showNext(-1));
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+    if (e.key === 'ArrowRight') showNext(1);
+    if (e.key === 'ArrowLeft') showNext(-1);
+  });
+</script>
 </body>
 </html>

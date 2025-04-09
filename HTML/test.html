@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio Slides</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Portfolio Slides</title>
+<style>
     body, html {
       margin: 0;
       padding: 0;
@@ -223,105 +224,104 @@
       left: 20px;
     }
   </style>
+
+<style>
+  .image img, .image-side img, .image-stack img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .image img:hover, .image-side img:hover, .image-stack img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
+  }
+</style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="top-left-project">
-      <img width="75px" height="75px" src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-
-  <main>
-    <div class="outer-container">
-      <div class="slider-container">
-
-        <div class="slide active centered">
-          <div class="text-description">
-            <h1>Data Engineering In The Cloud</h1>
-            <p>This project involved designing and implementing an AWS-based data pipeline using SingStat’s API to automate data ingestion, cleaning, transformation, and reporting...</p>
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>ETL automation</h1>
-            <p>A Step Function is created to automate the entire ETL pipeline...</p>
-          </div>
-          <div class="image image-side">
-            <img src="../images/DAEC/daec-step-function.jpeg" alt="Step Function AWS" data-width="300">
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Cost Monitoring</h1>
-            <p>A scheduled Lambda function uses AWS Cost Explorer...</p>
-          </div>
-          <div class="image image-side">
-            <img src="../images/DAEC/daec-cost-explorer.jpeg" alt="AWS Cost Explorer" data-width="300">
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Security & Access</h1>
-            <p>IAM roles were created to define access based on job roles...</p>
-          </div>
-          <div class="image image-side">
-            <img src="../images/DAEC/daec-iam.jpeg" alt="AWS IAM" data-width="300">
-            <img src="../images/DAEC/daec-kms.jpeg" alt="AWS KMS" data-width="300">
-            <img src="../images/DAEC/daec-cloudtrail.jpeg" alt="AWS CloudTrail" data-width="300">
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Automated Data Loading & Dashboard Creation</h1>
-            <p>Lastly, dashboards are created in Power BI and are connected to AWS...</p>
-          </div>
-          <div class="image image-side">
-            <img src="../images/DAEC/daec-credentials.jpeg" alt="AWS credentials" data-width="300">
-            <img src="../images/DAEC/daec-dashboard.jpeg" alt="Power BI Dashboard" data-width="300">
-          </div>
-        </div>
-
-        <div class="slide active centered">
-          <div class="text-description">
-            <h1>Workflow Explanation</h1>
-            <p>Overall, this setup was chosen for its flexibility, automation, and cost-efficiency...</p>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="nav-buttons">
-        <button id="prevBtn">❮ Prev</button>
-        <button id="nextBtn">Next ❯</button>
-      </div>
-
-      <div class="dots" id="dots"></div>
-    </div>
-
-    <div style="text-align: center; margin: 60px 0 40px 0;">
-      <a href="projects.html">
-        <button>← Back to Projects</button>
-      </a>
-    </div>
-  </main>
-
-  <footer>
-    <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
-  </footer>
-
-  <script>
+<div class="top-bar">
+<div class="top-left-project">
+<img alt="Home Icon" class="home-icon" height="75px" src="../images/Icons/project-icon.png" width="75px"/>
+</div>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="resume.html">Resume</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<main>
+<div class="outer-container">
+<div class="slider-container">
+<div class="slide active centered">
+<div class="text-description">
+<h1>Data Engineering In The Cloud</h1>
+<p>This project involved designing and implementing an AWS-based data pipeline using SingStat’s API to automate data ingestion, cleaning, transformation, and reporting...</p>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>ETL automation</h1>
+<p>A Step Function is created to automate the entire ETL pipeline...</p>
+</div>
+<div class="image image-side">
+<img alt="Step Function AWS" data-width="300" src="../images/DAEC/daec-step-function.jpeg"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Cost Monitoring</h1>
+<p>A scheduled Lambda function uses AWS Cost Explorer...</p>
+</div>
+<div class="image image-side">
+<img alt="AWS Cost Explorer" data-width="300" src="../images/DAEC/daec-cost-explorer.jpeg"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Security &amp; Access</h1>
+<p>IAM roles were created to define access based on job roles...</p>
+</div>
+<div class="image image-side">
+<img alt="AWS IAM" data-width="300" src="../images/DAEC/daec-iam.jpeg"/>
+<img alt="AWS KMS" data-width="300" src="../images/DAEC/daec-kms.jpeg"/>
+<img alt="AWS CloudTrail" data-width="300" src="../images/DAEC/daec-cloudtrail.jpeg"/>
+</div>
+</div>
+<div class="slide">
+<div class="text">
+<h1>Automated Data Loading &amp; Dashboard Creation</h1>
+<p>Lastly, dashboards are created in Power BI and are connected to AWS...</p>
+</div>
+<div class="image image-side">
+<img alt="AWS credentials" data-width="300" src="../images/DAEC/daec-credentials.jpeg"/>
+<img alt="Power BI Dashboard" data-width="300" src="../images/DAEC/daec-dashboard.jpeg"/>
+</div>
+</div>
+<div class="slide active centered">
+<div class="text-description">
+<h1>Workflow Explanation</h1>
+<p>Overall, this setup was chosen for its flexibility, automation, and cost-efficiency...</p>
+</div>
+</div>
+</div>
+<div class="nav-buttons">
+<button id="prevBtn">❮ Prev</button>
+<button id="nextBtn">Next ❯</button>
+</div>
+<div class="dots" id="dots"></div>
+</div>
+<div style="text-align: center; margin: 60px 0 40px 0;">
+<a href="projects.html">
+<button>← Back to Projects</button>
+</a>
+</div>
+</main>
+<footer>
+<p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+</footer>
+<script>
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
@@ -379,6 +379,56 @@
 
     updateSlides();
   </script>
-</body>
 
+<div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
+<span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
+<img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
+<div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
+<div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.close-btn');
+  const prevArrow = document.querySelector('.arrow.prev');
+  const nextArrow = document.querySelector('.arrow.next');
+
+  let currentGroup = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
+    img.addEventListener('click', () => {
+      const container = img.closest('.image, .image-side, .image-stack');
+      if (!container) return;
+      currentGroup = Array.from(container.querySelectorAll('img'));
+      currentIndex = currentGroup.indexOf(img);
+      showLightbox(currentGroup[currentIndex].src);
+    });
+  });
+
+  function showLightbox(src) {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = src;
+  }
+
+  function showNext(step) {
+    currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+    lightboxImg.src = currentGroup[currentIndex].src;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  nextArrow.addEventListener('click', () => showNext(1));
+  prevArrow.addEventListener('click', () => showNext(-1));
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+    if (e.key === 'ArrowRight') showNext(1);
+    if (e.key === 'ArrowLeft') showNext(-1);
+  });
+</script>
+</body>
 </html>

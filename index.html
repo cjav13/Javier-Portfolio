@@ -1,20 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Javier Portfolio</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+
+    <!-- Embedded Styles -->
     <style>
-        /* General Styles */
+        /* ===== General Layout Styles ===== */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
-            color: #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
         }
 
-        /* Home Icon */
-        .top-right-home {
+        .wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1; /* Push footer to the bottom */
+        }
+
+        /* ===== Hamburger Menu (Hidden on desktop) ===== */
+        .hamburger {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            z-index: 999;
+            background-color: rgba(74, 60, 114, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        /* ===== Slide-Out Mobile Navigation ===== */
+        #navMenu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 50%;
+            background-color: #fff;
+            z-index: 998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+        }
+
+        #navMenu.show {
+            right: 0;
+        }
+
+        #navMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #navMenu a {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4a3c72;
+            text-decoration: none;
+        }
+
+                /* ===== Home Icon (Top Left) ===== */
+                .top-right-home {
             position: absolute;
             top: 15px;
             left: 20px;
@@ -22,13 +91,14 @@
             font-weight: bold;
             font-size: 3.5em;
         }
+
         .home-icon {
             width: 60px;
             height: 60px;
             display: inline-block;
         }
 
-        /* Navigation Bar */
+        /* ===== Navigation Bar (Desktop Only) ===== */
         nav {
             position: absolute;
             top: 28px;
@@ -40,6 +110,7 @@
             border: 2px solid rgba(74, 60, 114, 1);
             border-radius: 8px;
         }
+
         nav ul {
             list-style: none;
             margin: 0;
@@ -69,7 +140,7 @@
             text-decoration: underline;
         }
 
-        /* Landing Page */
+        /* ===== Landing Page Styling ===== */
         #landing-page {
             height: 100vh;
             background: url('images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
@@ -85,7 +156,7 @@
             margin: 0;
             color: #615555;
             font-style: italic;
-            text-shadow: 
+            text-shadow:
                 2px 2px 0px #6A5D8C,
                 4px 4px 0px #8A7BA5;
         }
@@ -97,28 +168,28 @@
             font-style: italic;
         }
 
-         /* Return to Top Button */
-        #return-to-top {
+                /* ===== Return to Top Button ===== */
+                #return-to-top {
             position: fixed;
-            bottom: 20px; /* Distance from the bottom */
-            right: 20px; /* Distance from the right */
+            bottom: 20px;
+            right: 20px;
             width: 70px;
             height: 70px;
-            background-color: #4a3c72; /* Button color */
+            background-color: #4a3c72;
             color: white;
             border: none;
-            border-radius: 50%; /* Makes it circular */
+            border-radius: 50%;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             font-size: 38px;
             text-align: center;
-            line-height: 50px; /* Centers the arrow vertically */
+            line-height: 50px;
             cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s; /* Smooth appearance */
-            display: flex;              /* NEW */
-            justify-content: center;    /* Center horizontally */
-            align-items: center;        /* Center vertically */
+            transition: opacity 0.3s, visibility 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         #return-to-top.show {
@@ -127,10 +198,10 @@
         }
 
         #return-to-top:hover {
-            background-color: #6b589b; /* Hover color */
+            background-color: #6b589b;
         }
 
-        /* About Page */
+        /* ===== About Page Section Styling ===== */
         .page {
             background-color: #f3f2f7;
             display: flex;
@@ -156,23 +227,27 @@
             max-width: 1200px;
             padding: 20px;
             border-bottom: 1px solid #ddd;
-            /* Animation effects */
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
             will-change: opacity, transform;
         }
 
-        /* Alternating Layout */
-        .about-section:nth-child(odd) {
-            flex-direction: row-reverse; /* Reverse layout for even sections */
+        .about-section.animate,
+        .about-section.in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Image Styling */
+        /* ===== Image Block Styling ===== */
         .about-image {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
             max-width: 400px;
-            margin: 0 20px;
         }
 
         .about-image img {
@@ -181,7 +256,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Text Styling */
+        /* ===== Text Block Styling ===== */
         .about-text {
             flex: 2;
             text-align: left;
@@ -197,160 +272,570 @@
             margin: 0 0 10px;
         }
 
-        /* Responsive Design */
+        /* ========== MOBILE (Phones ≤768px) ========== */
         @media (max-width: 768px) {
+
+            /* Hide standard nav bar */
+            nav {
+                display: none;
+            }
+
+            /* Show hamburger menu */
+            .hamburger {
+                display: block;
+            }
+
+            .page {
+                align-items: center;
+                text-align: center;
+                padding: 40px 0;
+            }
+
             .about-section {
-                flex-direction: column;
+                flex-direction: column !important;
+                align-items: center;
+                justify-content: center;
                 text-align: center;
+                width: 100%;
+                margin: 0 auto;
+                padding: 20px 0;
             }
+
             .about-text {
+                width: 100%;
+                max-width: 600px;
                 text-align: center;
+                padding: 0;
+                margin: 0 auto;
+            }
+
+            .about-text h3,
+            .about-text p {
+                margin: 10px 0;
+                text-align: center;
+            }
+
+            .about-image {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                margin: 10px auto 0;
+                padding: 0;
+                gap: 10px;
+                box-sizing: border-box;
+            }
+
+            .about-image img {
+                width: 90%;
+                max-width: 280px;
+                height: 280px;
+                object-fit: cover;
+            }
+
+            .text,
+            .text-description {
+                width: 90%;
+                max-width: 600px;
+                text-align: center;
+                margin: 0 auto;
+                padding: 10px;
+            }
+
+            .text h1,
+            .text-description h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .text p,
+            .text-description p {
+                font-size: 16px;
+                line-height: 1.6;
+                text-align: center;
+            }
+
+            .image,
+            .image-side,
+            .image-stack {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 10px;
+                margin: 0 auto;
+            }
+
+            .image img,
+            .image-side img,
+            .image-stack img {
+                width: 100%;
+                margin: 10px auto;
+                height: auto;
+                object-fit: contain;
+                display: block;
+            }
+
+            .slider-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 12px 20px;
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .dots {
+                padding: 10px;
+            }
+
+            .top-left-project,
+            .nav-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                text-align: center;
+                margin: 10px auto;
             }
         }
 
-        /* Footer */
+        /* ========== LAPTOP (769px – 1440px) ========== */
+        @media (min-width: 769px) and (max-width: 1440px) {
+
+            .about-section:nth-child(odd) {
+                flex-direction: row-reverse;
+            }
+
+            .text,
+            .text-description {
+                padding: 20px;
+            }
+
+            .text h1,
+            .text-description h1 {
+                font-size: 30px;
+            }
+
+            .text p,
+            .text-description p {
+                font-size: 18px;
+            }
+
+            .image-side img {
+                width: 90%;
+                max-width: 350px;
+                height: auto;
+            }
+
+            nav {
+                flex-direction: row;
+                position: absolute;
+                top: 28px;
+                right: 20px;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            nav ul {
+                flex-direction: row;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .nav-buttons {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0;
+            }
+
+            button {
+                width: auto;
+                margin: 0;
+                padding: 16px 28px;
+            }
+        }
+
+        /* ===== Footer Section ===== */
         footer {
-            background: url('images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            width: 100%;
+        background: url('images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+        color: black;
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+        margin-top: auto;
         }
 
-        .about-section.animate {
-            opacity: 1;
-            transform: translateY(0);
+        /* ===== Lightbox Modal Styling ===== */
+        .lightbox {
+            position: fixed;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
         }
 
-        .about-section.in-view {
-            opacity: 1;
-            transform: translateY(0);
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-    </style>
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+        }
+
+        .arrow.prev {
+            left: 20px;
+        }
+
+        .arrow.next {
+            right: 20px;
+        }
+
+        /* Zoom-in cursor for all images that can be expanded */
+        .image img,
+        .image-side img,
+        .image-stack img,
+        .about-image img {
+            cursor: zoom-in;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 0;
+            box-shadow: 0 0 20px #000;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: zoom-in;
+        }
+
+        .lightbox-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Override global image max-width inside lightbox context */
+        .about-image img,
+        .image img,
+        .image-side img,
+        .image-stack img {
+            height: auto;
+            max-width: unset;
+        }
+
+        /* Hover effect for all images */
+        .about-image img:hover,
+        .image img:hover,
+        .image-side img:hover,
+        .image-stack img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(74, 60, 114, 0.6);
+        }
+
+        /* Container for zoom icon */
+        .image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .zoom-icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 4px 6px;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            pointer-events: none; /* Prevent blocking clicks */
+            z-index: 2;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 12px rgba(74, 60, 114, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+</style>
 </head>
+
 <body>
-    <!-- Landing Page -->
-    <section id="landing-page">
-        <h1>My Portfolio</h1>
-        <p>Big Data & Analytics</p>
-        <div class="top-right-home">
-            <img src="images/Main-Page/home-icon.png" alt="Home Icon" class="home-icon">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="HTML/resume.html">Resume</a></li>
-                <li><a href="HTML/projects.html">Projects</a></li>
-                <li><a href="HTML/contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </section>
+    <div class="wrapper">
 
-    <!-- About Page -->
-    <section id="about" class="page">
-        <h2>About Me</h2>
+        <!-- ===== Landing Page ===== -->
+        <section id="landing-page">
+            <h1>My Portfolio</h1>
+            <p>Big Data &amp; Analytics</p>
 
-        <!-- First About Section -->
-        <div class="about-section">
-            <div class="about-image">
-                <img width=180px height=280px src="images/Main-Page/CCA_bda.jpg" alt="My Picture">
+            <!-- Home Icon (top left) -->
+            <div class="top-right-home">
+                <img class="home-icon" src="images/Main-Page/home-icon.png" alt="Home Icon" />
             </div>
-            <div class="about-text">
-                <h3>Introduction</h3>
-                <p>
-                    Hello! My name is Javier. I am pursuing a Diploma in Big Data & Analytics at Temasek Polytechnic, with a passion for harnessing data to drive impactful insights and solutions. 
-                    Expected to graduate in April 2026, I have honed my skills across various technical and analytical domains, excelling in academics and practical applications.
-                </p>
-            </div>
-        </div>
 
-        <!-- Second About Section -->
-        <div class="about-section">
-            <div class="about-image">
-                <img width=160px height=280px src="images/Main-Page/dashboard.jpeg" alt="Dashboard Image">
-                <img width=160px height=280px src="images/Main-Page/adobe.jpeg" alt="Adobe Image">
-            </div>
-            <div class="about-text">
-                <h3>Projects & Expertise</h3>
-                <p>
-                    With a strong foundation in data science, visualization, and programming, I have developed projects that showcase my expertise in languages such as Python, JavaScript, HTML, CSS, SQL, and tools like Tableau, Power BI, and Alteryx. From building full-stack websites to designing interactive dashboards and predictive models, I thrive on solving real-world problems with innovative solutions. I am also proficient in AWS services, having built cloud-based data pipelines, and Adobe XD, where I’ve developed user-centric app prototypes.
-                </p>
-            </div>
-        </div>
+            <!-- Hamburger for mobile -->
+            <div class="hamburger" id="hamburger">☰</div>
 
-        <!-- Third About Section -->
-        <div class="about-section">
-            <div class="about-image">
-                <img width=160px height=300px src="images/Main-Page/bartending.jpeg" alt="Bartending Image">
-                <img width=160px height=300px src="images/Main-Page/hongkong.jpeg" alt="Hongkong Image">
+            <!-- Slide-out mobile menu -->
+            <div id="navMenu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="HTML/resume.html">Resume</a></li>
+                    <li><a href="HTML/projects.html">Projects</a></li>
+                    <li><a href="HTML/contact.html">Contact</a></li>
+                </ul>
             </div>
-            <div class="about-text">
-                <h3>Work Experiences</h3>
-                <p>
-                    Beyond academics, I have extensive experience in team leadership, customer engagement, and multitasking through my work as a Bartender at The Elephant Room and a Service Crew member at Ce La Vi. These roles allowed me to refine my interpersonal skills, manage fast-paced environments, and deliver exceptional customer service. I was honored to represent The Elephant Room during a guest shift in Hong Kong, where I showcased signature cocktails and built valuable connections, boosting brand visibility.
-                </p>
-            </div>
-        </div>
 
-        <!-- Fourth About Section -->
-        <div class="about-section">
-            <div class="about-image">
-                <img width=200px height=270px src="images/Main-Page/tkd1.jpeg" alt="TKD Image">
-                <img width=200px height=270px src="images/Main-Page/experiments.jpeg" alt="Experiment Image">
+            <!-- Standard top navigation bar (desktop only) -->
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="HTML/resume.html">Resume</a></li>
+                    <li><a href="HTML/projects.html">Projects</a></li>
+                    <li><a href="HTML/contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <!-- ===== About Page ===== -->
+        <section class="page" id="about">
+            <h2>About Me</h2>
+
+            <!-- About Section 1: Introduction -->
+            <div class="about-section">
+                <div class="about-text">
+                    <h3>Introduction</h3>
+                    <p>
+                        Hello! My name is Javier. I am pursuing a Diploma in Big Data &amp; Analytics at Temasek Polytechnic,
+                        with a passion for harnessing data to drive impactful insights and solutions. Expected to graduate
+                        in April 2026, I have honed my skills across various technical and analytical domains, excelling
+                        in academics and practical applications.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/CCA_bda.jpg" alt="My Picture" data-width="300" />
+                    </div>
+                </div>
             </div>
-            <div class="about-text">
-                <h3>Goals & Co-Curricular Activities</h3>
-                <p>
-                    Outside of work and studies, I am a dedicated black belt in Taekwondo, together with Muay Thai and Boxing, actively competing and training to maintain discipline, resilience, and excellence. During my free time, I’m always doing mini projects of my own such as mixology, business-related stuff, and even this fully HTML/CSS coded website! I'm always doing anything that spikes up my interest which expands my knowledge. I am committed to lifelong learning, staying ahead in the evolving world of technology, and bringing a creative, problem-solving mindset to every project I undertake. I always aim to create meaningful, measurable impacts in everything I do.
-                </p>
+
+            <!-- About Section 2: Projects & Expertise -->
+            <div class="about-section">
+                <div class="about-text">
+                    <h3>Projects &amp; Expertise</h3>
+                    <p>
+                        With a strong foundation in data science, visualization, and programming, I have developed projects
+                        that showcase my expertise in languages such as Python, JavaScript, HTML, CSS, SQL, and tools like
+                        Tableau, Power BI, and Alteryx. From building full-stack websites to designing interactive dashboards
+                        and predictive models, I thrive on solving real-world problems with innovative solutions. I am also
+                        proficient in AWS services, having built cloud-based data pipelines, and Adobe XD, where I’ve
+                        developed user-centric app prototypes.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/dashboard.jpeg" alt="Dashboard Image" data-width="350" />
+                    </div>
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/adobe.jpeg" alt="Adobe Image" data-width="350" />
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Return to Top Button -->
-    <button id="return-to-top">&uarr;</button>
+
+            <!-- About Section 3: Work Experiences -->
+            <div class="about-section">
+                <div class="about-text">
+                    <h3>Work Experiences</h3>
+                    <p>
+                        Beyond academics, I have extensive experience in team leadership, customer engagement, and multitasking
+                        through my work as a Bartender at The Elephant Room and a Service Crew member at Ce La Vi. These roles
+                        allowed me to refine my interpersonal skills, manage fast-paced environments, and deliver exceptional
+                        customer service. I was honored to represent The Elephant Room during a guest shift in Hong Kong, where
+                        I showcased signature cocktails and built valuable connections, boosting brand visibility.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/bartending.jpeg" alt="Bartending Image" data-width="250" />
+                    </div>
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/hongkong.jpeg" alt="Hongkong Image" data-width="250" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Section 4: Goals & CCAs -->
+            <div class="about-section">
+                <div class="about-text">
+                    <h3>Goals &amp; Co-Curricular Activities</h3>
+                    <p>
+                        Outside of work and studies, I am a dedicated black belt in Taekwondo, together with Muay Thai and
+                        Boxing, actively competing and training to maintain discipline, resilience, and excellence. During my
+                        free time, I’m always doing mini projects of my own such as mixology, business-related stuff, and even
+                        this fully HTML/CSS coded website! I'm always doing anything that spikes up my interest which expands
+                        my knowledge. I am committed to lifelong learning, staying ahead in the evolving world of technology,
+                        and bringing a creative, problem-solving mindset to every project I undertake. I always aim to create
+                        meaningful, measurable impacts in everything I do.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/tkd1.jpeg" alt="TKD Image" data-width="300" />
+                    </div>
+                    <div class="image-wrapper">
+                        <span class="zoom-icon">🔍</span>
+                        <img src="images/Main-Page/experiments.jpeg" alt="Experiment Image" data-width="300" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return to Top Button -->
+            <button id="return-to-top">↑</button>
+
+            <!-- Lightbox Modal -->
+            <div class="lightbox" id="lightbox">
+                <span class="close-btn">×</span>
+                <img class="lightbox-img" alt="Zoomed image" src="" />
+                <div class="arrow prev">❮</div>
+                <div class="arrow next">❯</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+    </footer>
+
     <script>
+        // ===== Mobile Hamburger Toggle =====
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+    
+        hamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+        });
+    
+        // Auto-close mobile menu on link click
+        document.querySelectorAll("#navMenu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("show");
+            });
+        });
+    
+        // ===== Return to Top Button Logic =====
         const returnToTopButton = document.getElementById("return-to-top");
     
-        // Show the button when the user scrolls down
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 200) { // Show after scrolling 200px
+            if (window.scrollY > 200) {
                 returnToTopButton.classList.add("show");
             } else {
                 returnToTopButton.classList.remove("show");
             }
         });
     
-        // Scroll back to the top when the button is clicked
         returnToTopButton.addEventListener("click", () => {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         });
-
+    
+        // ===== Animate About Sections on Scroll =====
         const observer = new IntersectionObserver(
-        entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            } else {
-            entry.target.classList.remove('in-view');
-            }
-        });
-        },
-        { threshold: 0.2 } // 20% visible
-    );
-
+            entries => {
+                entries.forEach(entry => {
+                    entry.target.classList.toggle('in-view', entry.isIntersecting);
+                });
+            },
+            { threshold: 0.2 }
+        );
+    
         document.querySelectorAll('.about-section').forEach(section => {
             observer.observe(section);
         });
+    
+        // ===== Lightbox Functionality =====
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const closeBtn = document.querySelector('.close-btn');
+        const prevArrow = document.querySelector('.arrow.prev');
+        const nextArrow = document.querySelector('.arrow.next');
+    
+        let currentGroup = [];
+        let currentIndex = 0;
+    
+        // Handle image click to open lightbox
+        document.querySelectorAll('.about-image img, .image img, .image-side img, .image-stack img').forEach(img => {
+            img.addEventListener('click', () => {
+                const container = img.closest('.about-image, .image, .image-side, .image-stack');
+                if (!container) return;
+    
+                currentGroup = Array.from(container.querySelectorAll('img'));
+                currentIndex = currentGroup.indexOf(img);
+    
+                showLightbox(currentGroup[currentIndex].src);
+            });
+        });
+    
+        function showLightbox(src) {
+            lightbox.style.display = 'flex';
+            lightboxImg.src = src;
+        }
+    
+        function showNext(step) {
+            currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+            lightboxImg.src = currentGroup[currentIndex].src;
+        }
+    
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+    
+        nextArrow.addEventListener('click', () => showNext(1));
+        prevArrow.addEventListener('click', () => showNext(-1));
+    
+        // Keyboard support for lightbox
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Escape') lightbox.style.display = 'none';
+            if (e.key === 'ArrowRight') showNext(1);
+            if (e.key === 'ArrowLeft') showNext(-1);
+        });
+    
+        // ===== Apply data-width attribute to images =====
+        document.querySelectorAll('img[data-width]').forEach(img => {
+            const width = img.getAttribute('data-width');
+            if (width) {
+                img.style.width = width + 'px';
+            }
+        });
     </script>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
-    </footer>
-
-</body>
+    </body>
 </html>

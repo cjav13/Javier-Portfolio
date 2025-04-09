@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Javier Portfolio</title>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resume - Javier Portfolio</title>
+<style>
         /* General Styles */
         body, html {
             margin: 0;
@@ -174,26 +175,37 @@
             width: 100%;
         }
     </style>
+
+<style>
+  .image img, .image-side img, .image-stack img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .image img:hover, .image-side img:hover, .image-stack img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
+  }
+</style>
 </head>
 <body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-left-contact">
-            <img width=75px height=75px src="../images/contact-icon.png" alt="Home Icon" class="home-icon">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-    
-    <!-- Return to Top Button -->
-    <button id="return-to-top">&uarr;</button>
-    <script>
+<!-- Top Bar -->
+<div class="top-bar">
+<div class="top-left-contact">
+<img alt="Home Icon" class="home-icon" height="75px" src="../images/contact-icon.png" width="75px"/>
+</div>
+<nav>
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="resume.html">Resume</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="contact.html">Contact</a></li>
+</ul>
+</nav>
+</div>
+<!-- Return to Top Button -->
+<button id="return-to-top">↑</button>
+<script>
         const returnToTopButton = document.getElementById("return-to-top");
     
         // Show the button when the user scrolls down
@@ -213,10 +225,60 @@
             });
         });
     </script>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
-    </footer>
+<!-- Footer -->
+<footer>
+<p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+</footer>
 
+<div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
+<span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
+<img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
+<div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
+<div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.close-btn');
+  const prevArrow = document.querySelector('.arrow.prev');
+  const nextArrow = document.querySelector('.arrow.next');
+
+  let currentGroup = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
+    img.addEventListener('click', () => {
+      const container = img.closest('.image, .image-side, .image-stack');
+      if (!container) return;
+      currentGroup = Array.from(container.querySelectorAll('img'));
+      currentIndex = currentGroup.indexOf(img);
+      showLightbox(currentGroup[currentIndex].src);
+    });
+  });
+
+  function showLightbox(src) {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = src;
+  }
+
+  function showNext(step) {
+    currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+    lightboxImg.src = currentGroup[currentIndex].src;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  nextArrow.addEventListener('click', () => showNext(1));
+  prevArrow.addEventListener('click', () => showNext(-1));
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+    if (e.key === 'ArrowRight') showNext(1);
+    if (e.key === 'ArrowLeft') showNext(-1);
+  });
+</script>
 </body>
 </html>

@@ -196,6 +196,72 @@
             padding: 10px 0;
             width: 100%;
         }
+
+        /* Hamburger & Mobile Menu (Hidden by default) */
+        .hamburger {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            z-index: 999;
+            background-color: rgba(74, 60, 114, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        /* Slide-Out Navigation Menu */
+        #navMenu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 50%;
+            background-color: #fff;
+            z-index: 998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+        }
+
+        /* Show the menu */
+        #navMenu.show {
+            right: 0;
+        }
+
+        /* Menu links styling */
+        #navMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #navMenu a {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4a3c72;
+            text-decoration: none;
+        }
+
+        /* Hide regular nav and show hamburger on mobile */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -203,6 +269,20 @@
         <div class="top-left-project">
             <img width=75px height=75px src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
         </div>
+
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" id="hamburger">&#9776;</div>
+
+        <!-- Slide-Out Mobile Navigation -->
+        <div id="navMenu">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -268,12 +348,12 @@
             <a href="data-storytelling-hackathon-school.html" class="card">
                 <img width="220px" height="220px" src="../images/Project-Cards/storytelling-hackathon-school.jpeg" alt="Data Storytelling (OCBC Hackathon Ignite 2025/School Project)">
                 <h3>Data Storytelling (OCBC Hackathon Ignite 2025/School Project)</h3>
-                <p>Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.</p>
+                <p>Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders through cross-collaboration with other domains.</p>
             </a>
             <a href="data-storytelling-idl.html" class="card">
                 <img width="220px" height="220px" src="../images/Project-Cards/storytelling-idl.jpeg" alt="Interdisciplinary Learning, Data Storytelling">
                 <h3>Data-Storytelling (Interdisciplinary Learning)</h3>
-                <p>Created an Excel-based personal finance tracker using formulas to monitor, categorize, and sum up spending for effective budget management.</p>
+                <p>Performed data cleaning and integration, developed visualizations, and combined them into a cohesive data story using Tableau to deliver actionable insights to stakeholders.</p>
             </a>
             <a href="machine-learning.html" class="card">
                 <img width="220px" height="220px" src="../images/Project-Cards/machine_learning.jpeg" alt="Machine Learning & Decision Making">
@@ -300,6 +380,21 @@
     </footer>
 
     <script>
+
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+
+        hamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll("#navMenu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("show");
+            });
+        });
+    
         // Filter Projects by Category
         function filterProjects(category) {
             const cards = document.querySelectorAll('.card');

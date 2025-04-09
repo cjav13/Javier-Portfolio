@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>My Portfolio Slides</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Portfolio Slides</title>
+<style>
     body, html {
       margin: 0;
       padding: 0;
@@ -106,7 +107,7 @@
     }
 
     .text {
-      width: 50%;
+      width: 55%;
     }
 
     .image {
@@ -249,14 +250,482 @@
       font-size: 25px; /* or whatever size you want */
     }
 
+    /* ===== Global Styles ===== */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* ===== Top Bar ===== */
+    .top-bar {
+      position: relative;
+      width: 100%;
+      height: 110px;
+      background: url('/images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-left-project {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
+
+    /* ===== Hamburger Menu (hidden by default) ===== */
+    .hamburger {
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      z-index: 999;
+      background-color: rgba(74, 60, 114, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: white;
+    }
+
+    /* ===== Slide-Out Nav Menu ===== */
+    #navMenu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 50%;
+      background-color: #fff;
+      z-index: 998;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.3s ease;
+    }
+
+    #navMenu.show {
+      right: 0;
+    }
+
+    #navMenu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #navMenu a {
+      font-size: 28px;
+      font-weight: bold;
+      color: #4a3c72;
+      text-decoration: none;
+    }
+
+    /* ===== Traditional Desktop Nav Bar ===== */
+    nav {
+      position: absolute;
+      top: 28px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(74, 60, 114, 0.5);
+      padding: 10px;
+      border: 2px solid rgba(74, 60, 114, 1);
+      border-radius: 8px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li {
+      padding: 0 10px;
+      border-right: 2px solid black;
+    }
+
+    nav ul li:last-child {
+      border-right: none;
+    }
+
+    nav ul li a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* ===== Layout Containers ===== */
+    .outer-container {
+      width: 90%;
+      max-width: 1600px;
+      margin: 40px auto;
+    }
+
+    .slider-container {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== Slides ===== */
+    .slide {
+      display: none;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slide.centered {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .slide.active {
+      display: flex;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Slide Content ===== */
+    .text-description {
+      width: 65%;
+    }
+
+    .text {
+      width: 35%;
+    }
+
+    .text h1,
+    .text-description h1 {
+      font-size: 35px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c2c2c;
+    }
+
+    .text p,
+    .text-description p {
+      font-size: 20px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    /* ===== Images ===== */
+    .image {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .image-side {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: nowrap;
+      width: auto;
+      max-width: 100%;
+      overflow: hidden;
+      margin-left: 50px;
+    }
+
+    .image-side img {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .image-stack {
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+    }
+
+    .image-stack img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+    }
+
+    /* ===== Buttons and Dots ===== */
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 16px 28px;
+      background-color: #4a3c72;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .dots {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .dot {
+      height: 14px;
+      width: 14px;
+      margin: 0 6px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #4a3c72;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
+      color: black;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+    }
+
+    /* ====================== MEDIA QUERIES ====================== */
+
+    /* ===== Mobile (≤768px) ===== */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: block !important;
+      }
+
+      .text,
+      .text-description {
+        width: 90%;
+        max-width: 600px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .text h1,
+      .text-description h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .text p,
+      .text-description p {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+
+      .slide {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .image,
+      .image-side,
+      .image-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 8px; /* Controls space between images */
+        margin: 0;
+        padding: 0;
+      }
+
+      .image img,
+      .image-side img,
+      .image-stack img {
+        width: 90%;
+        height: auto;
+        object-fit: contain;
+        margin: 0; /* Remove vertical gaps */
+        padding: 0;
+      }
+
+      .slider-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* ===== Laptop (769px – 1440px) ===== */
+    @media (min-width: 769px) and (max-width: 1440px) {
+
+      .slide:not(.centered) .text {
+        width: 60%; /* Increase this as needed */
+        max-width: 900px;
+      }
+
+      .text,
+      .text-description {
+        padding: 20px;
+      }
+
+      .text h1,
+      .text-description h1 {
+        font-size: 30px;
+      }
+
+      .text p,
+      .text-description p {
+        font-size: 18px;
+      }
+
+      .image-side img {
+        width: 90%; 
+        height: auto;
+      }
+
+      nav {
+        flex-direction: row;
+        position: absolute;
+        top: 28px;
+        right: 20px;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      nav ul {
+        flex-direction: row;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .nav-buttons {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+      }
+
+      button {
+        width: auto;
+        margin: 0;
+        padding: 16px 28px;
+      }
+    }
+
+    /* ===== Desktop (1441px+) ===== */
+    @media (min-width: 1441px) {
+      .outer-container {
+        max-width: 1400px;
+      }
+
+      .text h1,
+      .text-description h1 {
+        font-size: 36px;
+      }
+
+      .text p,
+      .text-description p {
+        font-size: 20px;
+      }
+
+      .image img {
+        max-width: 500px;
+        height: auto;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+      }
+    }
+
+    
+
 
   </style>
+
+<style>
+  .image img, .image-side img, .image-stack img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .image img:hover, .image-side img:hover, .image-stack img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
+  }
+
+  .image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+  .zoom-icon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 4px 6px;
+      border-radius: 50%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      pointer-events: none;
+      z-index: 2;
+  }
+
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <div class="top-bar">
-    <div class="top-left-project">
-      <img width=75px height=75px src="../images/Icons/project-icon.png" alt="Home Icon" class="home-icon">
+<!-- Header -->
+<div class="top-bar">
+  <div class="top-left-project">
+    <img alt="Home Icon" class="home-icon" height="75px" src="../images/Icons/project-icon.png" width="75px" />
+  </div>
+  <div class="hamburger" id="hamburger">☰</div>
+  <div id="navMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
   </div>
   <nav>
     <ul>
@@ -268,89 +737,119 @@
   </nav>
 </div>
 
-  <main>
-    <div class="outer-container">
-      <div class="slider-container">
+<main>
+  <div class="outer-container">
+    <div class="slider-container">
 
-        <div class="slide active centered">
-          <div class="text-description">
-            <h1>UX Design & Prototyping</h1>
-            <p>This UX design and prototyping project focused on developing an app tailored to a pre-defined user persona. The process included identifying the persona, product storyboarding, and creating low/high fidelity prototypes using Adobe XD. Usability testing was conducted with planned tasks and objectives to gather user feedback, and the System Usability Scale (SUS) was used to evaluate the app’s overall user experience. These insights guide and lead to the final improved design of the app. Click below to view/access the prototype!</p>
-            <a href="https://xd.adobe.com/view/bd51efd2-6d2e-42ff-9d64-b8ac1286360b-e802/ ">View Prototype!</a>
-          </div>
+      <div class="slide active centered">
+        <div class="text-description">
+          <h1>UX Design &amp; Prototyping</h1>
+          <p>This UX design and prototyping project focused on developing an app tailored to a pre-defined user persona. The process included identifying the persona, product storyboarding, and creating low/high fidelity prototypes using Adobe XD. Usability testing was conducted with planned tasks and objectives to gather user feedback, and the System Usability Scale (SUS) was used to evaluate the app’s overall user experience. These insights guide and lead to the final improved design of the app. Click below to view/access the prototype!</p>
+          <a href="https://xd.adobe.com/view/bd51efd2-6d2e-42ff-9d64-b8ac1286360b-e802/">View Prototype!</a>
         </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>Persona, Storyboard, Low-Fidelity Prototype</h1>
-            <p>First, a user persona was defined to represent the target audience’s needs, goals, and pain points, helping guide design decisions from the user’s perspective. This was followed by a simple product storyboard to visualise the user journey and app flow. A low-fidelity prototype was then developed, using Adobe XD, to quickly test layout ideas and overall structure before refining the design further.</p>
-          </div>
-          <div class="image image-side single-image">
-            <img src="../images/UXID/uxid-lowfi.jpeg" alt="Low-Fidelity Prototype" data-width="750">
-          </div>
-        </div>
-
-        <div class="slide">
-          <div class="text">
-            <h1>High-Fidelity Prototype</h1>
-            <p>Using Adobe XD, a high-fidelity prototype was developed, which closley resembles how the final product would work in both visuals & interactivity. This version would also be used for usability testing from test users to gatheer feedback and improve overall user experience.</p>
-          </div>
-          <div class="image image-side single-image">
-              <img src="../images/UXID/uxid-highfi.jpeg" alt="High-Fidelity Prototype" data-width="800">
-          </div>
-        </div>
-
-        <div class="slide">
-            <div class="text">
-              <h1>Usability Testing</h1>
-              <p>Moving on to product testing, detailed planning was carried out, which included defining test objectives, creating user tasks, and preparing survey questionnaires. User interactions were observed and recorded, while feedback was collected through surveys and interviews.</p> 
-              <p> The System Usability Scale (SUS) was also used to measure overall user satisfaction. These insights helped identify usability issues, design flaws, and guided improvements for the final prototype, giving a clearer understanding of where the product stands in terms of user experience.</p>
-            </div>
-            <div class="image image-stack">
-                <img src="../images/UXID/uxid-user-interaction.jpg" alt="User Testing" data-width="480">
-                <img src="../images/UXID/uxid-sus-score.jpeg" alt="User SUS Score" data-width="480">
-            </div>
-          </div>
-
-          <div class="slide">
-            <div class="text">
-              <h1>Improved & Finalized High-Fidelity Prototype</h1>
-              <p>Finally, the high-fidelity prototype was refined based on user comments and usability testing insights, including SUS scores and observed interactions. These improvements led to the development of the finalized high-fidelity prototype, ready for handoff or further development before launching the app.</p>
-            </div>
-            <div class="image image-side">
-                <img src="../images/UXID/uxid-improved.jpeg" alt="Improvised Version" data-width="600">
-            </div>
-          </div>
-
       </div>
 
-      <div class="nav-buttons">
-        <button id="prevBtn">❮ Prev</button>
-        <button id="nextBtn">Next ❯</button>
+      <div class="slide">
+        <div class="text">
+          <h1>Persona, Storyboard, Low-Fidelity Prototype</h1>
+          <p>First, a user persona was defined to represent the target audience’s needs, goals, and pain points, helping guide design decisions from the user’s perspective. This was followed by a simple product storyboard to visualise the user journey and app flow. A low-fidelity prototype was then developed, using Adobe XD, to quickly test layout ideas and overall structure before refining the design further.</p>
+        </div>
+        <div class="image image-side single-image">
+          <div class="image-wrapper">
+            <span class="zoom-icon">🔍</span>
+            <img alt="Low-Fidelity Prototype" data-width="600" src="../images/UXID/uxid-lowfi.jpeg" />
+          </div>
+        </div>
       </div>
 
-      <div class="dots" id="dots"></div>
+      <div class="slide">
+        <div class="text">
+          <h1>High-Fidelity Prototype</h1>
+          <p>Using Adobe XD, a high-fidelity prototype was developed, which closely resembles how the final product would work in both visuals &amp; interactivity. This version would also be used for usability testing from test users to gather feedback and improve overall user experience.</p>
+        </div>
+        <div class="image image-side single-image">
+          <div class="image-wrapper">
+            <span class="zoom-icon">🔍</span>
+            <img alt="High-Fidelity Prototype" data-width="700" src="../images/UXID/uxid-highfi.jpeg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="text">
+          <h1>Usability Testing</h1>
+          <p>Moving on to product testing, detailed planning was carried out, which included defining test objectives, creating user tasks, and preparing survey questionnaires. User interactions were observed and recorded, while feedback was collected through surveys and interviews.</p>
+          <p>The System Usability Scale (SUS) was also used to measure overall user satisfaction. These insights helped identify usability issues, design flaws, and guided improvements for the final prototype, giving a clearer understanding of where the product stands in terms of user experience.</p>
+        </div>
+        <div class="image image-stack">
+          <div class="image-wrapper">
+            <span class="zoom-icon">🔍</span>
+            <img alt="User Testing" data-width="480" src="../images/UXID/uxid-user-interaction.jpg" />
+          </div>
+          <div class="image-wrapper">
+            <span class="zoom-icon">🔍</span>
+            <img alt="User SUS Score" data-width="480" src="../images/UXID/uxid-sus-score.jpeg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="slide">
+        <div class="text">
+          <h1>Improved &amp; Finalized High-Fidelity Prototype</h1>
+          <p>Finally, the high-fidelity prototype was refined based on user comments and usability testing insights, including SUS scores and observed interactions. These improvements led to the development of the finalized high-fidelity prototype, ready for handoff or further development before launching the app.</p>
+        </div>
+        <div class="image image-side">
+          <div class="image-wrapper">
+            <span class="zoom-icon">🔍</span>
+            <img alt="Improvised Version" data-width="600" src="../images/UXID/uxid-improved.jpeg" />
+          </div>
+        </div>
+      </div>
+
     </div>
-    
-    <div style="text-align: center; margin: 60px 0 40px 0;">
-        <a href="projects.html">
-          <button>
-            ← Back to Projects
-          </button>
-        </a>
-      </div>
 
-  </main>
+    <div class="nav-buttons">
+      <button id="prevBtn">❮ Prev</button>
+      <button id="nextBtn">Next ❯</button>
+    </div>
 
-  <footer>
-    <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
-  </footer>
+    <div class="dots" id="dots"></div>
+  </div>
 
-  <script>
+  <div style="text-align: center; margin: 60px 0 40px 0;">
+    <a href="projects.html">
+      <button>
+        ← Back to Projects
+      </button>
+    </a>
+  </div>
+</main>
+
+</a>
+</div>
+</main>
+<footer>
+<p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
+</footer>
+<script>
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const dotsContainer = document.getElementById('dots');
+
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("show");
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll("#navMenu a").forEach(link => {
+        link.addEventListener("click", () => {
+            navMenu.classList.remove("show");
+        });
+    });
 
     let currentSlide = 0;
 
@@ -396,5 +895,56 @@
 
     updateSlides();
   </script>
+
+<div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
+<span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
+<img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
+<div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
+<div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.querySelector('.lightbox-img');
+  const closeBtn = document.querySelector('.close-btn');
+  const prevArrow = document.querySelector('.arrow.prev');
+  const nextArrow = document.querySelector('.arrow.next');
+
+  let currentGroup = [];
+  let currentIndex = 0;
+
+  document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
+    img.addEventListener('click', () => {
+      const container = img.closest('.image, .image-side, .image-stack');
+      if (!container) return;
+      currentGroup = Array.from(container.querySelectorAll('img'));
+      currentIndex = currentGroup.indexOf(img);
+      showLightbox(currentGroup[currentIndex].src);
+    });
+  });
+
+  function showLightbox(src) {
+    lightbox.style.display = 'flex';
+    lightboxImg.src = src;
+  }
+
+  function showNext(step) {
+    currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+    lightboxImg.src = currentGroup[currentIndex].src;
+  }
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+
+  nextArrow.addEventListener('click', () => showNext(1));
+  prevArrow.addEventListener('click', () => showNext(-1));
+
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+    if (e.key === 'ArrowRight') showNext(1);
+    if (e.key === 'ArrowLeft') showNext(-1);
+  });
+</script>
 </body>
 </html>

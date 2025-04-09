@@ -20,6 +20,61 @@
         main {
             flex: 1; /* Pushes the footer down */
         }
+
+        /* Hamburger & Mobile Menu (Hidden by default) */
+        .hamburger {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            z-index: 999;
+            background-color: rgba(74, 60, 114, 0.8);
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: white;
+        }
+
+        /* Slide-Out Navigation Menu */
+        #navMenu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            height: 100vh;
+            width: 50%;
+            background-color: #fff;
+            z-index: 998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: right 0.3s ease;
+        }
+
+        /* Show the menu */
+        #navMenu.show {
+            right: 0;
+        }
+
+        /* Menu links styling */
+        #navMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #navMenu a {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4a3c72;
+            text-decoration: none;
+        }
         /* Home Icon */
         .top-left-home {
             position: absolute;
@@ -113,6 +168,17 @@
             color: #555;
         }
 
+        /* Hide regular nav and show hamburger on mobile */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+
         /* Download Button */
         .download-btn {
             display: inline-block;
@@ -146,6 +212,20 @@
         <div class="top-left-home">
             <img width=75px height=75px src="../images/Icons/resume-icon.png" alt="Resume Icon" class="home-icon">
         </div>
+
+        <!-- Hamburger Menu Icon -->
+        <div class="hamburger" id="hamburger">&#9776;</div>
+
+        <!-- Slide-Out Mobile Navigation -->
+        <div id="navMenu">
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="../index.html">Home</a></li>
@@ -155,6 +235,7 @@
             </ul>
         </nav>
     </div>
+
 
     <!-- Main Content -->
     <main>
@@ -172,6 +253,23 @@
     <footer>
         <p>&copy; 2024 Javier Tan. All rights reserved. Fully coded website &#128516;</p>
     </footer>
+
+    <script>
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+    
+        hamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("show");
+        });
+    
+        // Optional: close menu when a link is clicked
+        document.querySelectorAll("#navMenu a").forEach(link => {
+            link.addEventListener("click", () => {
+                navMenu.classList.remove("show");
+            });
+        });
+    </script>
+    
 
 </body>
 </html>
