@@ -665,6 +665,16 @@ footer {
     box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
   }
 
+  .lightbox-img {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .lightbox-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+  }
+
+
   .image-wrapper {
     position: relative;
     display: inline-block;
@@ -878,9 +888,9 @@ footer {
   </main>
 
   <!-- Lightbox for image zoom -->
-  <div class="lightbox" id="lightbox">
+  <div class="lightbox" id="lightbox" style="display: none;">
     <span class="close-btn">×</span>
-    <img class="lightbox-img" alt="Zoomed image" src="" />
+    <img class="lightbox-img" alt="" src="" />
     <div class="arrow prev">❮</div>
     <div class="arrow next">❯</div>
   </div>

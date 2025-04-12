@@ -688,7 +688,64 @@
         z-index: 2;
         display: inline-block;
     }
-    
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .lightbox-img {
+      max-width: 80%;
+      max-height: 80vh;
+      border-radius: 0;
+      box-shadow: 0 0 20px #000;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: zoom-in;
+    }
+
+    .lightbox-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+      transform: translateY(-50%);
+    }
+
+    .arrow.prev {
+      left: 20px;
+    }
+
+    .arrow.next {
+      right: 20px;
+    }
+        
   </style>
   </head>
   <body>
@@ -912,11 +969,11 @@
       updateSlides();
     </script>
 
-  <div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
-  <span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
-  <img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
-  <div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
-  <div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
+  <div class="lightbox" id="lightbox" >
+  <span class="close-btn">×</span>
+  <img alt="Zoomed image" class="lightbox-img"/>
+  <div class="arrow prev" >❮</div>
+  <div class="arrow next">❯</div>
   </div>
 
   <script>
