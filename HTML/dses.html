@@ -564,6 +564,70 @@
       }
     }
 
+    /* ===== Desktop (1441px+) ===== */
+    @media (min-width: 1441px) {
+      .outer-container {
+        max-width: 1400px;
+      }
+
+      .text h1,
+      .text-description h1 {
+        font-size: 36px;
+      }
+
+      .text p,
+      .text-description p {
+        font-size: 20px;
+      }
+
+      .image img {
+        max-width: 500px;
+        height: auto;
+      }
+
+      nav ul li a {
+        font-size: 18px;
+      }
+    }
+
+    .lightbox-img {
+      max-width: 80vw;
+      max-height: 80vh;
+      border-radius: 0;
+      box-shadow: 0 0 20px #000;
+      object-fit: contain;
+    }
+
+  </style>
+
+<style>
+  .image img, .image-side img, .image-stack img {
+    cursor: zoom-in;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+
+  .image img:hover, .image-side img:hover, .image-stack img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
+  }
+
+  .image-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .zoom-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 4px 6px;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    pointer-events: none; /* Don't block clicking the image */
+    z-index: 2;
+  }
 
 </style>
 </head>
