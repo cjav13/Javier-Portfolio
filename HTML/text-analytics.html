@@ -715,7 +715,16 @@
   .image-wrapper {
       position: relative;
       display: inline-block;
+      max-width: 100%;
+      overflow: hidden;
     }
+
+    .image-wrapper img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
 
   .zoom-icon {
       position: absolute;
