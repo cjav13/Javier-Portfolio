@@ -208,7 +208,7 @@
 
     .image-side img, .image img, .image-stack img {
       object-fit: contain;
-      border-radius: 10px;
+      border-radius: 0;
       cursor: zoom-in;
       transition: transform 0.2s ease-in-out;
     }
@@ -304,6 +304,66 @@
         flex-direction: column;
       }
     }
+
+    /* ---------------- Lightbox Effect ---------------- */
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .lightbox-img {
+      max-width: 80%;
+      max-height: 80vh;
+      border-radius: 0;
+      box-shadow: 0 0 20px #000;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: zoom-in;
+    }
+
+    .lightbox-img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+      transform: translateY(-50%);
+    }
+
+    .arrow.prev {
+      left: 20px;
+    }
+
+    .arrow.next {
+      right: 20px;
+    }
+
   </style>
 </head>
 
@@ -439,7 +499,7 @@
             <!-- Image 2: Model leaderboard -->
             <div class="image-wrapper">
               <span class="zoom-icon">🔍</span>
-              <img alt="Model Leaderboard" data-width="270" src="..images/DSES/model-leaderboard.jpeg" />
+              <img alt="Model Leaderboard" data-width="270" src="../images/DSES/model-leaderboard.jpeg" />
             </div>
           </div>
         </div>
@@ -476,6 +536,14 @@
   
       <!-- Dot navigation indicators -->
       <div class="dots" id="dots"></div>
+
+      <!-- Lightbox for image zoom -->
+      <div class="lightbox" id="lightbox">
+        <span class="close-btn">×</span>
+        <img class="lightbox-img" alt="Zoomed image" src="" />
+        <div class="arrow prev">❮</div>
+        <div class="arrow next">❯</div>
+      </div>
   
     </div>
   
@@ -501,6 +569,46 @@
     const dotsContainer = document.getElementById('dots');
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("navMenu");
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.querySelector(".lightbox-img");
+    const closeBtn = document.querySelector(".close-btn");
+    const nextArrow = document.querySelector(".arrow.next");
+    const prevArrow = document.querySelector(".arrow.prev");
+
+    let currentGroup = [], currentIndex = 0;
+
+    document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
+      img.addEventListener('click', () => {
+        const container = img.closest('.image, .image-side, .image-stack');
+        if (!container) return;
+        currentGroup = Array.from(container.querySelectorAll('img'));
+        currentIndex = currentGroup.indexOf(img);
+        showLightbox(currentGroup[currentIndex].src);
+      });
+    });
+
+
+    const showLightbox = src => {
+      lightbox.style.display = 'flex';
+      lightboxImg.src = src;
+    };
+
+    const showNext = step => {
+      currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
+      lightboxImg.src = currentGroup[currentIndex].src;
+    };
+
+    closeBtn.onclick = () => lightbox.style.display = 'none';
+    nextArrow.onclick = () => showNext(1);
+    prevArrow.onclick = () => showNext(-1);
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") lightbox.style.display = "none";
+      if (e.key === "ArrowRight") showNext(1);
+      if (e.key === "ArrowLeft") showNext(-1);
+    });
 
     // Toggle hamburger menu
     hamburger.addEventListener("click", () => {
@@ -562,11 +670,4 @@
   </script>
 
 </body>
-</html>/*************  ✨ Windsurf Command ⭐  *************/
-/*******  8b8e7226-7b65-4381-bb6c-ea316cff2e4a  *******/  /**
-
-   * Show the lightbox, with the given src as the current image.
-
-   * @param {string} src - the src attribute of the current image
-
-   */
+</html>
