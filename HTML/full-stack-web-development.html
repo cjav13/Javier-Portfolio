@@ -507,6 +507,16 @@ footer {
 
 /* ===== Mobile (≤768px) ===== */
 @media (max-width: 768px) {
+
+  .text,
+  .text-description {
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  
   nav {
     display: none;
   }
@@ -920,6 +930,11 @@ footer {
       currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
       lightboxImg.src = currentGroup[currentIndex].src;
     };
+
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
 
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("show");
