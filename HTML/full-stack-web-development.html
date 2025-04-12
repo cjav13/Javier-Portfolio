@@ -519,8 +519,7 @@ footer {
 
   .text,
   .text-description {
-    width: 100%;
-    max-width: 700px;
+    width: 90%;
     text-align: center;
     margin: 0 auto;
     padding: 10px;
@@ -922,6 +921,10 @@ footer {
       currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
       lightboxImg.src = currentGroup[currentIndex].src;
     };
+
+    nextArrow.addEventListener('click', () => showNext(1));
+    prevArrow.addEventListener('click', () => showNext(-1));
+
 
     closeBtn.addEventListener('click', () => {
       lightbox.style.display = 'none';
