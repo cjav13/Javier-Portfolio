@@ -561,7 +561,17 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .slide:not(.centered) .text {
+        width: 90% !important;
+        max-width: 100% !important;
+        margin: 0 auto 20px auto;
+        padding: 10px;
+        text-align: center;
+      }
+
     }
+    
 
     /* ===== Laptop (769px – 1440px) ===== */
     @media (min-width: 769px) and (max-width: 1440px) {
@@ -737,6 +747,7 @@
   .arrow.next {
     right: 20px;
   }
+  
 
 </style>
 </head>
@@ -749,7 +760,7 @@
   <div class="hamburger" id="hamburger">☰</div>
   <div id="navMenu">
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="../index.html">Home</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
