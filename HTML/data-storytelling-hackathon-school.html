@@ -702,61 +702,61 @@
   }
 
   .lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
-  }
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
 
-  .lightbox-img {
-    max-width: 80%;
-    max-height: 80vh;
-    border-radius: 0;
-    box-shadow: 0 0 20px #000;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: zoom-in;
-  }
+.lightbox-img {
+  max-width: 80%;
+  max-height: 80vh;
+  border-radius: 0;
+  box-shadow: 0 0 20px #000;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: zoom-in;
+}
 
-  .lightbox-img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-  }
+.lightbox-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
 
-  .close-btn {
-    position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-  }
+.close-btn {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  .arrow {
-    position: absolute;
-    top: 50%;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    padding: 10px;
-    transform: translateY(-50%);
-  }
+.arrow {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  transform: translateY(-50%);
+}
 
-  .arrow.prev {
-    left: 20px;
-  }
+.arrow.prev {
+  left: 20px;
+}
 
-  .arrow.next {
-    right: 20px;
-  }
+.arrow.next {
+  right: 20px;
+}
   
 </style>
 </head>
@@ -971,9 +971,9 @@
 
   document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
     img.addEventListener('click', () => {
-      const container = img.closest('.image, .image-side, .image-stack');
-      if (!container) return;
-      currentGroup = Array.from(container.querySelectorAll('img'));
+      const slide = img.closest('.slide');
+      if (!slide) return;
+      currentGroup = Array.from(slide.querySelectorAll('.image-wrapper img'));
       currentIndex = currentGroup.indexOf(img);
       showLightbox(currentGroup[currentIndex].src);
     });
