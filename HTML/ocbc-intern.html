@@ -654,7 +654,7 @@
     width: 100%;
     max-width: 100%;
     height: auto;
-    overflow-x: hidden;
+    overflow: visible;
     position: relative;
   }
 
@@ -672,11 +672,12 @@
   }
 
   .carousel-item {
-    width: 240px;
+    width: 250px;
     height: auto;
-    transform: none !important;
     position: relative;
     margin: 0 10px;
+    opacity: 1;
+    transform: none !important;
   }
 
   .carousel .card {
@@ -684,6 +685,7 @@
     padding: 15px;
     pointer-events: auto;
     transform: none !important;
+    opacity: 1;
   }
 
   .carousel .card img {
@@ -694,6 +696,8 @@
   }
 
   .carousel-button {
+    display: block;
+    position: absolute;
     top: 50%;
     transform: translateY(-50%);
     font-size: 22px;
@@ -702,11 +706,11 @@
   }
 
   .carousel-button.prev {
-    left: 5px;
+    left: 0;
   }
 
   .carousel-button.next {
-    right: 5px;
+    right: 0;
   }
 
   #bankbook-open .close-btn {
