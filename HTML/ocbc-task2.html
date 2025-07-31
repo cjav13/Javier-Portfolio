@@ -114,40 +114,19 @@
     @media (max-width: 768px) {
       .container {
         padding: 20px;
+        overflow-x: auto;
       }
 
       table {
-        width: 100%;
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        table-layout: fixed;
-        word-wrap: break-word;
+        margin: 0 auto;
+        min-width: 600px; /* ensures scrolling for narrow screens */
       }
 
       th, td {
         font-size: 13px;
-        word-wrap: break-word;
-      }
-
-      .expand-content img {
-        width: 100%;
-        height: auto;
-      }
-
-      .back-btn {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-
-      header {
-        font-size: 20px;
-        text-align: center;
       }
     }
 
-
-    
   </style>
 </head>
 <body>
