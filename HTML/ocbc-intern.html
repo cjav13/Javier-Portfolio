@@ -649,6 +649,54 @@
     padding: 10px 0;
   }
 
+  .carousel-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 60px auto;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    transform: none !important;
+    perspective: none;
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 260px;
+    height: auto;
+    scroll-snap-align: center;
+    transform: none !important;
+    margin: 10px;
+  }
+
+  .carousel-item h3 {
+    font-size: 1rem;
+  }
+
+  .carousel-item p {
+    font-size: 0.9rem;
+  }
+
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+
   #bankbook-open .reflections {
     top: 80px;
     left: 20px;
