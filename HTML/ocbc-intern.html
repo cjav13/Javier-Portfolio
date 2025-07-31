@@ -610,24 +610,34 @@
 
 
 
-    @media (max-width: 768px) {
+    /* === GENERAL MOBILE FIXES === */
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
   .hamburger {
     display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
   }
 
   nav {
     display: none;
   }
 
-  html, body {
-    overflow-x: hidden;
+  .overlay.open {
+    display: flex;
   }
 
   .overlay-content {
     flex-direction: column;
     text-align: center;
-    padding: 20px;
     align-items: center;
+    padding: 20px;
   }
 
   .hero-text {
@@ -650,42 +660,39 @@
   }
 
   .carousel-container {
-    margin: 100px auto 0 auto;
-    width: 100%;
     max-width: 100%;
-    height: auto;
-    position: relative;
-    perspective: 1000px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 40px; /* Adds side spacing for arrows and prevents cutoff */
+    overflow-x: hidden;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 
   .carousel {
     width: 100%;
+    height: auto;
     position: relative;
     transform-style: preserve-3d;
+    perspective: 1000px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    overflow: visible;
+    gap: 10px;
+    flex-wrap: nowrap;
   }
 
   .carousel-item {
+    width: 85%;
+    height: auto;
+    margin: 0 10px;
+    transform: scale(0.95);
+  }
+
+  .carousel-item .card {
     width: 100%;
-    max-width: 280px;
-    position: absolute;
-    transform-style: preserve-3d;
-    padding: 16px;
-    font-size: 0.8rem;
-  }
-
-  .carousel-item h3 {
-    font-size: 1.1rem;
-  }
-
-  .carousel-item p {
-    font-size: 0.85rem;
+    height: auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
 
   .carousel-button {
@@ -693,48 +700,45 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 28px;
-    padding: 10px 14px;
-    border-radius: 50%;
+    font-size: 24px;
+    padding: 6px 10px;
     background-color: rgba(74, 60, 114, 0.9);
     color: white;
-    z-index: 10;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
   }
 
   .carousel-button.prev {
-    left: 0;
+    left: 5px;
   }
 
   .carousel-button.next {
-    right: 0;
+    right: 5px;
   }
 
-  .carousel .card {
-    width: 100%;
-    height: auto;
-    pointer-events: none;
-    padding: 12px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  #back-btn {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    z-index: 1000;
+    font-size: 0.9em;
+    padding: 8px 14px;
   }
 
-  .carousel .card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-  }
-
-  .carousel a.card.active {
-    pointer-events: auto;
-  }
-
-
-  #bankbook-open .reflections {
-    top: 80px;
-    left: 20px;
-    width: 90%;
+  #scrollTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    padding: 10px 14px;
+    font-size: 16px;
+    background-color: #4a3c72;
+    color: white;
+    border-radius: 50%;
+    border: none;
+    display: none;
   }
 
   .gallery {
@@ -748,21 +752,6 @@
 
   .buttons {
     justify-content: center;
-  }
-
-  .start-btn {
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-  }
-
-  .expand-content p,
-  .expand-content h4 {
-    font-size: 14px;
-  }
-
-  th, td {
-    font-size: 13px;
   }
 }
 
