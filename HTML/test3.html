@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCBC x Cloudera Hybrid Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6fb;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      background-color: #1f2b3e;
+      color: white;
+      padding: 15px 25px;
+      font-size: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .flow-panel {
+      background-color: #2c3e50;
+      width: 280px;
+      padding: 20px;
+      color: white;
+      overflow-y: auto;
+    }
+
+    .node {
+      background-color: #34495e;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-left: 4px solid #e60012;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .node:hover {
+      background-color: #3f5870;
+    }
+
+    .main-panel {
+      flex: 1;
+      background-color: white;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .zone-bar {
+      margin-bottom: 20px;
+    }
+
+    .zone-btn {
+      background-color: #e60012;
+      color: white;
+      padding: 8px 16px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .zone-btn.active {
+      background-color: #a80000;
+    }
+
+    .content-block {
+      background-color: #f0f2f5;
+      padding: 20px;
+      border-left: 6px solid #1f2b3e;
+      margin-bottom: 20px;
+      border-radius: 4px;
+    }
+
+    .content-block h3 {
+      margin-top: 0;
+      color: #1f2b3e;
+    }
+
+    .content-block pre {
+      background-color: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    OCBC Data Platform Simulator
+    <div>Cloudera x Control-M Themed</div>
+  </header>
+  <div class="container">
+    <div class="flow-panel">
+      <div class="node" onclick="loadContent('requirements')">🧠 Gather Requirements</div>
+      <div class="node" onclick="loadContent('transform')">🛠 Transform via Hive SQL</div>
+      <div class="node" onclick="loadContent('validate')">✅ Logic Verification</div>
+      <div class="node" onclick="loadContent('uat')">📋 UAT Sign-Off</div>
+      <div class="node" onclick="loadContent('dashboard')">📊 Power BI Visuals</div>
+    </div>
+    <div class="main-panel">
+      <div class="zone-bar">
+        <button class="zone-btn active">Raw</button>
+        <button class="zone-btn">Refined</button>
+        <button class="zone-btn">Curated</button>
+        <button class="zone-btn">BI Output</button>
+      </div>
+      <div id="contentArea">
+        <p>Select a node on the left to view its contents.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+  function loadContent(node) {
+    const content = {
+      requirements: `
+        <div class="content-block">
+          <h3>🧠 Gather Requirements</h3>
+          <p>This phase involves understanding business objectives, user needs, and intended visuals.</p>
+          <ul>
+            <li>Stakeholders: Business Analysts, Product Owners</li>
+            <li>Artifacts: Meeting Notes, Use Cases</li>
+          </ul>
+        </div>`,
+      transform: `
+        <div class="content-block">
+          <h3>🛠 Hive SQL Transformation</h3>
+          <p>Transforming raw data using Hive SQL to structured views.</p>
+          <pre>CREATE VIEW clean_data AS
+SELECT customer_id, age, region
+FROM raw_data
+WHERE age IS NOT NULL;</pre>
+        </div>`,
+      validate: `
+        <div class="content-block">
+          <h3>✅ Validation & Logic Check</h3>
+          <p>Iterative checking with users to ensure business logic is met. Includes edge case handling.</p>
+          <ul>
+            <li>Data Profiling Outputs</li>
+            <li>Exception Reports</li>
+          </ul>
+        </div>`,
+      uat: `
+        <div class="content-block">
+          <h3>📋 UAT Sign-Off</h3>
+          <p>Final user approval after verifying the output meets expectations.</p>
+          <p><strong>Status:</strong> ✅ Signed off on 2025-05-28</p>
+        </div>`,
+      dashboard: `
+        <div class="content-block">
+          <h3>📊 Dashboard Artifacts</h3>
+          <p>Interactive visualizations created using Power BI.</p>
+          <ul>
+            <li>Monthly Risk Metrics</li>
+            <li>Heatmaps & Category Trends</li>
+            <li>Screenshot links</li>
+          </ul>
+        </div>`,
+    };
+    document.getElementById('contentArea').innerHTML = content[node];
+  }
+</script>
+
+</body>
+</html>

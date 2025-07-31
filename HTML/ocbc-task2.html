@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCBC E-Statement Documentation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+    }
+
+    header {
+      background: #e60012;
+      color: white;
+      padding: 20px;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .month-select {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background: #fafafa;
+    }
+
+    .expand-row {
+      background: #fff6f6;
+      display: none;
+    }
+
+    .expand-content {
+      padding: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .expand-content h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: #e60012;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .attachment {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .attachment a {
+      color: #e60012;
+      text-decoration: none;
+    }
+
+    .attachment a:hover {
+      text-decoration: underline;
+    }
+
+    .back-btn{
+      display: inline-block;
+      background: #e60012;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+      th, td {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    OCBC Task 2 E-Statement - Dashboard Development
+  </header>
+
+  <a class= 'back-btn' href="ocbc-intern.html">
+      ← Back to OCBC intern home
+  </a>
+
+  <div class="container">
+    <div class="month-select">
+      <label for="month">Select Month:</label>
+      <select id="month" onchange="filterMonth()">
+        <option value="all">All Months</option>
+        <option value="Mar">Mar (Requirement)</option>
+        <option value="Apr">Apr (SQL)</option>
+        <option value="May">May (Dashboard)</option>
+      </select>
+      <p style="font-size: 14px; color: #000000; margin-top: 6px;">
+        (Each month reflects a project phase, from user requirements to deployment)
+      </p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Ref No.</th>
+          <th>Phase</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- Row 1 -->
+        <tr data-month="Mar">
+          <td>01 Mar 2025</td>
+          <td>Requirement Gathering with Stakeholders</td>
+          <td>REF001</td>
+          <td>Requirement</td>
+          <td><button class="btn" onclick="toggle('row1')">View</button></td>
+        </tr>
+        <tr id="row1" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Requirement Gathering</h4>
+              <p>In the initial phase, we initiate a series of calls with users to understand the business context and the nature of their data. These discussions help uncover the type of data involved, any underlying logic that needs to be captured, and what key insights the users want to display on the dashboard. <br><br>This phase is focused on aligning expectations and confirming objectives. Throughout the first month, our team collaborates closely with users to define the dashboard layout, data schema, and desired transformations. Sample dashboards and visual mockups are typically shared via PowerPoint to facilitate feedback and guide the design process.</p>
+              <img src="../images/Task 2/ppt-dashboard.png" alt="Dashboard Discussion" style="width:99%;"/>
+              <!--
+              <div class="attachment">
+                📂 <a href="#">Download Meeting Summary (PDF)</a>
+              </div>
+              -->
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr data-month="Apr">
+          <td>01 Apr 2025</td>
+          <td>Hive SQL View Developed</td>
+          <td>REF002</td>
+          <td>SQL</td>
+          <td><button class="btn" onclick="toggle('row2')">View</button></td>
+        </tr>
+        <tr id="row2" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>SQL View Logic</h4>
+              <p>As we progress into the second month, the focus shifts to iterative discussions with users to confirm and refine the business logic. During this stage, we validate exactly what data is required, which columns need to be included, and how they should be transformed to meet business needs. These insights are then translated into SQL logic, where we begin building the actual views that will drive the dashboard.</p>
+              <img src="../images/Task 2/view-ddl.png" alt="View Code" style="width:99%;"/>
+              <!--
+              <div class="attachment">
+                📄 <a href="#">View SQL Script</a>
+              </div>
+             -->
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr data-month="May">
+          <td>01 May 2025</td>
+          <td>Dashboard Visual Completed</td>
+          <td>REF003</td>
+          <td>Dashboard</td>
+          <td><button class="btn" onclick="toggle('row3')">View</button></td>
+        </tr>
+        <tr id="row3" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Finalized Dashboard (Final Phase)</h4>
+              <p>In the third month, once the SQL views are finalized and signed off, we begin linking them to Power BI. Using Power Query M, we connect to the data stored in Hive or Hue and import it into the .pbix file. From there, we create the required visuals and dashboards tailored to the user's needs. The logic behind each chart or metric is implemented using a combination of DAX formulas and Query M transformations. The design and logic are then iteratively verified with the user to ensure the final dashboard meets their expectations before production deployment.</p>
+              <img src="../images/Task 2/finalised-dashboard.png" alt="Finalised-Dashboard" style="width:100%;"/>
+              <!--
+              <div class="attachment">
+                📊 <a href="#">Open Power BI Report</a>
+              </div>
+             -->
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+
+  <script>
+    function toggle(id) {
+      const row = document.getElementById(id);
+      row.style.display = row.style.display === 'table-row' ? 'none' : 'table-row';
+    }
+
+    function filterMonth() {
+      const selected = document.getElementById("month").value;
+      const rows = document.querySelectorAll("tbody tr");
+      rows.forEach(row => {
+        const month = row.getAttribute("data-month");
+        if (!month || selected === "all" || month === selected) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+        // Hide expanded rows when switching
+        if (row.classList.contains("expand-row")) {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+

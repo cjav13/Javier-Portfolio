@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCBC Dashboard - No Gaps</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121222;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #e60012;
+    }
+
+    .filters {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    select {
+      background: #1d1d33;
+      color: white;
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+      grid-auto-flow: dense; /* This fixes the gap issue */
+    }
+
+    .card {
+      background: #1d1d33;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.3);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #bbb;
+    }
+
+    .bar-chart {
+      height: 100px;
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .bar {
+      width: 20%;
+      background: #e60012;
+      border-radius: 4px;
+    }
+
+    .gauge-container {
+      width: 120px;
+      height: 60px;
+      border-radius: 60px 60px 0 0;
+      background: conic-gradient(#e60012 0% 25%, #333 25% 100%);
+      position: relative;
+    }
+
+    .gauge-container::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      height: 60px;
+      background: white;
+      transform: rotate(-50deg);
+      transform-origin: bottom;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .matrix div {
+      background: #292947;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+      border-radius: 4px;
+    }
+
+    .carousel {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .carousel img {
+      height: 100px;
+      border-radius: 6px;
+    }
+
+    .checklist label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    /* Responsive and rearranged cards */
+    .card1 { grid-column: span 6; grid-row: span 2; }
+    .card2 { grid-column: span 3; grid-row: span 1; }
+    .card3 { grid-column: span 3; grid-row: span 2; }
+    .card4 { grid-column: span 5; grid-row: span 1; }
+    .card5 { grid-column: span 7; grid-row: span 1; }
+
+    @media (max-width: 1000px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+      .card1, .card2, .card3, .card4, .card5 {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>OCBC Risk Dashboard</h1>
+      <div class="filters">
+        <select>
+          <option>All Phases</option>
+          <option>Requirement</option>
+          <option>SQL</option>
+          <option>UAT</option>
+        </select>
+        <select>
+          <option>All Audience</option>
+          <option>Ops</option>
+          <option>Risk</option>
+          <option>Management</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Card 1 -->
+      <div class="card card1">
+        <h3>Activity by Day (Bar Chart)</h3>
+        <div class="bar-chart">
+          <div class="bar" style="height: 30%;"></div>
+          <div class="bar" style="height: 80%;"></div>
+          <div class="bar" style="height: 90%;"></div>
+          <div class="bar" style="height: 60%;"></div>
+          <div class="bar" style="height: 0%;"></div>
+        </div>
+        <p style="margin-top: 10px;">July 9–13</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card card2">
+        <h3>Close Ratio</h3>
+        <div class="gauge-container"></div>
+        <p style="margin-top: 8px;">25% conversion</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card card3">
+        <h3>Team Metrics</h3>
+        <div class="matrix">
+          <div>Alexis<br>27</div>
+          <div>Lyra<br>24</div>
+          <div>Blaire<br>23</div>
+          <div>Camilla<br>22</div>
+          <div>Abdullah<br>24</div>
+          <div>Demetrius<br>21</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card card4">
+        <h3>Visual Mockups</h3>
+        <div class="carousel">
+          <img src="https://via.placeholder.com/140x100?text=UAT1" alt="slide1">
+          <img src="https://via.placeholder.com/140x100?text=UAT2" alt="slide2">
+          <img src="https://via.placeholder.com/140x100?text=UAT3" alt="slide3">
+        </div>
+        <p style="margin-top: 10px;">Swipe to view prototypes</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card card5">
+        <h3>Status Checklist</h3>
+        <div class="checklist">
+          <label><input type="checkbox" checked disabled> ✔ Requirement Completed</label>
+          <label><input type="checkbox" checked disabled> ✔ SQL View Built</label>
+          <label><input type="checkbox" checked disabled> ✔ UAT Passed</label>
+          <label><input type="checkbox"> ⏳ Deployment</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

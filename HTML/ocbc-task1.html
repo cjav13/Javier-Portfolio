@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OCBC ATM Project</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
+    }
+
+    .screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      position: relative;
+    }
+
+    .active { display: flex; }
+
+    .pin-input {
+      padding: 10px;
+      font-size: 18px;
+      width: 240px;
+      text-align: center;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      margin-top: 10px;
+    }
+
+    .start-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #e60012;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .atm {
+      display: none;
+      height: 100vh;
+      flex-direction: row;
+    }
+
+    .left, .right {
+      padding: 40px;
+      overflow: auto;
+    }
+
+    .left {
+      flex: 0 0 45%;
+      background: white;
+    }
+
+    .right {
+      flex: 0 0 55%;
+      background: #f0f1f5;
+      border-left: 2px solid #ddd;
+      position: relative;
+    }
+
+    h2, h3 {
+      color: #111;
+      margin-top: 0;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 320px;
+    }
+
+    .button-grid button {
+      background: linear-gradient(to right, #2C3E50, #1A252F);
+      color: white;
+      padding: 22px;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+      white-space: nowrap;
+    }
+
+    .button-grid button:hover {
+      transform: scale(1.05);
+    }
+
+    .wide-button {
+      grid-column: span 2;
+    }
+
+    .service-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .service {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 1 1 45%;
+      font-size: 15px;
+    }
+
+    .top-icons {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .top-icons span {
+      cursor: pointer;
+    }
+
+    .doc-view {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .doc-view h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .loading-screen {
+      display: none;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #e60012;
+      font-weight: bold;
+    }
+
+    .back-btn-inline {
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      margin-bottom: 40px;
+      position: static !important;
+    }
+
+    /* 📸 Carousel Container Styling */
+    .carousel-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* 👁️ Only one carousel item shown at a time */
+    .carousel-item {
+      display: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .carousel-item.active {
+      display: block;
+    }
+
+    /* 📐 Resize image */
+    .carousel-item img {
+      max-width: 80%;
+      max-height: 50%;           /* Adjusts size to be smaller */
+      border-radius: 0px;
+      margin-bottom: 20px;
+    }
+
+    /* 🟥 Title and description formatting */
+    .carousel-title {
+      color: #a31921;
+      margin-bottom: 8px;
+    }
+
+    .carousel-desc {
+      color: #333;
+      font-size: 15px;
+    }
+
+    /* ⬅️➡️ Navigation buttons with spacing */
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;                 /* Adds spacing between arrows */
+    }
+
+    .carousel-nav button {
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    #docHeader {
+      top: 20px;
+      left: 30px !important;
+      z-index: 10;
+    }
+
+    #docTitle {
+      font-size: 20px;
+      font-weight: bold;
+      color: #a31921;
+      margin: 0;
+    }
+
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0px 0px 30px;  /* ✅ Use padding instead of margin */
+    }
+
+
+
+    @media (max-width: 768px) {
+      .atm {
+        flex-direction: column;
+      }
+      .left, .right {
+        flex: 1 1 100%;
+      }
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Step 1: PIN Screen -->
+  <div id="startScreen" class="screen active">
+    <a class="back-btn" href="ocbc-intern.html" id="internBackBtn">← Back to OCBC intern home</a>
+    <h2>Welcome to OCBC Task 1 ATM</h2>
+    <p>(Click <b>ENTER</b> to view Task 1 details, documentations & artefacts)</p>
+    <input type="password" class="pin-input" id="pinInput" placeholder="Enter PIN" />
+    <button class="start-btn" onclick="animateAndLoad()">Enter</button>
+  </div>
+
+  <!-- Step 1.5: Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">Loading...</div>
+
+  <!-- Step 2: ATM Interface -->
+  <div id="atmScreen" class="atm">
+
+    <!-- Left Side -->
+    <div class="left">
+      <button class="back-btn-inline" onclick="backToStart()">← Back to Card Screen</button>
+      <h2 style="font-size: 1.5em;">Hello, welcome to task 1 OCBC Data Pipeline Terminal! What would you like to do today?<br>
+        <span style="font-size: 0.6em; font-weight: normal; color: #555;">
+          (Select a workflow step to view)
+        </span>
+      </h2>
+
+      <div class="button-grid">
+        <button onclick="showDoc('doc1')">Requirement Gathering</button>
+        <button onclick="showDoc('doc2')">Data Testing</button>
+        <button onclick="showDoc('doc3')">UAT Review</button>
+        <button onclick="showDoc('doc4')">Production Deployment</button>
+        <button class="wide-button" onclick="showResources()">View Resources</button>
+      </div>
+    </div>
+
+    <!-- Right Side -->
+    <div class="right">
+      <div class="header-bar">
+        <h3 id="docTitle"> </h3>
+        <div class="top-icons">
+          <span>中文</span>
+          <span onclick="backToStart()">Exit</span> 
+        </div>
+      </div>
+
+
+      <!-- Resource Panel -->
+      <div id="resourcesPanel" style="display: block;">
+        <h3 style="margin-top: 0;">Tools, Skills & Resources</h3>
+        <div class="service-box">
+          <div class="service">
+            <strong>Tools Used:</strong><br>
+            Hive SQL, Python, Linux CLI, Excel, BDMF Framework
+          </div>
+          <div class="service">
+            <strong>Key Skills:</strong><br>
+            Data Ingestion, Metadata Configuration, UAT Testing, PROD Handover
+          </div>
+        </div>
+
+        <div style="margin-top: 30px;">
+          <h4>Data Pipeline Overview</h4>
+          <img src="../images/Intern/pipeline-diagram.png" alt="Pipeline Diagram" style="width: 100%; border-radius: 8px;" />
+          <p style="font-size: 14px; color: #666;">This diagram summarizes the flow from metadata setup to UAT and PROD deployment.</p>
+        </div>
+
+        <!--<div style="margin-top: 30px;">
+          <h4>🔗 Helpful Documentation</h4>
+          <ul style="padding-left: 18px; font-size: 15px; line-height: 1.6;">
+            <li><a href="https://confluence.ocbc.com/display/BDMF" target="_blank">OCBC BDMF Confluence</a></li>
+            <li><a href="https://docs.cloudera.com" target="_blank">Cloudera Documentation</a></li>
+            <li><a href="https://github.com/your-repo/pipeline-scripts" target="_blank">Backend Pipeline GitHub</a></li>
+          </ul>
+        </div>
+      -->
+      </div>
+
+      <!-- Documentation Views -->
+      <!-- DOC 1 -->
+      <div id="doc1" class="doc-view" style="display:none">
+        <div class="carousel-container">
+          <div class="carousel-item active">
+            <h4 class="carousel-title">Meeting with users</h4>
+            <p class="carousel-desc">We began by meeting with users to understand their dashboard goals, key business questions, and layout preferences. Through these calls, we clarified expectations and confirmed the data needed to support decision-making.<br><br>We also reviewed sample datasets to understand the schema, identified required logic or transformations, and finalized how future data would be loaded, ensuring the pipeline matched both the data structure and user needs.</p>
+            <img src="../images/Task 1/user-calling.jpg" alt="Slide 1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- DOC 2 -->
+      <div id="doc2" class="doc-view" style="display:none">
+        <div class="carousel-container">
+          <div class="carousel-item active">
+            <h4 class="carousel-title">Sample Data Preparation</h4>
+            <p class="carousel-desc">We began by obtaining sample data from users to test the ingestion workflow.
+The data was cleaned, formatted, and transformed into TXT files where needed, ensuring compatibility with ingestion pipelines.
+Tools used included Excel for formatting, and MobaXterm or local CLI for file conversion and structure checking.</p>
+            <img src="../images/Task 1/txt-conversion.png" alt="Slide 1" />
+          </div>
+          <div class="carousel-item">
+            <h4 class="carousel-title">Schema Creation</h4>
+            <p class="carousel-desc">Hive SQL table schemas were created to define how incoming data should be stored and structured.</p>
+            <img src="../images/Task 1/table-schema.png" alt="Slide 2" />
+          </div>
+          <div class="carousel-item">
+            <h4 class="carousel-title">Data Ingestion</h4>
+            <p class="carousel-desc">Using MobaXterm, we ran Linux-based ingestion commands to insert the .txt data into the staging environment. </p>
+            <img src="../images/Task 1/mobaxterm.png" alt="Slide 3" />
+          </div>
+          <div class="carousel-item">
+            <h4 class="carousel-title">BDMF Framework (Audit)</h4>
+            <p class="carousel-desc">The BDMF (Big Data Management Framework) was used to manage audit trails which automatically tracks the file metadata, job status, and timestamp logs. These logs serve compliance, traceability, and debugging needs.</p>
+            <img src="../images/Task 1/bdmf.jpg" alt="Slide 4" />
+          </div>
+          <div class="carousel-item">
+            <h4 class="carousel-title">Control-M Job Scheduling</h4>
+            <p class="carousel-desc">After verifying successful manual data ingestion, Control-M jobs were setup. These are automated tasks that pick up new files from a shared folder which triggers the ingestion and log audit outcomes via BDMF. This automation ensures data is ingested without manual effort.</p>
+            <img src="../images/Task 1/control-m.png" alt="Slide 5" />
+          </div>
+          <div class="carousel-nav">
+            <button onclick="prevSlide('doc2')">←</button>
+            <button onclick="nextSlide('doc2')">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOC 3 -->
+      <div id="doc3" class="doc-view" style="display:none">
+        <div class="carousel-container">
+          <div class="carousel-item active">
+            <h4 class="carousel-title">Data Validation</h4>
+            <p class="carousel-desc">Once data was ingested, we validated dashboard metrics against source data.
+We filtered datasets in Excel and wrote SQL queries to confirm counts, groupings, and logic accuracy.
+<br><br>We communicated frequently with users to verify business rules, correct mismatches, and ensure that the dashboard and ingested data reflected the intended logic and values.</p>
+            <img src="../images/Task 1/data-validation.png" alt="Slide 1" />
+          </div>
+          <div class="carousel-item">
+            <h4 class="carousel-title">Bug Fixing</h4>
+            <p class="carousel-desc">During the data ingestion and validation phase, issues can arise such as missing or incorrectly named files, schema mismatches, and failures in MobaXterm commands due to permission or path errors. Control-M jobs may fail to trigger, run with errors, or ingest outdated files. <br><br>BDMF audits might not log properly or capture inaccurate metadata, affecting traceability. Data quality problems like null fields, duplicates, or mismatched totals between Excel and SQL can lead to inaccurate results. Miscommunication, such as using outdated files or unclear logic, can also cause errors. <br><br>These issues are typically resolved through close user collaboration, validation queries, and log checks to ensure the pipeline runs smoothly.</p>
+            <img src="../images/Task 1/debugging.png" alt="Slide 2" />
+          </div>
+          <div class="carousel-nav">
+            <button onclick="prevSlide('doc3')">←</button>
+            <button onclick="nextSlide('doc3')">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOC 4 -->
+      <div id="doc4" class="doc-view" style="display:none">
+        <div class="carousel-container">
+          <div class="carousel-item active">
+            <h4 class="carousel-title">Production Deployment</h4>
+            <p class="carousel-desc">Once the data pipeline runs smoothly without errors and is signed off by users, we prepare the necessary configuration files for deployment. This includes finalized DDL scripts to create production tables/views, Power BI file, Control-M scheduling scripts, updated metadata or YAML config files, and any datasets that need replacement due to validation issues. <br><br>Once ready, the entire pipeline is deployed to production, where the data is ingested on schedule, the dashboards reflect live data, and users can begin monitoring or reporting with confidence.</p>
+            <img src="../images/Task 1/prod-deployment.jpg " alt="Slide 1" />
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  // Simulated PIN typing and screen switch
+  function animateAndLoad() {
+    const pinInput = document.getElementById("pinInput");
+    let i = 0;
+    const pin = "123456";
+    const interval = setInterval(() => {
+      pinInput.value = pin.slice(0, i + 1).replace(/./g, '•');
+      i++;
+      if (i >= pin.length) {
+        clearInterval(interval);
+        document.getElementById("startScreen").classList.remove("active");
+        document.getElementById("loadingScreen").style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("loadingScreen").style.display = "none";
+          document.getElementById("atmScreen").style.display = "flex";
+        }, 1200);
+      }
+    }, 200);
+    document.getElementById("docTitle").textContent = "View Resources";
+
+  }
+
+  // Return to PIN screen
+  function backToStart() {
+    document.getElementById('atmScreen').style.display = 'none';
+    document.getElementById('startScreen').classList.add('active');
+    document.getElementById('pinInput').value = "";
+    hideAllDocs();
+    showResources(); // Default view on return
+  }
+
+  // Reset all .doc-view sections
+  function hideAllDocs() {
+    const docs = document.querySelectorAll('.doc-view');
+    docs.forEach(doc => doc.style.display = 'none');
+  }
+
+  // Show main resource view
+  function showResources() {
+    hideAllDocs();
+    document.getElementById("resourcesPanel").style.display = "block";
+    document.getElementById("docTitle").textContent = "View Resources"; // ✅ Set header title
+  }
+
+
+  // Track each doc's current slide index
+  const carouselState = {
+    doc1: 0,
+    doc2: 0,
+    doc3: 0,
+    doc4: 0
+  };
+
+  // Show selected doc and reset carousel
+  function showDoc(id) {
+    hideAllDocs();
+    document.getElementById("resourcesPanel").style.display = "none";
+
+    // Show the selected doc
+    const doc = document.getElementById(id);
+    doc.style.display = "block";
+
+    // Set section title
+    const titles = {
+      doc1: "Requirement Gathering",
+      doc2: "Data Testing",
+      doc3: "UAT Review",
+      doc4: "Production Deployment"
+    };
+    document.getElementById("docTitle").textContent = titles[id] || "";
+
+    // Show first slide
+    carouselState[id] = 0;
+    updateCarousel(id);
+  }
+
+
+  // Show active slide for given doc
+  function updateCarousel(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    const currentIndex = carouselState[docId];
+
+    items.forEach((item, index) => {
+      item.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  // Go to previous slide
+  function prevSlide(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    if (items.length === 0) return;
+
+    carouselState[docId] = (carouselState[docId] - 1 + items.length) % items.length;
+    updateCarousel(docId);
+  }
+
+  // Go to next slide
+  function nextSlide(docId) {
+    const items = document.querySelectorAll(`#${docId} .carousel-item`);
+    if (items.length === 0) return;
+
+    carouselState[docId] = (carouselState[docId] + 1) % items.length;
+    updateCarousel(docId);
+  }
+</script>
+
+</body>
+</html>

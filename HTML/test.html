@@ -1,434 +1,261 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My Portfolio Slides</title>
-<style>
-    body, html {
+  <meta charset="UTF-8">
+  <title>OCBC ATM Project</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f6fa;
     }
 
-    .top-bar {
-      position: relative;
-      width: 100%;
-      height: 110px;
-      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    nav {
-      position: absolute;
-      top: 28px;
-      right: 20px;
-      display: flex;
-      align-items: center;
-      background-color: rgba(74, 60, 114, 0.5);
-      padding: 10px;
-      border: 2px solid rgba(74, 60, 114, 1);
-      border-radius: 8px;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 20px;
-    }
-
-    nav ul li {
-      padding: 0 10px;
-      border-right: 2px solid black;
-    }
-
-    nav ul li:last-child {
-      border-right: none;
-    }
-
-    nav ul li a {
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .outer-container {
-      width: 90%;
-      max-width: 1600px;
-      margin: 40px auto;
-    }
-
-    .slider-container {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      padding: 40px;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .slide {
+    .screen {
       display: none;
-      width: 100%;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .slide.centered {
-      flex-direction: column;
+      height: 100vh;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       text-align: center;
     }
 
-    .slide.active {
-      display: flex;
-      animation: fadeIn 0.5s ease-in-out;
+    .active { display: flex; }
+
+    .pin-input {
+      padding: 10px;
+      font-size: 18px;
+      width: 240px;
+      text-align: center;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+      margin-top: 10px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .text-description {
-      width: 65%;
-    }
-
-    .text {
-      width: 35%;
-    }
-
-    .text h1,
-    .text-description h1 {
-      font-size: 35px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #2c2c2c;
-    }
-
-    .text p,
-    .text-description p {
-      font-size: 20px;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    .image {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    .image-side {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 15px;
-      flex-wrap: nowrap;
-      width: auto;
-      max-width: 100%;
-      overflow: hidden;
-      margin-left: 50px;
-    }
-
-    .image-side.single-image {
-      justify-content: center;
-      width: 100%;
-    }
-
-    .image-side img,
-    .image-stack img {
-      width: auto;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0;
-    }
-
-    .image-stack {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    @media (max-width: 768px) {
-      .image-side {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .image-side img {
-        width: 100%;
-      }
-    }
-
-    .nav-buttons {
-      display: flex;
-      justify-content: space-between;
+    .start-btn {
       margin-top: 20px;
-    }
-
-    button {
-      padding: 16px 28px;
-      background-color: #4a3c72;
+      padding: 12px 24px;
+      font-size: 16px;
+      background: #e60012;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 18px;
+      border-radius: 6px;
       cursor: pointer;
     }
 
-    .dots {
-      text-align: center;
-      padding: 15px;
+    .atm {
+      display: none;
+      height: 100vh;
+      flex-direction: row;
     }
 
-    .dot {
-      height: 14px;
-      width: 14px;
-      margin: 0 6px;
-      background-color: #bbb;
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.3s;
+    .left, .right {
+      padding: 40px;
+      overflow: auto;
     }
 
-    .dot.active {
-      background-color: #4a3c72;
+    .left {
+      flex: 0 0 45%;
+      background: white;
     }
 
-    footer {
-      background: url('../images/Main-Page/aesthetic-grey-marble.png') no-repeat center center/cover;
-      color: black;
-      text-align: center;
-      padding: 10px 0;
-      width: 100%;
+    .right {
+      flex: 0 0 55%;
+      background: #f0f1f5;
+      border-left: 2px solid #ddd;
+      position: relative;
     }
 
-    .top-left-project {
+    h2, h3 {
+      color: #111;
+      margin-top: 0;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 320px;
+    }
+
+    .button-grid button {
+      background: linear-gradient(to right, #a31921, #7a1c1e);
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .button-grid button:hover {
+      transform: scale(1.05);
+    }
+
+    .wide-button {
+      grid-column: span 2;
+    }
+
+    .service-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .service {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      flex: 1 1 45%;
+      font-size: 15px;
+    }
+
+    .more-services {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #e60012;
+      cursor: pointer;
+    }
+
+    .top-icons {
       position: absolute;
-      top: 15px;
-      left: 20px;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .top-icons span {
+      cursor: pointer;
+      color: #555;
+    }
+
+    .doc-view {
+      margin-top: 20px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .doc-view h4 {
+      color: #a31921;
+      margin-top: 0;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      background: #e60012;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .atm {
+        flex-direction: column;
+      }
+      .left, .right {
+        flex: 1 1 100%;
+      }
+      .button-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
-
-<style>
-  .image img, .image-side img, .image-stack img {
-    cursor: zoom-in;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  }
-
-  .image img:hover, .image-side img:hover, .image-stack img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 10px rgba(74, 60, 114, 0.6);
-  }
-</style>
 </head>
 <body>
-<div class="top-bar">
-<div class="top-left-project">
-<img alt="Home Icon" class="home-icon" height="75px" src="../images/Icons/project-icon.png" width="75px"/>
-</div>
-<nav>
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="resume.html">Resume</a></li>
-<li><a href="projects.html">Projects</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
-</nav>
-</div>
-<main>
-<div class="outer-container">
-<div class="slider-container">
-<div class="slide active centered">
-<div class="text-description">
-<h1>Data Engineering In The Cloud</h1>
-<p>This project involved designing and implementing an AWS-based data pipeline using SingStat’s API to automate data ingestion, cleaning, transformation, and reporting...</p>
-</div>
-</div>
-<div class="slide">
-<div class="text">
-<h1>ETL automation</h1>
-<p>A Step Function is created to automate the entire ETL pipeline...</p>
-</div>
-<div class="image image-side">
-<img alt="Step Function AWS" data-width="300" src="../images/DAEC/daec-step-function.jpeg"/>
-</div>
-</div>
-<div class="slide">
-<div class="text">
-<h1>Cost Monitoring</h1>
-<p>A scheduled Lambda function uses AWS Cost Explorer...</p>
-</div>
-<div class="image image-side">
-<img alt="AWS Cost Explorer" data-width="300" src="../images/DAEC/daec-cost-explorer.jpeg"/>
-</div>
-</div>
-<div class="slide">
-<div class="text">
-<h1>Security &amp; Access</h1>
-<p>IAM roles were created to define access based on job roles...</p>
-</div>
-<div class="image image-side">
-<img alt="AWS IAM" data-width="300" src="../images/DAEC/daec-iam.jpeg"/>
-<img alt="AWS KMS" data-width="300" src="../images/DAEC/daec-kms.jpeg"/>
-<img alt="AWS CloudTrail" data-width="300" src="../images/DAEC/daec-cloudtrail.jpeg"/>
-</div>
-</div>
-<div class="slide">
-<div class="text">
-<h1>Automated Data Loading &amp; Dashboard Creation</h1>
-<p>Lastly, dashboards are created in Power BI and are connected to AWS...</p>
-</div>
-<div class="image image-side">
-<img alt="AWS credentials" data-width="300" src="../images/DAEC/daec-credentials.jpeg"/>
-<img alt="Power BI Dashboard" data-width="300" src="../images/DAEC/daec-dashboard.jpeg"/>
-</div>
-</div>
-<div class="slide active centered">
-<div class="text-description">
-<h1>Workflow Explanation</h1>
-<p>Overall, this setup was chosen for its flexibility, automation, and cost-efficiency...</p>
-</div>
-</div>
-</div>
-<div class="nav-buttons">
-<button id="prevBtn">❮ Prev</button>
-<button id="nextBtn">Next ❯</button>
-</div>
-<div class="dots" id="dots"></div>
-</div>
-<div style="text-align: center; margin: 60px 0 40px 0;">
-<a href="projects.html">
-<button>← Back to Projects</button>
-</a>
-</div>
-</main>
-<footer>
-<p>© 2024 Javier Tan. All rights reserved. Fully coded website 😄</p>
-</footer>
-<script>
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('dots');
 
-    let currentSlide = 0;
+  <!-- Step 1: PIN Screen -->
+  <div id="startScreen" class="screen active">
+    <h2>Welcome to OCBC Task 1 ATM</h2>
+    <p>Please insert your card and enter PIN to continue.</p>
+    <input type="password" class="pin-input" placeholder="Enter PIN" />
+    <button class="start-btn" onclick="goToATM()">Enter</button>
+    <button class="back-btn">← Back to OCBC intern home</button>
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.classList.add('dot');
-      if (i === 0) dot.classList.add('active');
-      dotsContainer.appendChild(dot);
-    });
+  </div>
 
-    const dots = document.querySelectorAll('.dot');
+  <!-- Step 2: ATM Interface -->
+  <div id="atmScreen" class="atm">
+    <!-- Left Side -->
+    <div class="left">
+      <h2>Hello!<br>What would you like to do today?</h2>
+      <div class="button-grid">
+        <button onclick="showDoc('doc1')">withdraw doc 1</button>
+        <button onclick="showDoc('doc2')">retrieve doc 2</button>
+        <button onclick="showDoc('doc3')">deposit doc 3</button>
+        <button onclick="showDoc('doc4')">transfer doc 4</button>
+        <button class="wide-button" onclick="showDoc('doc5')">Other cash amounts</button>
+      </div>
+      <button class="back-btn" onclick="backToStart()">← Back to Card Screen</button>
+    </div>
 
-    function updateSlides() {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle('active', i === currentSlide);
-      });
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentSlide);
-      });
+    <!-- Right Side -->
+    <div class="right">
+      <div class="top-icons">
+        <span>中文</span>
+        <span onclick="backToStart()">Exit</span>
+      </div>
+      <h3>Non Cash Services</h3>
+      <div class="service-box">
+        <div class="service">Activate Card</div>
+        <div class="service">Balance Enquiry</div>
+      </div>
+      <div class="more-services">More services &gt;</div>
+
+      <div id="doc1" class="doc-view" style="display:none">
+        <h4>Requirement Gathering</h4>
+        <p>We met with stakeholders to clarify dashboard goals, data sources, and success criteria.</p>
+      </div>
+      <div id="doc2" class="doc-view" style="display:none">
+        <h4>SQL View Creation</h4>
+        <p>Built Hive SQL views to join and transform operational logs into visual-ready summaries.</p>
+      </div>
+      <div id="doc3" class="doc-view" style="display:none">
+        <h4>UAT & Visuals</h4>
+        <p>Gathered feedback and finalized visuals in Power BI with filters, alerts, and drilldowns.</p>
+      </div>
+      <div id="doc4" class="doc-view" style="display:none">
+        <h4>Deployment</h4>
+        <p>Scheduled data refresh, tested access permissions, and enabled report subscriptions.</p>
+      </div>
+      <div id="doc5" class="doc-view" style="display:none">
+        <h4>Other Documentation</h4>
+        <p>Includes backend code, slide decks, and architecture diagrams stored on SharePoint.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToATM() {
+      document.getElementById('startScreen').classList.remove('active');
+      document.getElementById('atmScreen').style.display = 'flex';
     }
 
-    nextBtn?.addEventListener('click', () => {
-      currentSlide = (currentSlide + 1) % slides.length;
-      updateSlides();
-    });
+    function backToStart() {
+      document.getElementById('atmScreen').style.display = 'none';
+      document.getElementById('startScreen').classList.add('active');
+      hideAllDocs();
+    }
 
-    prevBtn?.addEventListener('click', () => {
-      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlides();
-    });
+    function showDoc(id) {
+      hideAllDocs();
+      document.getElementById(id).style.display = 'block';
+    }
 
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentSlide = index;
-        updateSlides();
-      });
-    });
-
-    // Center single images
-    document.querySelectorAll('.image-side').forEach(container => {
-      const imgs = container.querySelectorAll('img');
-      if (imgs.length === 1) {
-        container.classList.add('single-image');
-      }
-      imgs.forEach(img => {
-        const width = img.dataset.width || '300';
-        img.style.width = width + 'px';
-        img.style.borderRadius = '0';
-      });
-    });
-
-    updateSlides();
+    function hideAllDocs() {
+      const docs = document.querySelectorAll('.doc-view');
+      docs.forEach(doc => doc.style.display = 'none');
+    }
   </script>
-
-<div class="lightbox" id="lightbox" style="display:none;justify-content:center;align-items:center;flex-direction:column;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.85);z-index:9999;">
-<span class="close-btn" style="position:absolute;top:30px;right:40px;font-size:40px;color:white;cursor:pointer;font-weight:bold;">×</span>
-<img alt="Zoomed image" class="lightbox-img" style="border-radius: 0 !important;" src="" style="max-width:90%;max-height:80vh;border-radius:8px;box-shadow:0 0 20px #000;"/>
-<div class="arrow prev" style="position:absolute;top:50%;left:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❮</div>
-<div class="arrow next" style="position:absolute;top:50%;right:20px;transform:translateY(-50%);font-size:40px;color:white;cursor:pointer;padding:10px;">❯</div>
-</div>
-
-<script>
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.querySelector('.lightbox-img');
-  const closeBtn = document.querySelector('.close-btn');
-  const prevArrow = document.querySelector('.arrow.prev');
-  const nextArrow = document.querySelector('.arrow.next');
-
-  let currentGroup = [];
-  let currentIndex = 0;
-
-  document.querySelectorAll('.image img, .image-side img, .image-stack img').forEach(img => {
-    img.addEventListener('click', () => {
-      const container = img.closest('.image, .image-side, .image-stack');
-      if (!container) return;
-      currentGroup = Array.from(container.querySelectorAll('img'));
-      currentIndex = currentGroup.indexOf(img);
-      showLightbox(currentGroup[currentIndex].src);
-    });
-  });
-
-  function showLightbox(src) {
-    lightbox.style.display = 'flex';
-    lightboxImg.src = src;
-  }
-
-  function showNext(step) {
-    currentIndex = (currentIndex + step + currentGroup.length) % currentGroup.length;
-    lightboxImg.src = currentGroup[currentIndex].src;
-  }
-
-  closeBtn.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
-
-  nextArrow.addEventListener('click', () => showNext(1));
-  prevArrow.addEventListener('click', () => showNext(-1));
-
-  window.addEventListener('keydown', e => {
-    if (e.key === 'Escape') lightbox.style.display = 'none';
-    if (e.key === 'ArrowRight') showNext(1);
-    if (e.key === 'ArrowLeft') showNext(-1);
-  });
-</script>
 </body>
 </html>

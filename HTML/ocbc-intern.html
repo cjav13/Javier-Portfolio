@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internship - OCBC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 110px;
+      z-index: 10;
+    }
+
+    .nav-left {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      z-index: 999;
+    }
+
+    .back-button {
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      text-decoration: none;
+      background-color: rgba(113, 98, 150, 0.8);
+      padding: 8px 16px;
+      border-radius: 6px;
+      border: 2px solid black;
+      transition: background 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: rgb(93, 76, 136);
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 32px;
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      background: rgba(74, 60, 114, 0.8);
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      z-index: 999;
+    }
+
+    #navMenu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 50%;
+      height: 100vh;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.3s ease;
+      z-index: 998;
+    }
+
+    #navMenu.show {
+      right: 0;
+    }
+
+    #navMenu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+
+    #navMenu a {
+      font-size: 28px;
+      font-weight: bold;
+      color: #4a3c72;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero img.bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(65%) contrast(90%);
+    }
+
+    .purple-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(60, 41, 114, 0.25), rgba(0, 0, 0, 0.3));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .overlay-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      padding: 40px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .hero-text {
+      max-width: 500px;
+      text-align: left;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .hero-text h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      font-size: 1.1em;
+      margin-bottom: 20px;
+    }
+
+    .hero-image {
+      flex: 1;
+      max-width: 450px;
+      margin-right: 70px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      padding: 12px 24px;
+      background-color: white;
+      color: #4a3c72;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #a38bc3;
+    }
+
+    /* === BACKGROUND BLUR WRAPPER === */
+    .background-blur {
+      position: relative;
+      z-index: 0;
+    }
+
+    .background-blur::before {
+      content: "";
+      position: absolute;
+      top: -30px;
+      left: -30px;
+      right: -30px;
+      bottom: -30px;
+      background-image: url('../images/Intern/ocbc-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: blur(12px) brightness(60%);
+      z-index: -2;
+    }
+
+    .background-blur::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(74, 60, 114, 0.3);
+      z-index: -1;
+    }
+
+    .background-blur section {
+      position: relative;
+      padding: 80px 20px;
+      z-index: 1;
+    }
+
+    .background-blur h2,
+    .background-blur h3,
+    .background-blur p {
+      color: #433569;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      background: rgb(91, 80, 111);
+      text-align: center;
+      color: black;
+      padding: 20px 0;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+
+    #return-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 70px;
+      height: 70px;
+      background-color: #4a3c72;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      font-size: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.3s;
+      z-index: 9999;
+    }
+
+    #return-to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* ===== Project Cards ===== */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+      color: #4a3c72;
+      text-align: center;
+    }
+
+    .card p {
+      color: #555;
+      text-align: center;
+    }
+    
+    /* Ensure visited links retain style */
+    .card a:visited h3 {
+      color: #6b589b;
+      text-decoration: none;
+    }
+
+    .carousel-container {
+      margin: 150px auto 0 auto;
+      position: relative;
+      perspective: 1200px;
+      width: 100%;
+      max-width: 1000px; /* Make room for both arrows */
+      height: 330px; /* Enough space for card height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-item {
+      position: absolute;
+      width: 280px;
+      height: 200px;
+      transform-style: preserve-3d;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      opacity: 0.95;
+      transition: transform 1s ease;
+    }
+
+    .carousel-item h3 {
+      margin: 0;
+      color: #4a3c72;
+    }
+
+    .carousel-item p {
+      font-size: 14px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(74, 60, 114, 0.85);
+      color: white;
+      border: none;
+      font-size: 30px;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.prev {
+      left: -20px;
+    }
+
+    .carousel-button.next {
+      right: -20px;
+    }
+
+    /* Reuse project card styles inside the carousel */
+    .carousel .card {
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease;
+    }
+
+    /* Optional: slightly reduce size for better 3D fit */
+    .carousel .card {
+      width: 300px;
+      height: auto;
+      padding: 20px;
+      pointer-events: none;
+    }
+
+    /* Adjust image inside card */
+    .carousel .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .carousel a.card {
+      transition: transform 0.3s ease, z-index 0.3s ease;
+    }
+
+    .carousel a.card.active {
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    .carousel a.card.active:hover {
+      transform: scale(1.08) translateZ(40px) !important;
+      z-index: 3;
+    }
+
+    .carousel .card:not(.active):hover {
+      transform: none !important;
+      cursor: default;
+    }
+
+    .carousel .carousel-item {
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+    }
+
+    .carousel .card {
+      width: 300px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+      transition: transform 0.5s ease;
+    }
+
+    #bankbook-closed {
+      width: 70vw;
+      max-width: 500px;
+      height: auto;
+      cursor: pointer;
+      display: block;
+      margin: 40px auto;
+      border-radius: 8px;
+    }
+
+    #bankbook-open {
+      display: none; 
+      position: relative;
+    }
+
+    #bankbook-open img {
+      width: 90vw;
+      height: calc(90vw / 1.6);;
+      max-width: 2000px;
+      display: block;
+      margin: 0 auto;
+    }
+
+
+
+    /* Close button positioning */
+    #bankbook-open .close-btn {
+      position: absolute;
+      top: 400px;         /* Adjust vertical position */
+      left: 330px;        /* Adjust horizontal position */
+      background: #4a3c72;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    /* Reflection block position and size */
+    /* Reflection block position and size */
+    #bankbook-open .reflections {
+      position: absolute;
+      top: 290px;
+      left: 345px;
+      width: 45vw;               /* Adjust width to fit within bank book */
+      height: 260px;             /* FIXED height to force scroll if overflow */
+      overflow-y: auto;
+      padding-right: 10px;
+      color: #333;
+      font-family: Georgia, serif;
+      text-align: left;
+      z-index: 5;
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: #4a3c72 #f8f5fc;
+    }
+
+
+
+    .reflection-card {
+      background: rgba(255, 250, 242, 0.95);
+      border-left: 6px solid #4a3c72;
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .reflection-card p:first-child {
+      font-style: italic;
+      color: #555;
+    }
+
+    .task-buttons {
+      position: absolute;
+      top: 230px;
+      left: 350px;
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+
+    .task-buttons button {
+      background: #4a3c72;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .reflection-card {
+      background: rgba(255, 250, 242, 0.95);
+      border-left: 6px solid #4a3c72;
+      padding: 20px 30px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .reflection-card p {
+      margin: 0;
+    }
+
+    .reflection-card .details {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .reflection-card .expand-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 18px;
+      background: none;
+      border: none;
+      color: #4a3c72;
+      cursor: pointer;
+    }
+
+    /* Overlay background for lightbox effect */
+    #lightbox-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(20, 20, 20, 0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    /* Lightbox content */
+    #lightbox-content {
+      background: #fffaf2;
+      padding: 40px;
+      max-width: 700px;
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      font-family: Georgia, serif;
+      position: relative;
+    }
+
+    #lightbox-content .close-lightbox {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: #4a3c72;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+
+
+    @media (max-width: 768px) {
+      #bankbook-open .close-btn {
+        top: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+
+      #bankbook-open .reflections {
+        top: 80px;
+        left: 20px;
+        width: 90%;
+      }
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      nav { display: none; }
+      .overlay-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body onload="window.scrollTo(0, 0)">
+
+  <!-- HEADER -->
+  <header>
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <!-- Mobile Nav -->
+    <div id="navMenu">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="internship.html">Intern</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Back Button -->
+    <div class="nav-left">
+      <a class="back-button" href="internship.html">← Back</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img class="bg" src="../images/Intern/ocbc-bg.jpg" alt="Background" />
+    <div class="purple-overlay"></div>
+    <div class="overlay-content">
+      <div class="hero-text">
+        <h1>Internship at OCBC</h1>
+        <p>Hello! My name is Javier, click start to follow me through my journey in OCBC through projects, and experience I've gained interning at OCBC!</p>
+        <div class="buttons">
+          <a href="#content">Start</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="../images/Intern/singapore-map.jpg" alt="Hero Side Image">
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT (BLURRED BACKGROUND) -->
+<div class="background-blur">
+    <section id="content">
+  
+      <!-- === ABOUT SECTION === -->
+      <div id="about" style="max-width: 900px; margin: auto; text-align: center;">
+        <h2 style="font-size: 2.5em; color: #433569;">About My Internship</h2>
+        <p style="font-size: 1.1em; margin: 20px 0; color: white !important;">
+          I interned at OCBC for a year under Group Operations and Technology (GOT), within the Group Engineering department. My role revolves around data engineering and analytics, where I help build live, end-to-end dashboard solutions for teams across different departments. 
+          <br><br>This involves working closely with users to understand their needs, developing automated workflows, and delivering clear, actionable insights through visual dashboards. The internship has given me valuable exposure to enterprise data systems and cross-functional collaboration, while deepening my technical skills in data processing and real-world problem-solving.
+        </p>
+        <div style="display: flex; color: black; justify-content: space-around; flex-wrap: wrap; margin-top: 40px;">
+          <div style="background: white; color: black; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 260px;">
+            <h3>📅 Duration</h3>
+            <p>Mar 2025 – Mar 2026</p>
+          </div>
+          <div style="background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 260px;">
+            <h3>🏢 Department</h3>
+            <p>Group Operations & Technology (GO&T) - Group Engineering</p>
+          </div>
+          <div style="background: white; padding: 20px; margin: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 260px;">
+            <h3>🎯 Focus</h3>
+            <p>Data Analytics, Automation, Dashboards, Data Engineering</p>
+          </div> 
+        </div>
+      </div>
+  
+      <!-- === PROJECTS SECTION === -->
+      <div id="projects" style="margin-top: 80px; margin-bottom: 150px; padding: 60px 20px;">
+        <h2 style="font-size: 2.8em; color: #433569; text-align: center;">Projects</h2>
+
+        <div class="carousel-container">
+          <button class="carousel-button prev" onclick="rotateCarousel(-1)">&#10094;</button>
+          
+          <div class="carousel" id="carousel">
+            <div class ="carousel-item">
+              <a href="ocbc-task1.html" class="card" data-category="Most Recent">
+              <img src="../images/Intern/data-pipeline.png" alt="Task 1">
+              <h3>Task 1</h3>
+              <p>Develop the end to end data pipeline for datalake/datamart ingestion</p>
+              </a>
+            </div>
+
+            <div class ="carousel-item">
+              <a href="ocbc-task2.html" class="card" data-category="All">
+                  <img width="220px" height="220px" src="../images/Intern/ocbc-dashboard1.jpg" alt="Task 2">
+                  <h3>Task 2</h3>
+                  <p>Develop the visualization dashboard for different departments</p>
+              </a>
+            </div>
+
+            <div class ="carousel-item">
+              <a href="ocbc-task3.html" class="card" data-category="Most Recent">
+                  <img width="220px" height="220px" src="../images/Intern/devops.jpg" alt="Task 3">
+                  <h3>Task 3</h3>
+                  <p>Design & document the DevOps framework (data maintenance & governance)</p>
+              </a>
+            </div>
+          
+
+          </div>
+
+
+          <button class="carousel-button next" onclick="rotateCarousel(1)">&#10095;</button>
+
+        </div>
+      </div>
+      
+  
+      <!-- === REFLECTION SECTION === -->
+      <!-- Closed Book Image -->
+      <h2 style="font-size: 2.8em; color: #433569; text-align: center; margin-bottom: 10px;">Reflection</h2>
+      <img id="bankbook-closed" src="../images/Intern/bankbook-closed.png" alt="Closed Bank Book"
+        onclick="openBankbook()" />
+
+      <!-- Open Book Interaction -->
+      <div id="bankbook-open">
+
+        <!-- Lightbox container -->
+        <div id="lightbox-overlay">
+          <div id="lightbox-content">
+            <button class="close-lightbox" onclick="closeLightbox()">Close</button>
+            <div id="lightbox-text"></div>
+          </div>
+        </div>
+
+        <img src="../images/Intern/bankbook-open-2.png" alt="Open Bank Book" />
+
+        <!-- Filter/Nav Buttons -->
+        <!-- Task Buttons -->
+        <div class="task-buttons">
+          <button onclick="filterReflections('task1')">Task 1</button>
+          <button onclick="filterReflections('task2')">Task 2</button>
+          <button onclick="filterReflections('task3')">Task 3</button>
+          <button onclick="filterReflections('all')">Show All</button>
+          <button onclick="closeBankbook()">Close</button>
+        </div>
+
+        <!-- Content -->
+        <div class="reflections">
+          <div class="reflection-card" data-task="task1">
+            <p><strong>🗓️ Week 1-4 – Mastering User Communication (Task 1)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>Meeting with users really helped me understand what they actually need from the dashboard and what questions they want answered. It made me realize how important it is to listen first before jumping into building. <br><br>Going through sample data gave me a clearer picture of what’s possible and what adjustments we need to make behind the scenes. Overall, it showed me that good communication and a solid understanding of data go hand in hand to create something truly useful. One of the challenges is learning how to communicate with the users independently, without the need of supervision from our supervisor. <br><br>I started shadowing my supervvisor in the first few weeks which helped me to learn the ropes fast and the skills/knowledge needed to communicate with the user. Now I am able to hold calls and meetings independently without supervision.</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task1">
+            <p><strong>🗓️ Week 5-8 – Data Preparation (Task 1)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>Cleaning and formatting seemed simple at first, but I soon realized that one small mistake could break the entire pipeline. Creating schemas taught me to think ahead about structure and meaning, not just storage. Using BDMF made me appreciate the importance of audit trails, it's not just about loading data, but proving it's done right.<br><br> This phase taught me how crucial precision, traceability, and foresight are in making data truly useful. Initially I had difficulties understanding their SQL code as it was way more complex and different from what we were taught in school. I also had difficulties understanding how MobaXterm works as it runs on linux commands and also understanding how the BDMF framework works in this pipeline. I took sometime to learn the basics during free time by using available resources such as chatgpt and online courses which helped me understand better on how their SQL code and BDMF framework works. <br><br>Documenting linux commands on txt file helped me greatly as i can refer  to them whenever i need them which eased the stress of remembering all the commands and what it does. Now I am able to see the bigger picture of how everything connects, and also knowing how to start working with the data pipeline.</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task1">
+            <p><strong>🗓️ Week 9-12 – Debugging With Purpose (Task 1)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>During the data validation phase, one major problem that I faced was debugging the issue that was causing problems in the data pipeline. This has showed me that one wrong number on the dashboard could mean alot things such as wrong schema, file/ingestion/logic issue etc. This made it harder to debug the problem. <br><br>What helped me overcome this was documenting the correct numbers (verified from users) and wrong numbers for reference. Learning from my supervisor, especially how to recognize common scenarios and where to look when something breaks, which gave me a structured way to troubleshoot. <br><br>During testing, I also made it a habit to think about how to make the pipeline more robust. Every time something went wrong, I asked myself: how can this be prevented in production? This mindset helped me design safer, more automated processes that can run with minimal errors once deployed.</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task1">
+            <p><strong>🗓️ Week 13-16 – Delivering To Production (Task 1)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>Deploying to production gave me a real understanding of how large companies like OCBC ensure stability, automation, and control at scale.  I learned what needs to be finalized before deployment, from SQL views to PBIX dashboards, config files, and ingestion paths.<br><br>
+
+What stood out to me was how structured the handover is , everything must be tested, reviewed, and packaged clearly. Being part of this process made me realize how important it is to plan ahead, document properly, and make sure the pipeline is fully reliable before going live. It was rewarding to know that something I helped build is now being used in a live environment.</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task2">
+            <p><strong>🗓️ Week 1-4 – Learning Dashboard Planning (Task 2)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>Before building any dashboard, I learned the process of gathering requirements, including the data schema, the nature and volume of the data, what key metrics need to be shown, and the business logic behind each one.<br><br> I also learned how users clarify how they want the data to be displayed visually, often by creating mockups in PowerPoint to confirm design and layout before starting the actual build. This planning stage helped reduce confusion later and made the dashboard more aligned with what the business truly needed.</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task2">
+            <p><strong>🗓️ Week 5-8 – Mastering SQL In A MNC Environment (Task 2)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>Working with SQL in a large corporate environment like OCBC exposed me to complex, real-world logic that goes far beyond what we learn in school. As I became more confident, I began looking for ways to improve the structure and readability of the code. <br><br>Through my own research, I discovered that using Common Table Expressions (CTEs) would make the logic more organized, maintainable, and reliable, especially in a setting where queries are layered and intricate.
+
+I proposed this approach to my supervisor, and we ended up implementing the logic I designed using CTEs. <br><br>Seeing my structure adopted in our final workflow was a rewarding milestone. It showed me that with initiative and technical understanding, even interns can make meaningful contributions in a complex data environment.
+</p>
+            </div>
+          </div>
+
+          <div class="reflection-card" data-task="task2">
+            <p><strong>🗓️ Week 9-12 – Finalized Product (Task 2)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>One of the biggest challenges was learning how everything connects, from the database to the final dashboard. DAX and Query M were new to me, and the dashboard design approach at OCBC was much more advanced than what we learned in school. <br><br>It involved complex relationships, conditional formatting, and highly informative layouts.
+
+With the help of online resources and ChatGPT, I gradually understood how to work with these tools and languages. <br><br>More importantly, I learned how to think beyond standard visuals by focusing on clarity, functionality, and user needs to build dashboards that are both powerful and insightful.</p>
+            </div>
+          </div>
+
+            <div class="reflection-card" data-task="task3">
+            <p><strong>🗓️ Week 9-12 – Finalized Product (Task 3)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>-</p>
+            </div>
+            </div>
+
+            <div class="reflection-card" data-task="task3">
+            <p><strong>🗓️ Week 9-12 – Finalized Product (Task 3)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>-</p>
+            </div>
+            </div>
+
+            <div class="reflection-card" data-task="task3">
+            <p><strong>🗓️ Week 9-12 – Finalized Product (Task 3)</strong></p>
+            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+            <div class="details">
+              <p>-</p>
+            </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+  
+    </section>
+  </div>
+  
+
+  <!-- RETURN TO TOP BUTTON -->
+  <button id="return-to-top">&uarr;</button>
+
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2025 Javier Tan — All rights reserved.
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+
+     function openBankbook() {
+      document.getElementById("bankbook-closed").style.display = "none";
+      document.getElementById("bankbook-open").style.display = "block";
+    }
+
+    function closeBankbook() {
+      document.getElementById("bankbook-closed").style.display = "block";
+      document.getElementById("bankbook-open").style.display = "none";
+    }
+
+    function toggleDetails(btn) {
+      const content = btn.closest('.reflection-card').querySelector('.details').innerHTML;
+      document.getElementById('lightbox-text').innerHTML = content;
+      document.getElementById('lightbox-overlay').style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox-overlay').style.display = 'none';
+    }
+
+
+    function filterReflections(task) {
+      const cards = document.querySelectorAll(".reflection-card");
+      cards.forEach(card => {
+        const taskType = card.getAttribute("data-task");
+        if (task === "all" || taskType === task) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    function openBankbook() {
+      document.getElementById("bankbook-closed").style.display = "none";
+      document.getElementById("bankbook-open").style.display = "block";
+    }
+
+    function closeBankbook() {
+      document.getElementById("bankbook-closed").style.display = "block";
+      document.getElementById("bankbook-open").style.display = "none";
+    }
+
+    document.querySelector('a[href="#content"]').addEventListener("click", function (e) {
+        e.preventDefault();
+        const section = document.querySelector('#content');
+        section.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const returnToTop = document.getElementById("return-to-top");
+    window.addEventListener("scroll", () => {
+        returnToTop.classList.toggle("show", window.scrollY > 200);
+    });
+
+    returnToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.location.hash === "#content") {
+        // Remove the hash and prevent scroll jump
+        setTimeout(() => {
+          history.replaceState(null, document.title, window.location.pathname);
+          window.scrollTo({ top: 0, behavior: "auto" });
+        }, 1);
+      }
+    });
+
+    // Mobile nav toggle
+    document.getElementById("hamburger").onclick = () => {
+      document.getElementById("navMenu").classList.toggle("show");
+    };
+    
+    /* Carousel script */
+    const carousel = document.getElementById('carousel');
+    const items = document.querySelectorAll('.carousel-item');
+    const itemCount = items.length;
+    const theta = 360 / itemCount;
+    const radius = 350;
+    let angle = 0;
+
+    function setupCarousel() {
+      for (let i = 0; i < itemCount; i++) {
+        const itemAngle = theta * i;
+        items[i].style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px)`;
+      }
+      updateCarousel();
+    }
+
+    function rotateCarousel(direction) {
+      angle += -theta * direction;
+      updateCarousel();
+    }
+
+    function updateCarousel() {
+      const rotation = angle % 360;
+      const activeIndex = Math.round((-rotation % 360) / theta) % itemCount;
+
+      items.forEach((item, index) => {
+        item.querySelector('.card')?.classList.remove("active");
+
+        const itemAngle = theta * index;
+        item.style.transform = `rotateY(${itemAngle}deg) translateZ(${radius}px)`;
+
+        if (index === ((activeIndex + itemCount) % itemCount)) {
+          item.querySelector('.card')?.classList.add("active");
+        }
+
+      });
+
+      carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+    }
+
+    setupCarousel();
+
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.scrollTo(0, 0);
+
+  // Stop scroll restoration on reload
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // Force scroll to top on full load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      history.replaceState(null, document.title, window.location.pathname);
+    }, 5);
+  });
+
+
+
+    
+
+  </script>
+</body>
+</html>
