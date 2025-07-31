@@ -18,10 +18,6 @@
       overflow-x: hidden;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
     header {
       position: absolute;
       top: 0;
@@ -615,93 +611,132 @@
 
 
     @media (max-width: 768px) {
-      .hamburger { display: block; }
-      nav { display: none; }
+  .hamburger {
+    display: block;
+  }
 
-      html, body {
-        overflow-x: hidden;
-      }
+  nav {
+    display: none;
+  }
 
-      .overlay-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-        align-items: center;
-      }
+  html, body {
+    overflow-x: hidden;
+  }
 
-      .hero-text {
-        text-align: center;
-        max-width: 90%;
-      }
+  .overlay-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    align-items: center;
+  }
 
-      .hero-text h1 {
-        font-size: 2em;
-      }
+  .hero-text {
+    text-align: center;
+    max-width: 90%;
+  }
 
-      .hero-text p {
-        font-size: 1em;
-      }
+  .hero-text h1 {
+    font-size: 2em;
+  }
 
-      .hero-image {
-        margin: 0 auto;
-        max-width: 80%;
-        padding: 10px 0;
-      }
+  .hero-text p {
+    font-size: 1em;
+  }
 
-      .carousel-wrapper {
-        display: flex;
-        justify-content: center;
-        overflow-x: hidden;
-        width: 100%;
-      }
+  .hero-image {
+    margin: 0 auto;
+    max-width: 80%;
+    padding: 10px 0;
+  }
 
-      .carousel {
-        max-width: 100%;
-        transform-style: preserve-3d;
-        perspective: 1000px;
-        overflow: visible;
-      }
+  .carousel-wrapper {
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    width: 100%;
+  }
 
-      .carousel-item {
-        max-width: 280px;
-        margin: 0 10px;
-        transform: scale(0.9);
-      }
+  .carousel {
+    max-width: 100%;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
 
-      .carousel-button {
-        display: block;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+  .carousel-item {
+    max-width: 260px;
+    margin: 0 10px;
+    transform: scale(0.9);
+    transition: transform 0.5s ease;
+  }
 
-      #bankbook-open .close-btn {
-        top: 20px;
-        left: 20px;
-        padding: 8px 12px;
-        font-size: 14px;
-      }
+  .carousel-button {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    background: rgba(230, 0, 18, 0.9);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 1;
+  }
 
-      #bankbook-open .reflections {
-        top: 80px;
-        left: 20px;
-        width: 90%;
-      }
+  .carousel-button.left {
+    left: -10px;
+  }
 
-      .gallery {
-        flex-direction: column;
-        align-items: center;
-      }
+  .carousel-button.right {
+    right: -10px;
+  }
 
-      .card {
-        width: 90%;
-      }
+  #bankbook-open .close-btn {
+    top: 20px;
+    left: 20px;
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 
-      .buttons {
-        justify-content: center;
-      }
+  #bankbook-open .reflections {
+    top: 80px;
+    left: 20px;
+    width: 90%;
+  }
 
-    }
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .buttons {
+    justify-content: center;
+  }
+
+  .start-btn {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .expand-content p,
+  .expand-content h4 {
+    font-size: 14px;
+  }
+
+  th, td {
+    font-size: 13px;
+  }
+}
+
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(30px); }
