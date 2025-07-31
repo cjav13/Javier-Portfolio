@@ -262,21 +262,27 @@
 
 
 
-    @media (max-width: 768px) {
+   @media (max-width: 768px) {
+  .atm {
+    flex-direction: column; /* ← Stack top-bottom on small screens */
+  }
+
+  .left, .right {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .right {
+    border-left: none;
+    border-top: 2px solid #ddd;
+  }
+
   .button-grid {
     grid-template-columns: 1fr;
   }
-  .right {
-  width: 100%;
-  background: #f0f1f5;
-  border-top: 2px solid #ddd;
-  position: relative;
-  text-align: center;
-  padding: 40px 5%;
-  box-sizing: border-box;
 }
 
-}
 
   </style>
 </head>
