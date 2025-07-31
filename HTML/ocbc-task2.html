@@ -112,10 +112,22 @@
     }
 
     @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        overflow-x: auto;
+      }
+
+      table {
+        margin: 0 auto;
+        min-width: 600px; /* ensures scrolling for narrow screens */
+      }
+
       th, td {
         font-size: 13px;
       }
     }
+
+    
   </style>
 </head>
 <body>
