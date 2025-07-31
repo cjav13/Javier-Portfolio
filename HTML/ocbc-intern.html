@@ -648,28 +648,31 @@
         padding: 10px 0;
       }
 
-      .carousel-container {
-        width: 100%;
+      .carousel-wrapper {
+        display: flex;
+        justify-content: center;
         overflow-x: hidden;
-        margin: 50px auto 0 auto;
-        height: auto;
+        width: 100%;
       }
 
       .carousel {
-        transform: none !important;
-        flex-direction: column;
-        position: static;
-        align-items: center;
+        max-width: 100%;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+        overflow: visible;
       }
 
       .carousel-item {
-        position: static;
-        transform: none !important;
-        margin-bottom: 20px;
+        max-width: 280px;
+        margin: 0 10px;
+        transform: scale(0.9);
       }
 
       .carousel-button {
-        display: none;
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
       }
 
       #bankbook-open .close-btn {
@@ -693,6 +696,11 @@
       .card {
         width: 90%;
       }
+
+      .buttons {
+        justify-content: center;
+      }
+
     }
 
     @keyframes fadeIn {
