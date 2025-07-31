@@ -15,8 +15,8 @@
       padding: 0;
       height: 100%;
       font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
     }
+    
 
     header {
       position: absolute;
@@ -115,8 +115,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      top: 0;
-      left: 0;
       z-index: 0;
       filter: brightness(65%) contrast(90%);
     }
@@ -202,10 +200,10 @@
     .background-blur::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: -30px;
+      left: -30px;
+      right: -30px;
+      bottom: -30px;
       background-image: url('../images/Intern/ocbc-bg.jpg');
       background-size: cover;
       background-position: center;
@@ -610,86 +608,20 @@
 
 
 
-    /* === GENERAL MOBILE FIXES === */
-@media (max-width: 768px) {
+    @media (max-width: 768px) {
+      #bankbook-open .close-btn {
+        top: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        font-size: 14px;
+      }
 
-  html, body {
-    overflow-x: hidden;
-  }
-
-  .hamburger {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1001;
-  }
-
-  nav {
-    display: none;
-  }
-
-  .overlay.open {
-    display: flex;
-  }
-
-  .overlay-content {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .hero-text {
-    text-align: center;
-    max-width: 90%;
-  }
-
-  .hero-text h1 {
-    font-size: 2em;
-  }
-
-  .hero-text p {
-    font-size: 1em;
-  }
-
-  .hero-image {
-    margin: 0 auto;
-    max-width: 80%;
-    padding: 10px 0;
-  }
-
-
-
-  #back-btn {
-    position: fixed;
-    top: 20px;
-    left: 10px;
-    z-index: 1000;
-    font-size: 0.9em;
-    padding: 8px 14px;
-  }
-
-  #scrollTopBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 999;
-    padding: 10px 14px;
-    font-size: 16px;
-    background-color: #4a3c72;
-    color: white;
-    border-radius: 50%;
-    border: none;
-    display: none;
-  }
-
-  .gallery {
-    flex-direction: column;
-    align-items: center;
-  }
- 
-}
+      #bankbook-open .reflections {
+        top: 80px;
+        left: 20px;
+        width: 90%;
+      }
+    }
 
 
     @keyframes fadeIn {
@@ -697,6 +629,15 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      nav { display: none; }
+      .overlay-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+    }
   </style>
 </head>
 <body onload="window.scrollTo(0, 0)">
