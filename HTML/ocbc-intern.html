@@ -613,6 +613,123 @@
 
 
     @media (max-width: 768px) {
+
+      .hero-image {
+  margin-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+
+.overlay-content {
+  max-width: 100% !important;
+  padding: 20px !important;
+  overflow-x: hidden !important;
+}
+
+
+
+      .carousel-container {
+      margin: 200px auto 0 auto;
+      position: relative;
+      perspective: 800px;
+      width: 100%;
+      max-width: 1000px; /* Make room for both arrows */
+      height: 330px; /* Enough space for card height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-item {
+      position: absolute;
+      width: 150px;
+      height: 200px;
+      transform-style: preserve-3d;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      opacity: 0.95;
+      transition: transform 1s ease;
+    }
+
+    .carousel-item h3 {
+      margin: 0;
+      color: #4a3c72;
+    }
+
+    .carousel-item p {
+      font-size: 14px;
+      color: #444;
+      margin-top: 10px;
+    }
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(74, 60, 114, 0.85);
+      color: white;
+      border: none;
+      font-size: 30px;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .carousel-button.prev {
+      left: -10px;
+    }
+
+    .carousel-button.next {
+      right: -10px;
+    }
+
+
+    /* Optional: slightly reduce size for better 3D fit */
+    .carousel .card {
+      width: 150px;
+      height: auto;
+      padding: 20px;
+      pointer-events: none;
+    }
+
+    /* Adjust image inside card */
+    .carousel .card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .carousel .card {
+      width: 150px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      pointer-events: none;
+      transition: transform 0.5s ease;
+    }
+
+      
       #bankbook-open .close-btn {
         top: 20px;
         left: 20px;
@@ -971,7 +1088,7 @@ With the help of online resources and ChatGPT, I gradually understood how to wor
     const items = document.querySelectorAll('.carousel-item');
     const itemCount = items.length;
     const theta = 360 / itemCount;
-    const radius = 350;
+    let radius = window.innerWidth < 600 ? 170 : 350;
     let angle = 0;
 
     function setupCarousel() {
