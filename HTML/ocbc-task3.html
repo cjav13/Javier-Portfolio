@@ -132,9 +132,10 @@
     }
 
     /* Responsive and rearranged cards */
-    .card1 { grid-column: span 6; grid-row: span 2; }
-    .card2 { grid-column: span 3; grid-row: span 2; }
-    .card3 { grid-column: span 3; grid-row: span 2; }
+    .card1 { grid-column: span 6; grid-row: span 1; }
+.card2 { grid-column: span 3; grid-row: span 1; }
+.card3 { grid-column: span 3; grid-row: span 1; }
+
     .card4 { grid-column: span 5; grid-row: span 1; }
     .card5 { grid-column: span 7; grid-row: span 1; }
 
@@ -463,9 +464,70 @@ img {
 
   <h2>Note: View Task 3 documentation & artefacts on DevOps all in one dashboard!</h2>
 
-  <!-- OVERVIEW -->
-  <div id="overview" class="dashboard-view active">
+  <!-- GAP ANALYSIS, WORKFLOW, TASK OWNERSHIP -->
+<div id="overview" class="dashboard-view active">
     <div class="dashboard-grid">
+    
+      
+      <!-- TASK OWNERSHIP -->
+    <div class="card card1">
+      <h3>Task Ownership & Stakeholder Communication</h3>
+      <p>Key responsibilities, tools, and checkpoints for each task:</p>
+      <table style="width:100%; border-collapse: collapse; color:#ccc; margin-top:10px;">
+        <thead>
+          <tr style="border-bottom: 1px solid #e60012;">
+            <th style="text-align:left; padding:6px;">Task</th>
+            <th style="text-align:left; padding:6px;">Owner</th>
+            <th style="text-align:left; padding:6px;">Tool</th>
+            <th style="text-align:left; padding:6px;">Checkpoint / Frequency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>SQL View Development</td>
+            <td>Data Team</td>
+            <td>Bitbucket, Jenkins</td>
+            <td>Daily code review & automated testing</td>
+          </tr>
+          <tr>
+            <td>Dashboard Build</td>
+            <td>BI Team</td>
+            <td>Power BI, Confluence</td>
+            <td>Weekly review with stakeholders</td>
+          </tr>
+          <tr>
+            <td>Deployment</td>
+            <td>DevOps Team</td>
+            <td>Control-M, Jenkins</td>
+            <td>Pre-deployment checklist & QA sign-off</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+      <!-- GAP ANALYSIS -->
+    <div class="card card2">
+      <h3>Existing Pipeline Evaluation & Gap Analysis</h3>
+      <ul style="margin-top:10px;">
+        <li>Manual approvals cause delays in deployment.</li>
+        <li>Limited visibility of task ownership across teams.</li>
+      </ul>
+    </div>
+
+    <!-- PROPOSED WORKFLOW -->
+    <div class="card card3">
+      <h3>Proposed Workflow / Enhancements</h3>
+      <p>
+        Based on the gap analysis, we propose a revised DevOps workflow to improve automation, governance, and checkpoint visibility.
+      </p>
+      <ul style="margin-top:10px;">
+        <li>Automated approvals via Jenkins and Control-M integration.</li>
+        <li>Pre-deployment validations to catch data quality issues.</li>
+        <li>Centralized documentation and task tracking in Confluence & Infinity.</li>
+      </ul>
+    </div>
+
+  <!-- OVERVIEW -->
       <div class="card card1">
         <h3>Agile + Sprint Deadline Tracker</h3>
 

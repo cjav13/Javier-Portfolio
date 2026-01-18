@@ -434,57 +434,95 @@
         <div class="carousel-container">
           <div class="carousel-item active">
             <h4 class="carousel-title">Meeting with users</h4>
-            <p class="carousel-desc">We began by meeting with users to understand their dashboard goals, key business questions, and layout preferences. Through these calls, we clarified expectations and confirmed the data needed to support decision-making.<br><br>We also reviewed sample datasets to understand the schema, identified required logic or transformations, and finalized how future data would be loaded, ensuring the pipeline matched both the data structure and user needs.</p>
+            <p class="carousel-desc">We began by meeting with users to understand their dashboard goals, key business questions, and layout preferences. Through these calls, we clarified expectations and confirmed the data needed to support decision-making.<br><br>We also reviewed sample datasets to understand the schema, identified required logic or transformations, and finalized how future data would be loaded, ensuring the pipeline matched both the data structure and user needs.<br><br>In addition, we developed an understanding of bank operations and operations management processes, including SLA tracking and channel performance tracking, to ensure the dashboards accurately reflected operational workflows and key performance metrics.</p>
             <img src="../images/Task 1/user-calling.jpg" alt="Slide 1" />
           </div>
         </div>
       </div>
 
       <!-- DOC 2 -->
-      <div id="doc2" class="doc-view" style="display:none">
-        <div class="carousel-container">
-          <div class="carousel-item active">
-            <h4 class="carousel-title">Sample Data Preparation</h4>
-            <p class="carousel-desc">We began by obtaining sample data from users to test the ingestion workflow.
-The data was cleaned, formatted, and transformed into TXT files where needed, ensuring compatibility with ingestion pipelines.
-Tools used included Excel for formatting, and MobaXterm or local CLI for file conversion and structure checking.</p>
-            <img src="../images/Task 1/txt-conversion.png" alt="Slide 1" />
-          </div>
-          <div class="carousel-item">
-            <h4 class="carousel-title">Schema Creation</h4>
-            <p class="carousel-desc">Hive SQL table schemas were created to define how incoming data should be stored and structured.</p>
-            <img src="../images/Task 1/table-schema2.jpg" alt="Slide 2" />
-          </div>
-          <div class="carousel-item">
-            <h4 class="carousel-title">Data Ingestion</h4>
-            <p class="carousel-desc">Using MobaXterm, we ran Linux-based ingestion commands to insert the .txt data into the staging environment. </p>
-            <img src="../images/Task 1/mobaxterm2.jpg" alt="Slide 3" />
-          </div>
-          <div class="carousel-item">
-            <h4 class="carousel-title">BDMF Framework (Audit)</h4>
-            <p class="carousel-desc">The BDMF (Big Data Management Framework) was used to manage audit trails which automatically tracks the file metadata, job status, and timestamp logs. These logs serve compliance, traceability, and debugging needs.</p>
-            <img src="../images/Task 1/bdmf.jpg" alt="Slide 4" />
-          </div>
-          <div class="carousel-item">
-            <h4 class="carousel-title">Control-M Job Scheduling</h4>
-            <p class="carousel-desc">After verifying successful manual data ingestion, Control-M jobs were setup. These are automated tasks that pick up new files from a shared folder which triggers the ingestion and log audit outcomes via BDMF. This automation ensures data is ingested without manual effort.</p>
-            <img src="../images/Task 1/control-m2.jpg" alt="Slide 5" />
-          </div>
-          <div class="carousel-nav">
-            <button onclick="prevSlide('doc2')">←</button>
-            <button onclick="nextSlide('doc2')">→</button>
-          </div>
-        </div>
-      </div>
+<div id="doc2" class="doc-view" style="display:none">
+  <div class="carousel-container">
+
+    <!-- Slide 1: Sample Data Preparation -->
+    <div class="carousel-item active">
+      <h4 class="carousel-title">Sample Data Preparation</h4>
+      <p class="carousel-desc">
+        We began by obtaining sample data from users to test the ingestion workflow.
+        The data was cleaned, formatted, and transformed into TXT files where needed, ensuring compatibility with ingestion pipelines.
+        Tools used included Excel for formatting, and MobaXterm or local CLI for file conversion and structure checking.
+      </p>
+      <img src="../images/Task 1/txt-conversion.png" alt="Slide 1" />
+    </div>
+
+    <!-- Slide 2: Preliminary Analysis & View Creation -->
+    <div class="carousel-item">
+      <h4 class="carousel-title">Preliminary Analysis & View Creation</h4>
+      <p class="carousel-desc">
+        We conducted preliminary data analysis in Excel to identify missing values, formatting issues, and inconsistencies. 
+        This informed the transformations needed for the Hive SQL views & XV scripts, ensuring the metrics were accurate and consistent.
+        <br><br>
+        Views were created in Hive to implement aggregation, filtering, and transformation logic. Each step was structured and traceable, following the principles of a data mart.
+      </p>
+      <img src="../images/Task 1/view-creation.jpeg" alt="Slide 2" />
+    </div>
+
+    <!-- Slide 3: Schema Creation & Data Mart Concept -->
+    <div class="carousel-item">
+      <h4 class="carousel-title">Schema Creation & Data Mart Concept</h4>
+      <p class="carousel-desc">
+        Hive table schemas were designed to store and structure data according to business requirements, either to ingest raw data that is not automatically available in Hadoop, or to materialize intermediate results in a data mart to standardize business logic and improve query performance.
+      </p>
+      <img src="../images/Task 1/table-schema2.jpg" alt="Slide 3" />
+    </div>
+
+    <!-- Slide 4: Data Ingestion -->
+    <div class="carousel-item">
+      <h4 class="carousel-title">Data Ingestion</h4>
+      <p class="carousel-desc">
+        Using MobaXterm, we ran Linux-based commands to insert TXT data into the staging environment, following the predefined schema and transformation logic.
+      </p>
+      <img src="../images/Task 1/mobaxterm2.jpg" alt="Slide 4" />
+      <img src="../images/Task 1/control-m-interface.png" alt="Slide 4" />
+    </div>
+
+    <!-- Slide 5: BDMF Framework -->
+    <div class="carousel-item">
+      <h4 class="carousel-title">BDMF Framework (Audit)</h4>
+      <p class="carousel-desc">
+        The BDMF framework automatically tracks file metadata, job status, and timestamps. 
+        This ensures compliance, traceability, and simplifies debugging.
+      </p>
+      <img src="../images/Task 1/bdmf.jpg" alt="Slide 5" />
+    </div>
+
+    <!-- Slide 6: Control-M Job Scheduling -->
+    <div class="carousel-item">
+      <h4 class="carousel-title">Control-M Job Scheduling</h4>
+      <p class="carousel-desc">
+        Control-M jobs were set up to automate ingestion. 
+        They pick up new files, run ingestion commands, and log outcomes via BDMF — reducing manual effort and minimizing errors.
+        Additionally, Control-M jobs are scheduled to run the data mart workflow on a regular basis, ensuring data is always up-to-date and ready for analysis.
+      </p>
+      <img src="../images/Task 1/control-m2.jpg" alt="Slide 6" />
+    </div>
+
+    <!-- Navigation -->
+    <div class="carousel-nav">
+      <button onclick="prevSlide('doc2')">←</button>
+      <button onclick="nextSlide('doc2')">→</button>
+    </div>
+
+  </div>
+</div>
+
 
       <!-- DOC 3 -->
       <div id="doc3" class="doc-view" style="display:none">
         <div class="carousel-container">
           <div class="carousel-item active">
             <h4 class="carousel-title">Data Validation</h4>
-            <p class="carousel-desc">Once data was ingested, we validated dashboard metrics against source data.
-We filtered datasets in Excel and wrote SQL queries to confirm counts, groupings, and logic accuracy.
-<br><br>We communicated frequently with users to verify business rules, correct mismatches, and ensure that the dashboard and ingested data reflected the intended logic and values.</p>
+            <p class="carousel-desc">Once data was ingested, we validated dashboard metrics against source data. We filtered datasets in Excel and wrote SQL queries to confirm counts, groupings, and logic accuracy.<br><br>We communicated frequently with users to verify business rules, correct mismatches, and ensure that the dashboard and ingested data reflected the intended logic and values.<br><br>We also presented data findings to the users for their review and feedback via powerpoint slides, engaging them based on our findings done by analysis on sample data via excel, finalizing the visuals and get UAT sign off from our users </p>
             <img src="../images/Task 1/data-validation.png" alt="Slide 1" />
           </div>
           <div class="carousel-item">
@@ -504,7 +542,7 @@ We filtered datasets in Excel and wrote SQL queries to confirm counts, groupings
         <div class="carousel-container">
           <div class="carousel-item active">
             <h4 class="carousel-title">Production Deployment</h4>
-            <p class="carousel-desc">Once the data pipeline runs smoothly without errors and is signed off by users, we prepare the necessary configuration files for deployment. This includes finalized DDL scripts to create production tables/views, Power BI file, Control-M scheduling scripts, updated metadata or YAML config files, and any datasets that need replacement due to validation issues. <br><br>Once ready, the entire pipeline is deployed to production, where the data is ingested on schedule, the dashboards reflect live data, and users can begin monitoring or reporting with confidence.</p>
+            <p class="carousel-desc">Once the data pipeline runs smoothly without errors and is signed off by users, we prepare the necessary configuration files for deployment. This includes finalized DDL scripts to create production tables/views, Power BI file, Control-M scheduling scripts, updated metadata or YAML config files, and any datasets that need replacement due to validation issues. <br><br>Once ready, the entire pipeline is deployed to production, where the data is ingested on schedule, the dashboards reflect live data, and users can begin monitoring, querying, or reporting with confidence.</p>
             <img src="../images/Task 1/prod-deployment.jpg " alt="Slide 1" />
           </div>
           </div>

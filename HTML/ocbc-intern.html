@@ -841,7 +841,7 @@
               <a href="ocbc-task1.html" class="card" data-category="Most Recent">
               <img src="../images/Intern/data-pipeline.png" alt="Task 1">
               <h3>Task 1</h3>
-              <p>Develop the end to end data pipeline for datalake/datamart ingestion</p>
+              <p>Develop the end to end data pipeline for datalake/datamart ingestion <br>(Click here to find out more!)</p>
               </a>
             </div>
 
@@ -849,7 +849,7 @@
               <a href="ocbc-task2.html" class="card" data-category="All">
                   <img width="220px" height="220px" src="../images/Intern/ocbc-dashboard1.jpg" alt="Task 2">
                   <h3>Task 2</h3>
-                  <p>Develop the visualization dashboard for different departments</p>
+                  <p>Develop the visualization dashboard for different departments<br>(Click here to find out more!)</p>
               </a>
             </div>
 
@@ -857,7 +857,7 @@
               <a href="ocbc-task3.html" class="card" data-category="Most Recent">
                   <img width="220px" height="220px" src="../images/Intern/devops.jpg" alt="Task 3">
                   <h3>Task 3</h3>
-                  <p>Design & document the DevOps framework (data maintenance & governance)</p>
+                  <p>Design & document the DevOps framework <br>(Click here to find out more!)</p>
               </a>
             </div>
           
@@ -870,119 +870,153 @@
         </div>
       </div>
       
-  
-      <!-- === REFLECTION SECTION === -->
-      <!-- Closed Book Image -->
-      <h2 style="font-size: 2.8em; color: #433569; text-align: center; margin-bottom: 10px;">Reflection</h2>
-      <img id="bankbook-closed" src="../images/Intern/bankbook-closed.png" alt="Closed Bank Book"
-        onclick="openBankbook()" />
+  <!-- === REFLECTION SECTION === -->
+<h2 style="font-size: 2.8em; color: #433569; text-align: center; margin-bottom: 10px;">Reflection</h2>
+<img id="bankbook-closed" src="../images/Intern/bankbook-closed.png" alt="Closed Bank Book"
+  onclick="openBankbook()" />
 
-      <!-- Open Book Interaction -->
-      <div id="bankbook-open">
+<div id="bankbook-open">
 
-        <!-- Lightbox container -->
-        <div id="lightbox-overlay">
-          <div id="lightbox-content">
-            <button class="close-lightbox" onclick="closeLightbox()">Close</button>
-            <div id="lightbox-text"></div>
-          </div>
-        </div>
-
-        <img src="../images/Intern/bankbook-open-2.png" alt="Open Bank Book" />
-
-        <!-- Filter/Nav Buttons -->
-        <!-- Task Buttons -->
-        <div class="task-buttons">
-          <button onclick="filterReflections('task1')">Task 1</button>
-          <button onclick="filterReflections('task2')">Task 2</button>
-          <button onclick="filterReflections('task3')">Task 3</button>
-          <button onclick="filterReflections('all')">Show All</button>
-          <button onclick="closeBankbook()">Close</button>
-        </div>
-
-        <!-- Content -->
-        <div class="reflections">
-          <div class="reflection-card" data-task="task1">
-            <p><strong>🗓️ Week 1-4 – Mastering User Communication (Task 1)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>Meeting with users really helped me understand what they actually need from the dashboard and what questions they want answered. It made me realize how important it is to listen first before jumping into building. <br><br>Going through sample data gave me a clearer picture of what’s possible and what adjustments we need to make behind the scenes. Overall, it showed me that good communication and a solid understanding of data go hand in hand to create something truly useful. One of the challenges is learning how to communicate with the users independently, without the need of supervision from our supervisor. <br><br>I started shadowing my supervvisor in the first few weeks which helped me to learn the ropes fast and the skills/knowledge needed to communicate with the user. Now I am able to hold calls and meetings independently without supervision.</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task1">
-            <p><strong>🗓️ Week 5-8 – Data Preparation (Task 1)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>Cleaning and formatting seemed simple at first, but I soon realized that one small mistake could break the entire pipeline. Creating schemas taught me to think ahead about structure and meaning, not just storage. Using BDMF made me appreciate the importance of audit trails, it's not just about loading data, but proving it's done right.<br><br> This phase taught me how crucial precision, traceability, and foresight are in making data truly useful. Initially I had difficulties understanding their SQL code as it was way more complex and different from what we were taught in school. I also had difficulties understanding how MobaXterm works as it runs on linux commands and also understanding how the BDMF framework works in this pipeline. I took sometime to learn the basics during free time by using available resources such as chatgpt and online courses which helped me understand better on how their SQL code and BDMF framework works. <br><br>Documenting linux commands on txt file helped me greatly as i can refer  to them whenever i need them which eased the stress of remembering all the commands and what it does. Now I am able to see the bigger picture of how everything connects, and also knowing how to start working with the data pipeline.</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task1">
-            <p><strong>🗓️ Week 9-12 – Debugging With Purpose (Task 1)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>During the data validation phase, one major problem that I faced was debugging the issue that was causing problems in the data pipeline. This has showed me that one wrong number on the dashboard could mean alot things such as wrong schema, file/ingestion/logic issue etc. This made it harder to debug the problem. <br><br>What helped me overcome this was documenting the correct numbers (verified from users) and wrong numbers for reference. Learning from my supervisor, especially how to recognize common scenarios and where to look when something breaks, which gave me a structured way to troubleshoot. <br><br>During testing, I also made it a habit to think about how to make the pipeline more robust. Every time something went wrong, I asked myself: how can this be prevented in production? This mindset helped me design safer, more automated processes that can run with minimal errors once deployed.</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task1">
-            <p><strong>🗓️ Week 13-16 – Delivering To Production (Task 1)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>Deploying to production gave me a real understanding of how large companies like OCBC ensure stability, automation, and control at scale.  I learned what needs to be finalized before deployment, from SQL views to PBIX dashboards, config files, and ingestion paths.<br><br>
-
-What stood out to me was how structured the handover is , everything must be tested, reviewed, and packaged clearly. Being part of this process made me realize how important it is to plan ahead, document properly, and make sure the pipeline is fully reliable before going live. It was rewarding to know that something I helped build is now being used in a live environment.</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task2">
-            <p><strong>🗓️ Week 1-4 – Learning Dashboard Planning (Task 2)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>Before building any dashboard, I learned the process of gathering requirements, including the data schema, the nature and volume of the data, what key metrics need to be shown, and the business logic behind each one.<br><br> I also learned how users clarify how they want the data to be displayed visually, often by creating mockups in PowerPoint to confirm design and layout before starting the actual build. This planning stage helped reduce confusion later and made the dashboard more aligned with what the business truly needed.</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task2">
-            <p><strong>🗓️ Week 5-8 – Mastering SQL In A MNC Environment (Task 2)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>Working with SQL in a large corporate environment like OCBC exposed me to complex, real-world logic that goes far beyond what we learn in school. As I became more confident, I began looking for ways to improve the structure and readability of the code. <br><br>Through my own research, I discovered that using Common Table Expressions (CTEs) would make the logic more organized, maintainable, and reliable, especially in a setting where queries are layered and intricate.
-
-I proposed this approach to my supervisor, and we ended up implementing the logic I designed using CTEs. <br><br>Seeing my structure adopted in our final workflow was a rewarding milestone. It showed me that with initiative and technical understanding, even interns can make meaningful contributions in a complex data environment.
-</p>
-            </div>
-          </div>
-
-          <div class="reflection-card" data-task="task2">
-            <p><strong>🗓️ Week 9-12 – Finalized Product (Task 2)</strong></p>
-            <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-            <div class="details">
-              <p>One of the biggest challenges was learning how everything connects, from the database to the final dashboard. DAX and Query M were new to me, and the dashboard design approach at OCBC was much more advanced than what we learned in school. <br><br>It involved complex relationships, conditional formatting, and highly informative layouts.
-
-With the help of online resources and ChatGPT, I gradually understood how to work with these tools and languages. <br><br>More importantly, I learned how to think beyond standard visuals by focusing on clarity, functionality, and user needs to build dashboards that are both powerful and insightful.</p>
-            </div>
-          </div>
-
-            <div class="reflection-card" data-task="task3">
-  <p><strong>🗓️  Mastering DevOps Tools & Workflow (Week 1–12)</strong></p>
-  <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
-  <div class="details">
-    <p><strong>Learning:</strong> Over the course of this task, I gained hands-on experience with a range of DevOps and collaboration tools, including Jira, Confluence, Infinity, Jenkins, Bitbucket, and Agile sprint planning. I learned how each tool plays a different role in managing the software development lifecycle — from breaking down requirements and tracking tasks, to handling version control, automation, and documentation.</p>
-
-    <p><strong>Challenge:</strong> Initially, I struggled to understand how these tools connected with each other. For example, it was confusing to switch between Jira and Infinity for task updates, or to understand when to use Jenkins versus Bitbucket. It was also overwhelming to remember the correct process for documentation in Confluence or to manage version control safely on Bitbucket without causing conflicts.</p>
-
-    <p><strong>Solution:</strong> To overcome these challenges, I created my own internal workflow guide that mapped out when and how to use each tool, including checklists for each sprint cycle. I also asked questions during team meetings, shadowed teammates, and referred to past Confluence pages as references. Over time, I became much more confident navigating across platforms, and I began to see the value of a well-structured DevOps process — one where every tool is connected to support smooth collaboration, accountability, and faster releases.</p>
+  <!-- Lightbox container -->
+  <div id="lightbox-overlay">
+    <div id="lightbox-content">
+      <button class="close-lightbox" onclick="closeLightbox()">Close</button>
+      <div id="lightbox-text"></div>
+    </div>
   </div>
+
+  <img src="../images/Intern/bankbook-open-2.png" alt="Open Bank Book" />
+
+  <!-- Filter/Nav Buttons -->
+  <div class="task-buttons">
+    <button onclick="filterReflections('task1')">Task 1</button>
+    <button onclick="filterReflections('task2')">Task 2</button>
+    <button onclick="filterReflections('task3')">Task 3</button>
+    <button onclick="filterReflections('all')">Show All</button>
+    <button onclick="closeBankbook()">Close</button>
+  </div>
+
+  <!-- Content -->
+  <div class="reflections">
+
+    <!-- Task 1 Cards -->
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 1-4 – Mastering User Communication (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Meeting with users really helped me understand what they actually need from the dashboard and what questions they want answered. It made me realize how important it is to listen first before jumping into building. <br><br>Going through sample data gave me a clearer picture of what’s possible and what adjustments we need to make behind the scenes. Overall, it showed me that good communication and a solid understanding of data go hand in hand to create something truly useful. One of the challenges is learning how to communicate with the users independently, without the need of supervision from our supervisor. <br><br>I started shadowing my supervisor in the first few weeks which helped me to learn the ropes fast and the skills/knowledge needed to communicate with the user. Now I am able to hold calls and meetings independently without supervision.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 5-8 – Data Preparation (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Cleaning and formatting seemed simple at first, but I soon realized that one small mistake could break the entire pipeline. Creating schemas taught me to think ahead about structure and meaning, not just storage. Using BDMF made me appreciate the importance of audit trails, it's not just about loading data, but proving it's done right.<br><br>Documenting Linux commands on txt files helped me greatly as I can refer to them whenever needed, which eased the stress of remembering all commands and their functions. Now I am able to see the bigger picture of how everything connects, and also knowing how to start working with the data pipeline.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 9-12 – Debugging With Purpose (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>During the data validation phase, one major problem I faced was debugging issues in the data pipeline. A single wrong number could stem from schema errors, ingestion problems, or logic mistakes. <br><br>Documenting correct and incorrect values for reference helped me troubleshoot efficiently. I learned to anticipate common errors and think proactively about preventing them in production, which helped me design safer, more automated processes.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 13-16 – Delivering To Production (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Deploying to production gave me a real understanding of how large companies ensure stability, automation, and control at scale. I learned what needs to be finalized before deployment, from SQL views to PBIX dashboards and ingestion paths.<br><br>The structured handover process highlighted the importance of planning, documenting, and ensuring the pipeline is fully reliable before going live.</p>
+      </div>
+    </div>
+
+    <!-- New Task 1 Cards -->
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 13-16 – Cross-Team Collaboration (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Working across teams made me understand how dependencies can affect timelines and data quality. Coordinating with both the BI team and DevOps team taught me the importance of clear documentation and proactive communication to avoid bottlenecks.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task1">
+      <p><strong>🗓️ Week 13-16 – Automation Mindset (Task 1)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>I realized that thinking about automation early can save time and reduce errors. I started creating reusable SQL snippets and Excel templates that could be applied to future tasks, which improved efficiency and reduced manual mistakes.</p>
+      </div>
+    </div>
+
+    <!-- Task 2 Cards -->
+    <div class="reflection-card" data-task="task2">
+      <p><strong>🗓️ Week 1-4 – Learning Dashboard Planning (Task 2)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Before building any dashboard, I learned the process of gathering requirements, including the data schema, the nature and volume of the data, key metrics, and business logic. Mockups in PowerPoint helped confirm design before the build.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task2">
+      <p><strong>🗓️ Week 5-8 – Mastering SQL In A MNC Environment (Task 2)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Using complex SQL and CTEs taught me how to structure queries for maintainability and accuracy. Implementing my own logic with supervision showed that even as an intern, I could contribute meaningfully.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task2">
+      <p><strong>🗓️ Week 9-12 – Finalized Product (Task 2)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>I learned how all components connect, from SQL to Power BI. DAX and Query M were new, but with online resources, I gained confidence to produce dashboards that meet user expectations.</p>
+      </div>
+    </div>
+
+    <!-- New Task 2 Cards -->
+    <div class="reflection-card" data-task="task2">
+      <p><strong>🗓️ Week 9-12 – Iterative Feedback & Improvement (Task 2)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Engaging users iteratively helped me understand the importance of feedback loops. Each change improved clarity, usability, and business alignment, and taught me to embrace feedback rather than see it as criticism.</p>
+      </div>
+    </div>
+
+    <div class="reflection-card" data-task="task2">
+      <p><strong>🗓️ Week 9-12 – Data Verification Practices (Task 2)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Validating dashboard metrics against source data taught me to be meticulous. Comparing Excel and SQL outputs highlighted discrepancies early, which improved the quality and reliability of the final dashboard.</p>
+      </div>
+    </div>
+
+    <!-- Task 3 Cards -->
+    <div class="reflection-card" data-task="task3">
+      <p><strong>🗓️ Mastering DevOps Tools & Workflow (Week 1–12)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p><strong>Learning:</strong> Hands-on experience with Jira, Confluence, Infinity, Jenkins, Bitbucket, and Agile sprint planning taught me the roles of each tool in managing lifecycle and collaboration.</p>
+
+        <p><strong>Challenge:</strong> Initially, I struggled to understand the connections between tools, processes, and workflows.</p>
+
+        <p><strong>Solution:</strong> I created internal workflow guides, checklists, and sought mentorship. Over time, I became confident navigating platforms and appreciated the structured DevOps process.</p>
+      </div>
+    </div>
+
+    <!-- New Task 3 Card -->
+    <div class="reflection-card" data-task="task3">
+      <p><strong>🗓️ DevOps Insights – Automation & Reliability (Task 3)</strong></p>
+      <button class="expand-btn" onclick="toggleDetails(this)">🔍</button>
+      <div class="details">
+        <p>Understanding pre-deployment checks, automated approvals, and pipeline monitoring showed me how automation and governance prevent errors. I also realized the importance of documenting processes clearly for smoother handovers and consistent delivery.</p>
+      </div>
+    </div>
+
+  </div>
+
 </div>
 
-
-          </div>
-
-        </div>
-
-      </div>
   
     </section>
   </div>

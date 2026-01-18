@@ -149,8 +149,11 @@
       <select id="month" onchange="filterMonth()">
         <option value="all">All Months</option>
         <option value="Mar">Mar (Requirement)</option>
-        <option value="Apr">Apr (SQL)</option>
-        <option value="May">May (Dashboard)</option>
+        <option value="Apr">Apr (Analysis)</option>
+        <option value="May">May (SQL)</option>
+        <option value="Jun">Jun (Dashboard)</option>
+        <option value="Jul">Jul (Testing)</option>
+        <option value="Aug">Aug (Deployment)</option>
       </select>
       <p style="font-size: 14px; color: #000000; margin-top: 6px;">
         (Each month reflects a project phase, from user requirements to deployment)
@@ -180,27 +183,50 @@
         <tr id="row1" class="expand-row">
           <td colspan="5">
             <div class="expand-content">
-              <h4>Requirement Gathering</h4>
-              <p>In the initial phase, we initiate a series of calls with users to understand the business context and the nature of their data. These discussions help uncover the type of data involved, any underlying logic that needs to be captured, and what key insights the users want to display on the dashboard. <br><br>This phase is focused on aligning expectations and confirming objectives. Throughout the first month, our team collaborates closely with users to define the dashboard layout, data schema, and desired transformations. Sample dashboards and visual mockups are typically shared via PowerPoint to facilitate feedback and guide the design process.<br><br></p>
+              <h4>Requirement Gathering & Business Understanding</h4>
+              <p>
+                In the initial phase, we conducted calls and workshops with stakeholders to understand the business context, including department-specific operations, SLA tracking, channel performance, and key metrics that the dashboard should reflect. 
+                We clarified objectives, expectations, and the acceptance criteria for the dashboard. This included confirming the scope of metrics, required reports, and visualizations, ensuring alignment between users' needs and data availability.
+                Sample dashboards and mockups were shared via PowerPoint to facilitate feedback and guide the design process.
+              </p>
               <img src="../images/Task 2/ppt-dashboard2.png" alt="Dashboard Discussion" style="width:99%;"/>
-              <!--
-              <div class="attachment">
-                📂 <a href="#">Download Meeting Summary (PDF)</a>
-              </div>
-              -->
             </div>
           </td>
         </tr>
 
+
         <!-- Row 2 -->
         <tr data-month="Apr">
           <td>01 Apr 2025</td>
-          <td>Hive SQL View Developed</td>
+          <td>Preliminary Analysis</td>
           <td>REF002</td>
-          <td>SQL</td>
+          <td>Data Analysis</td>
           <td><button class="btn" onclick="toggle('row2')">View</button></td>
         </tr>
         <tr id="row2" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Preliminary Analysis</h4>
+              <p>
+                During this phase, we conducted preliminary data analysis in Excel to understand sample datasets and identify any inconsistencies, missing values, or formatting issues. 
+                This step allowed us to determine what data needed processing or cleansing before ingestion. Findings from Excel analysis were documented and shared with stakeholders to ensure alignment on data quality requirements. 
+                These insights later informed the SQL view logic to accurately transform and structure the data for the dashboard.
+              </p>
+              <img src="../images/Task 2/excel.png" alt="Preliminary Data Analysis" style="width:99%;"/>
+            </div>
+          </td>
+        </tr>
+
+
+        <!-- Row 3 -->
+        <tr data-month="May">
+          <td>01 May 2025</td>
+          <td>Hive SQL View Developed</td>
+          <td>REF003</td>
+          <td>SQL</td>
+          <td><button class="btn" onclick="toggle('row3')">View</button></td>
+        </tr>
+        <tr id="row3" class="expand-row">
           <td colspan="5">
             <div class="expand-content">
               <h4>SQL View Logic</h4>
@@ -215,15 +241,15 @@
           </td>
         </tr>
 
-        <!-- Row 3 -->
-        <tr data-month="May">
-          <td>01 May 2025</td>
+        <!-- Row 4 -->
+        <tr data-month="Jun">
+          <td>01 June 2025</td>
           <td>Dashboard Visual Completed</td>
-          <td>REF003</td>
+          <td>REF004</td>
           <td>Dashboard</td>
-          <td><button class="btn" onclick="toggle('row3')">View</button></td>
+          <td><button class="btn" onclick="toggle('row4')">View</button></td>
         </tr>
-        <tr id="row3" class="expand-row">
+        <tr id="row4" class="expand-row">
           <td colspan="5">
             <div class="expand-content">
               <h4>Finalized Dashboard (Final Phase)</h4>
@@ -237,6 +263,53 @@
             </div>
           </td>
         </tr>
+
+        <!-- Row 5 -->
+        <tr data-month="Jul">
+          <td>01 July 2025</td>
+          <td>User Testing Phase</td>
+          <td>REF005</td>
+          <td>Testing</td>
+          <td><button class="btn" onclick="toggle('row5')">View</button></td>
+        </tr>
+        <tr id="row5" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>User Testing & Feedback</h4>
+              <p>
+                In this phase, users tested the dashboard to validate data accuracy, business logic, and visualizations. Feedback was collected iteratively to identify gaps, discrepancies, or improvements needed. 
+                Based on user input, modifications were made to data transformations, SQL views, or dashboard visuals to ensure the final product met business requirements and expectations.
+              </p>
+              <!--<img src="../images/Task 2/finalised-dashboard2.png" alt="User Testing Dashboard" style="width:100%;"/>-->
+            </div>
+          </td>
+        </tr>
+
+
+         <!-- Row 6 -->
+        <tr data-month="Aug">
+          <td>01 August 2025</td>
+          <td>Deployment & Maintenance</td>
+          <td>REF006</td>
+          <td>Deployment</td>
+          <td><button class="btn" onclick="toggle('row6')">View</button></td>
+        </tr>
+        <tr id="row6" class="expand-row">
+          <td colspan="5">
+            <div class="expand-content">
+              <h4>Deployment & Maintenance</h4>
+              <p>
+                Once the dashboard and data were stabilized and signed off by users, the final artefacts were prepared for deployment into the production environment. 
+                This included finalizing SQL views, Power BI reports, and related documentation. 
+                Post-deployment, ongoing maintenance and support were planned to address any issues, update dashboards with new requirements, and ensure consistent data quality.
+              </p>
+              <img src="../images/Task 2/dashboard-deployment-artefacts.jpeg" alt="Production Dashboard" style="width:25%;"/>
+            </div>
+          </td>
+        </tr>
+
+
+
     </table>
   </div>
 
